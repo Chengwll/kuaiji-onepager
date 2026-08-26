@@ -10,7 +10,7 @@
 
 ## 使用方法
 
-直接用浏览器打开 `会计原来这么有趣（速览）.html` 即可，左侧导航切换章节，支持 hash 直达（如 `#view-ch9`）与上次浏览位置记忆。
+在线访问 **https://chengwll.github.io/kuaiji-onepager/**（GitHub Pages），或下载 `index.html` 本地打开，左侧导航切换章节，支持 hash 直达（如 `#view-ch9`）与上次浏览位置记忆。
 
 ## 说明
 
