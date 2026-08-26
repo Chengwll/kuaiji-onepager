@@ -1,0 +1,2550 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>会计原来这么有趣（速览）</title>
+<style>
+
+
+
+/* ========== 样式源：第1章_一页纸.html（原样，十章统一） ========== */
+* { margin:0; padding:0; box-sizing:border-box; }
+:root{
+  --c:#2563eb; --c-dark:#1d4ed8; --cl:#e4ecfc; --cl2:#f0f5ff;
+  --violet:#7c3aed; --pink:#ec4899; --teal:#0d9488;
+  --text:#1e293b; --text2:#475569; --text3:#64748b;
+  --border:#dbe3f0; --bg:#f4f6fa;
+  --side-w:236px;
+  --side-gap:16px; /* 目录与页面边缘/内容区的间距 */
+}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  background:var(--bg); color:var(--text); font-size:11px; line-height:1.55;
+  display:flex; justify-content:center; align-items:flex-start; gap:16px;
+  padding:var(--side-gap) var(--side-gap) 0;
+}
+/* ===== A4 页面 ===== */
+.page{
+  width:794px; margin:0 auto; background:#fff; border:1px solid var(--border);
+  border-radius:10px; overflow:hidden;
+}
+/* ===== 顶部标题条 ===== */
+.hero{
+  background:linear-gradient(120deg,#2563eb 0%,#4f46e5 45%,#7c3aed 100%);
+  padding:20px 34px 16px; color:#fff; position:relative;
+}
+.hero .tag{display:inline-block; font-size:10px; font-weight:700; letter-spacing:2px;
+  background:rgba(255,255,255,.18); border:1px solid rgba(255,255,255,.35);
+  padding:2px 10px; border-radius:999px; margin-bottom:8px;}
+.hero h1{font-size:21px; font-weight:800; letter-spacing:.5px;}
+.hero .sub{font-size:11px; opacity:.85; margin-top:2px;}
+.formula{
+  margin-top:12px; background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.3);
+  border-radius:9px; padding:8px 14px; font-size:13px; font-weight:700; letter-spacing:.3px;
+  display:flex; align-items:center; gap:8px; flex-wrap:wrap;
+}
+.formula .plus{opacity:.7; font-weight:400;}
+.formula .cap{font-size:10px; font-weight:400; opacity:.8; margin-left:auto;}
+.formula b{font-size:13.5px;}
+.hero .core{margin-top:9px; font-size:11.5px; opacity:.95;}
+.hero .core b{color:#fde68a;}
+
+/* ===== 内容区 ===== */
+.body{padding:14px 22px 12px;}
+.row{display:grid; gap:10px; margin-bottom:10px;}
+.cols2{grid-template-columns:1fr 1fr;}
+.cols3{grid-template-columns:1fr 1fr 1fr;}
+.card{
+  background:#fff; border:2px solid var(--border); border-radius:10px;
+  padding:9px 12px 10px;
+}
+.card.blue{border-color:#93b4f5; background:var(--cl2);}
+.card .hd{
+  display:flex; align-items:center; gap:7px; font-size:11.5px; font-weight:800;
+  color:var(--c-dark); margin-bottom:6px; padding-bottom:5px; border-bottom:1px solid #b9c8ea; /* 大标题用实线（层级高），与小标题虚线区分 */
+}
+.card .hd .no{
+  min-width:19px; height:19px; border-radius:6px; background:linear-gradient(135deg,#2563eb,#7c3aed);
+  color:#fff; font-size:10px; font-weight:800; display:flex; align-items:center; justify-content:center; flex-shrink:0;
+}
+.card .hd .ln{display:none; /* 去掉标题右侧渐变线，避免与 border-bottom 实线叠加造成视觉混淆（用户要求大标题与小标题分隔线有区别） */}
+/* 卡片内小节标题：同类信息分层 */
+.subt{
+  display:flex; align-items:center; gap:6px;
+  font-size:10.8px; font-weight:800; color:var(--c-dark);
+  margin:10px 0 3px;
+  padding-bottom:3px;
+  border-bottom:1px dashed #d3dcee; /* 小标题与下方正文用横线隔开（用户明确要求） */
+}
+.subt::before{content:''; width:4px; height:11px; border-radius:2px;
+  background:linear-gradient(180deg,#2563eb,#7c3aed); flex-shrink:0;}
+.card > .subt:first-child, .row > .card > .subt:first-child{margin-top:2px;}
+/* 大节标题：区块层级分组 */
+.sec-title{
+  display:flex; align-items:center; gap:10px;
+  background:linear-gradient(135deg,#eef2ff,#f5f0ff);
+  border:1.5px solid #c7d2fe; border-left:5px solid #2563eb;
+  border-radius:10px; padding:7px 14px; margin:0 0 10px;
+  font-size:12.5px; font-weight:800; color:#3730a3; letter-spacing:.3px;
+}
+.sec-title .sec-no{
+  background:linear-gradient(135deg,#2563eb,#7c3aed); color:#fff;
+  font-size:10.5px; font-weight:800; border-radius:7px;
+  padding:2px 9px; flex-shrink:0; letter-spacing:0;
+}
+.sec-title .sec-sub{font-size:10px; font-weight:500; color:var(--text3); margin-left:auto; letter-spacing:0;}
+ul{list-style:none;}
+li{position:relative; padding:2.5px 0 2.5px 14px; font-size:10.6px; color:var(--text2);}
+li::before{content:''; position:absolute; left:1px; top:7px; width:5px; height:5px; border-radius:50%; background:var(--c);}
+li b{color:var(--text);}
+li.danger::before{background:#dc2626;}
+li.ok::before{background:#16a34a;}
+li.warn::before{background:#d97706;}
+/* 已用 tag 底色凸显的条目：去掉前方圆点与占位缩进，左对齐 */
+.li-tag::before{content:none;}
+.li-tag{padding-left:0;}
+/* 序号开头（①~⑤）的条目：序号即视觉标记，去圆点左对齐（不双重标记） */
+.li-num::before{content:none;}
+.li-num{padding-left:0;}
+/* 第四级：父条目下的从属子条目（缩进+小方点） */
+li.sub{position:relative; padding-left:26px; font-size:10.2px; color:var(--text3);}
+li.sub::before{content:''; left:16px; top:7px; width:4px; height:4px; border-radius:1px; background:#94a3b8;}
+/* 子项自带文字前缀标记（✗/△/→ 等）时：保留缩进层级但去掉小方格，避免双重标记；缩进收回到小方格原位置（16px） */
+li.sub-mark{position:relative; padding-left:16px; font-size:10.2px; color:var(--text3);}
+li.sub-mark::before{content:none;}
+code{background:var(--cl); color:var(--c-dark); border-radius:4px; padding:0 4px; font-size:9.6px; font-family:"SF Mono",Menlo,Consolas,monospace;}
+.flow{display:flex; align-items:center; gap:5px; flex-wrap:wrap; font-size:10.2px; color:var(--text2); margin-top:5px;}
+.flow .step{background:var(--cl); border:1px solid #c7d6f5; color:var(--c-dark); border-radius:6px; padding:2px 8px; font-weight:700;}
+.flow .arr{color:#94a3b8; font-weight:700;}
+.tag{display:inline-block; font-size:9.3px; font-weight:700; padding:1px 7px; border-radius:999px; margin-right:4px;}
+/* 长说明文字的 li-tag：标签独占一行，说明换行到下一行（同模块内须统一使用） */
+ul.tags-block .li-tag .tag{display:block; width:fit-content; margin-bottom:3px;}
+ul.tags-block .li-tag{margin-bottom:6px;}
+/* 分行后说明文字作为列表项：前置小方格 + 缩进对齐 li.sub（参考护栏三层） */
+ul.tags-block .li-tag .desc{display:block; position:relative; padding-left:26px; font-size:10.2px; color:var(--text3);}
+ul.tags-block .li-tag .desc::before{content:''; position:absolute; left:16px; top:7px; width:4px; height:4px; border-radius:1px; background:#94a3b8;}
+.t-blue{background:#e4ecfc; color:#1d4ed8; border:1px solid #b9cdf6;}
+.t-violet{background:#ede9fe; color:#6d28d9; border:1px solid #d3c8f7;}
+.t-pink{background:#fce7f3; color:#be185d; border:1px solid #f6c6e2;}
+.t-teal{background:#ccfbf1; color:#0f766e; border:1px solid #99f0dd;}
+.t-red{background:#fee2e2; color:#b91c1c; border:1px solid #fbbfbf;}
+.t-gray{background:#f1f5f9; color:#475569; border:1px solid #dbe4ef;}
+
+/* 全宽横幅卡 */
+.banner{
+  background:linear-gradient(135deg,#eef4ff,#f5f0ff); border:2px solid #c7d2fe;
+  border-radius:10px; padding:9px 14px; margin-bottom:10px;
+}
+.banner .hd{display:flex; align-items:center; gap:8px; font-size:11.5px; font-weight:800; color:#4338ca; margin-bottom:6px; padding-bottom:4px; border-bottom:1px solid #b9c8ea; /* 与 .card .hd 一致：大标题实线 */}
+.banner .grid{display:grid; grid-template-columns:repeat(5,1fr); gap:8px;}
+.b-el{background:#fff; border:1.5px solid #d9e2f8; border-radius:8px; padding:5px 8px; font-size:9.8px; color:var(--text2);}
+.b-el b{display:block; font-size:10.4px; color:var(--c-dark); margin-bottom:1px; padding-bottom:2px; border-bottom:1px dashed #d9e2f8; /* 内嵌小卡标题与正文用虚横线隔开（用户明确要求，与 .subt 一致） */}
+.b-el .sub2{color:var(--text3); font-size:9.2px;}
+
+/* 对比双栏 */
+.vs{display:grid; grid-template-columns:1fr 1fr; gap:0; border:2px solid var(--border); border-radius:10px; overflow:hidden;}
+/* 裸放在 body/大节间的 .vs（不在 card 内）需外边距与上下内容分隔（实例：ch8 SFT vs RL 对照曾与 8.2 大节贴在一起，用户截图指出卡片无间隔） */
+body > .view .vs, .body > .vs{margin:10px 0;}
+.vs .side{padding:8px 11px;}
+.vs .side.a{background:var(--cl2); border-right:2px dashed var(--border);}
+.vs .side.b{background:#fff;}
+.vs .side .t{font-size:11px; font-weight:800; margin-bottom:4px; display:flex; align-items:center; gap:6px;}
+.vs .side.a .t{color:var(--c-dark);}
+.vs .side.b .t{color:#6d28d9;}
+.vs .side li{font-size:10.2px;}
+
+/* 小结金句 */
+.foot{background:linear-gradient(120deg,#1e293b,#334155); color:#e2e8f0; padding:11px 22px 13px;}
+.foot .t{font-size:10px; font-weight:800; letter-spacing:2px; color:#93c5fd; margin-bottom:6px;}
+.foot .qs{display:grid; grid-template-columns:1fr 1fr; gap:4px 18px;}
+/* 卡片底部关键词行：提炼卡内核心术语，margin-top:auto 贴底填充空白（方案A，用户认可；内容须全部来自卡内文字，不可新增）。仅含 .kw 的卡片启用 flex，避免影响其他卡片布局 */
+.card:has(.kw){display:flex; flex-direction:column;}
+.card .kw{margin-top:auto; padding-top:8px; font-size:9.6px; color:var(--text3); display:flex; flex-wrap:wrap; gap:3px 6px; border-top:1px dashed #e2e8f0; margin-bottom:-4px;}
+.card .kw b{font-weight:700; color:var(--text2);}
+.card .kw span{background:var(--cl); color:var(--c-dark); border-radius:4px; padding:0 5px; line-height:1.7;}
+.foot li{color:#cbd5e1; font-size:10.2px; padding-left:14px;}
+.foot li::before{background:#60a5fa;}
+.foot li b{color:#f1f5f9;}
+
+/* ========== 左侧章节目录 ========== */
+.sidebar{
+  position:sticky; top:var(--side-gap); width:var(--side-w); z-index:100;
+  background:linear-gradient(180deg,#ffffff 0%,#f3f0ff 100%); border:1px solid #e4e0f5; border-radius:14px;
+  box-shadow:0 4px 20px rgba(30,41,59,.08);
+  display:flex; flex-direction:column; overflow:hidden;
+  flex-shrink:0; height:calc(100vh - var(--side-gap) * 2);
+}
+.s-head{
+  padding:18px 18px 10px; background:linear-gradient(120deg,#2563eb,#4f46e5 55%,#7c3aed);
+  color:#fff; border-radius:13px 13px 0 0;
+}
+.s-head .t1{font-size:14.5px; font-weight:800; letter-spacing:.5px;}
+.s-head .t2{font-size:10px; opacity:.85; margin-top:2px;}
+.s-nav{flex:1; overflow-y:auto; padding:10px 0 16px;}
+.s-group{font-size:9.5px; font-weight:800; letter-spacing:2px; color:var(--text3);
+  padding:12px 18px 4px;}
+.s-item{
+  position:relative; display:flex; align-items:center; gap:9px; cursor:pointer;
+  color:var(--text2); font-size:11.3px; font-weight:600; text-decoration:none;
+  padding:7px 12px 7px 44px; margin:0 10px 3px; border-radius:10px;
+  border:1.5px solid transparent; transition:background .12s;
+}
+.s-item:hover{background:#f1f5f9;}
+.s-item.active{background:#fff; border-color:#c7d2fe; box-shadow:0 2px 10px rgba(99,102,241,.12);}
+.s-item .num{
+  position:absolute; left:11px; top:6px; width:20px; height:20px; border-radius:7px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:9px; font-weight:800; color:#fff; flex-shrink:0; background:#94a3b8;
+}
+.s-item.active .num{transform:scale(1.12);}
+.s-item .t{display:block; font-size:8.5px; color:var(--text3); font-weight:500; line-height:1.2;}
+.s-item.active .t{color:#94a3b8;}
+.s-foot{
+  margin:10px 14px 14px; padding:9px 10px; text-align:center;
+  font-size:11px; font-weight:800; letter-spacing:1px; color:#fff;
+  background:linear-gradient(120deg,#2563eb,#7c3aed);
+  border-radius:10px; box-shadow:0 2px 10px rgba(99,102,241,.25);
+}
+
+/* ===== 右侧内容区 ===== */
+.main{flex:1; min-width:0; padding:0 0 40px; max-width:842px;}
+.view{display:block;}
+.view[hidden]{display:none;}
+
+/* ===== 响应式 ===== */
+@media (max-width:860px){
+  body{display:block; padding:0;}
+  .sidebar{position:static; width:100%; height:auto; border:none; border-radius:0; box-shadow:none; border-bottom:1px solid var(--border);}
+  .s-nav{display:flex; flex-wrap:nowrap; overflow-x:auto; padding:6px 10px; gap:4px;}
+  .s-group{display:none;}
+  .s-item{padding:6px 12px; white-space:nowrap; border-left:none; border-bottom:2px solid transparent; border-radius:6px; padding-left:30px; margin:0 2px;}
+  .s-item.active{border-bottom-color:var(--c); box-shadow:none; border-color:transparent; border-bottom-color:var(--c);}
+  .s-item .num{position:absolute; left:6px; top:6px; width:18px; height:18px; border-radius:6px; font-size:8px;}
+  .s-head{border-radius:0;}
+  .s-foot{display:none;}
+  .main{max-width:none; padding:12px 10px 30px;}
+  .page{width:100%;}
+}
+/* ===== 打印：只打印当前章节 ===== */
+@media print{
+  body{background:#fff; padding:0;}
+  .sidebar{display:none;}
+  .main{margin-left:0; padding:0;}
+  .page{width:100%; border:none; border-radius:0;}
+  .view[hidden]{display:none;}
+}
+
+/* ===== 扩展：表格（全书总览章） ===== */
+.tbl{width:100%; border-collapse:collapse; margin:8px 0 4px; font-size:10.6px; background:#fff; border-radius:10px; overflow:hidden; box-shadow:0 1px 4px rgba(30,41,59,.06);}
+.tbl th{background:linear-gradient(120deg,#2563eb,#7c3aed); color:#fff; font-weight:700; padding:7px 10px; text-align:left; font-size:10.6px; white-space:nowrap;}
+.tbl td{border-bottom:1px solid #eef1f6; padding:6px 10px; color:var(--text2); vertical-align:top; line-height:1.5;}
+.tbl tr:nth-child(even) td{background:#fafbfd;}
+.tbl td[rowspan]{background:linear-gradient(180deg,#eef2ff,#f5f0ff); font-weight:700; color:var(--c-dark); text-align:center; vertical-align:middle;}
+
+
+
+
+/* ===== 裸放 card 间距（2026-08-23：子代理片段偶有 card 直接放 body 下，.card 无 margin 会与上下贴住） ===== */
+.body > .card{margin:0 0 10px;}
+.body > .card.blue{margin:0 0 10px;}
+
+/* ===== 布局稳定性：垂直滚动条常驻占位，切换 view 时宽度/位置不抖动（2026-08-23） ===== */
+html{overflow-y:scroll; scrollbar-gutter:stable;}
+
+
+/* ===== 间距一致性：表格底部 margin 对齐 10px 统一间距（2026-08-24 用户总原则「卡片上下间距尽量一致」） ===== */
+.tbl{margin:8px 0 10px;}
+
+
+/* ===== 扩展：总览表格章节列（2026-08-25《图解大模型》） ===== */
+.tbl td.ch{min-width:180px;}
+.tbl .chno{white-space:nowrap; font-weight:700;}
+
+/* ===== 会计书项目最小追加扩展 ===== */
+.tbl{margin:8px 0 10px;}  /* 表格底部间距统一 10px（standards：间距一致性总原则） */
+
+</style>
+</head>
+<body>
+<div class="sidebar"><div class="s-head"><div class="t1">会计原来这么有趣</div><div class="t2">零基础从业篇 · 全书速览</div></div><div class="s-nav"><div class="s-group">开篇</div><a class="s-item active" data-view="T" style="--c:#6366f1;--cl:#6366f122"><span class="num" style="background:#6366f1">总</span><span>全书总览</span></a><a class="s-item" data-view="I" style="--c:#0891b2;--cl:#0891b222"><span class="num" style="background:#0891b2">序</span><span>序言 · 阅读导览</span></a><div class="s-group">会计入门</div><a class="s-item" data-view="ch1" style="--c:#2563eb;--cl:#2563eb22"><span class="num" style="background:#2563eb">01</span><span>会计简史</span></a><a class="s-item" data-view="ch2" style="--c:#7c3aed;--cl:#7c3aed22"><span class="num" style="background:#7c3aed">02</span><span>会计目标与报表</span></a><a class="s-item" data-view="ch3" style="--c:#db2777;--cl:#db277722"><span class="num" style="background:#db2777">03</span><span>财务报表与账户</span></a><div class="s-group">记账实务</div><a class="s-item" data-view="ch4" style="--c:#059669;--cl:#05966922"><span class="num" style="background:#059669">04</span><span>账簿与会计记录</span></a><a class="s-item" data-view="ch5" style="--c:#d97706;--cl:#d9770622"><span class="num" style="background:#d97706">05</span><span>原始凭证</span></a><a class="s-item" data-view="ch6" style="--c:#0d9488;--cl:#0d948822"><span class="num" style="background:#0d9488">06</span><span>货币资金</span></a><a class="s-item" data-view="ch7" style="--c:#4f46e5;--cl:#4f46e522"><span class="num" style="background:#4f46e5">07</span><span>资金运动与记录</span></a><div class="s-group">报表与框架</div><a class="s-item" data-view="ch8" style="--c:#c026d3;--cl:#c026d322"><span class="num" style="background:#c026d3">08</span><span>报表演绎与编制</span></a><a class="s-item" data-view="ch9" style="--c:#0284c7;--cl:#0284c722"><span class="num" style="background:#0284c7">09</span><span>概念框架</span></a><div class="s-group">法规与税收</div><a class="s-item" data-view="ch10" style="--c:#ea580c;--cl:#ea580c22"><span class="num" style="background:#ea580c">10</span><span>会计法</span></a><a class="s-item" data-view="ch11" style="--c:#16a34a;--cl:#16a34a22"><span class="num" style="background:#16a34a">11</span><span>支付结算</span></a><a class="s-item" data-view="ch12" style="--c:#9333ea;--cl:#9333ea22"><span class="num" style="background:#9333ea">12</span><span>十八种税</span></a><a class="s-item" data-view="ch13" style="--c:#dc2626;--cl:#dc262622"><span class="num" style="background:#dc2626">13</span><span>增值税</span></a></div><div class="s-foot">制作者：N次方程</div></div>
+<div class="main"><div class="view" id="view-T">
+<div class="page">
+  <div class="hero">
+    <span class="tag">《会计原来这么有趣》· 全书速览</span>
+    <h1>全书总览 · 会计原来这么有趣</h1>
+    <div class="sub">一条主线 · 三张报表 · 六要素 · 借贷记账法 · 概念框架</div>
+    <div class="core">一句话核心：本书用<b>历史演绎</b>的方法讲会计——以<b>会计目标</b>为逻辑原点，按<b>会计目标→财务报表→账簿→凭证→经济活动</b>的顺序，把结绳记事到复式记账再到三大报表、概念框架与税法法规的整套会计体系串成一条线，让零基础读者「从头到脚端详会计这位美人」。</div>
+  </div>
+  <div class="body">
+    <div class="sec-title"><span class="sec-no">01</span>全书骨架<span class="sec-sub">作者亲定的书写顺序</span></div>
+    <div class="banner">
+      <div class="hd">🧭 一条主线：会计目标 → 财务报表 → 账簿 → 凭证 → 经济活动</div>
+      <div class="flow">
+        <span class="step">会计目标</span><span class="arr">→</span>
+        <span class="step">财务报表</span><span class="arr">→</span>
+        <span class="step">会计账簿</span><span class="arr">→</span>
+        <span class="step">会计凭证</span><span class="arr">→</span>
+        <span class="step">经济活动</span>
+      </div>
+      <ul>
+        <li><b>先见全貌、再识细节</b>：作者序言自述——传统教法「从科目讲到报表」让学生煎熬两年，本书反其道而行，从报表讲起，让读者先看到会计这位「大美女」的容貌，再逐步认识细节。</li>
+        <li><b>历史演绎贯穿全书</b>：从结绳记事讲到复式记账（第 1 章），从绳子的三重身份讲到证账表关系（第 3 章），每一章都先讲「它是怎么来的」，再讲「它是什么、怎么用」。</li>
+        <li><b>以会计目标为逻辑原点</b>：会计为什么记账（第 2 章）→ 记在哪里（账户、账簿）→ 怎么记（借贷记账法、凭证）→ 记什么业务（货币资金与资金运动）→ 怎么汇总成报表（第 8 章）→ 背后的理论框架（第 9 章概念框架）→ 法律与税收环境（第 10~13 章）。</li>
+        <li>本书为<b>零基础从业篇</b>（配套会计从业资格考试大纲），另有中级实务篇讲常见疑难业务与财务管理。</li>
+      </ul>
+    </div>
+    <div class="sec-title"><span class="sec-no">02</span>概念体系全景<span class="sec-sub">十三章一页看全</span></div>
+    <table class="tbl">
+      <tr><th>章节</th><th>核心问题</th><th>核心概念体系</th></tr>
+      <tr><td class="ch"><span class="chno">第 01 章</span><br>会计简史</td><td>会计从哪来？</td><td>结绳记事 · 分类记账 · 货币计量 · 三柱四柱记账法 · 复式记账法 · 财务会计与管理会计两大分支</td></tr>
+      <tr><td class="ch"><span class="chno">第 02 章</span><br>会计目标与报表</td><td>为什么记账？</td><td>古代官厅会计（考核监督） · 现代企业会计（投资者决策） · 报表使用者 · 会计目标演进</td></tr>
+      <tr><td class="ch"><span class="chno">第 03 章</span><br>财务报表与账户</td><td>记账记在哪？</td><td>证账表关系 · 货币计量 · 六要素具体化 · 总账与明细账 · 借贷结构（丁字账） · 三种账簿格式</td></tr>
+      <tr><td class="ch"><span class="chno">第 04 章</span><br>账簿与会计记录</td><td>怎么记？</td><td>记账方法渊源 · 借贷记账法 · 第一铁律（资费借增、负所收贷增） · 会计分录（上借下贷） · 涛涛餐馆案例</td></tr>
+      <tr><td class="ch"><span class="chno">第 05 章</span><br>原始凭证</td><td>凭什么记？</td><td>凭证渊源 · 原始凭证确认 · 分类（自制/外来等） · 审核要点</td></tr>
+      <tr><td class="ch"><span class="chno">第 06 章</span><br>货币资金</td><td>钱从哪来、去哪？</td><td>货币演化（贝币→铸币→纸币→信用货币） · 资金去向 20 科目 · 资金来源 · 资金循环（投入/循环/退出）</td></tr>
+      <tr><td class="ch"><span class="chno">第 07 章</span><br>资金运动与记录</td><td>业务怎么入账？</td><td>核算起源 · 日常业务核算（增减画借贷） · 期末结转 · 成本小传（拓展）</td></tr>
+      <tr><td class="ch"><span class="chno">第 08 章</span><br>报表演绎与编制</td><td>怎么汇总成报表？</td><td>资产负债表（性质·余额列报） · 利润表（功能·发生额列报） · 现金流量表 · 编制原则 · 账务处理程序</td></tr>
+      <tr><td class="ch"><span class="chno">第 09 章</span><br>概念框架</td><td>报表背后的理论？</td><td>会计目标 → 八个信息质量要求（相关性为核心） → 四次会议（假设/确认/计量/记账基础） → 形成列报</td></tr>
+      <tr><td class="ch"><span class="chno">第 10 章</span><br>会计法</td><td>会计的法律边界？</td><td>会计法四级体系 · 主体（会计机构与人员） · 客体（核算与监督、会计档案） · 法律责任（行政/民事/刑事）</td></tr>
+      <tr><td class="ch"><span class="chno">第 11 章</span><br>支付结算</td><td>钱怎么付？</td><td>现金结算（直接便利但不安全） · 银行结算（票据/信用卡等结算方式）</td></tr>
+      <tr><td class="ch"><span class="chno">第 12 章</span><br>十八种税</td><td>要交哪些税？</td><td>税收主体与客体 · 所得类税 · 流转类税 · 财产类税 · 行为目的税 · 资源类税 · 其他税（烟叶税等）</td></tr>
+      <tr><td class="ch"><span class="chno">第 13 章</span><br>增值税</td><td>最大的税怎么算？</td><td>增值税价外计 · 销项税（五档税率+两档征收率，视同销售八项） · 进项税（可抵/不可抵两类） · 期末结转转未交</td></tr>
+    </table>
+    <div class="sec-title"><span class="sec-no">03</span>三大报表与六要素<span class="sec-sub">报表骨架 · 要素等式</span></div>
+    <div class="row cols2">
+      <div class="card">
+        <div class="hd"><span class="no">📊</span>三张报表，三种视角<span class="ln"></span></div>
+        <ul>
+          <li><b>资产负债表</b>：按项目<b>性质</b>的余额列报——回答「企业有什么、欠什么」（资产=负债+所有者权益）。</li>
+          <li><b>利润表（综合收益表）</b>：按项目<b>功能</b>的发生额列报——回答「企业赚了多少」（收入-费用=利润）。</li>
+          <li><b>现金流量表</b>：按现金流入流出列报——回答「钱实际进出了多少」；现金是价值量稳定的一般等价物，现金账是历史最悠久的账簿之一。</li>
+          <li>报表编制目的：节约报表使用者时间、便于阅读理解——根据使用者需求对账簿重新分类汇总。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="hd"><span class="no">🧩</span>六要素与两大等式<span class="ln"></span></div>
+        <ul>
+          <li><b>反映财务状况</b>：资产、负债、所有者权益——构成第一等式 <b>资产=负债+所有者权益</b>（等号左边是钱的去处，右边是钱的来路）。</li>
+          <li><b>反映经营成果</b>：收入、费用、利润——构成第二等式 <b>收入-费用=利润</b>。</li>
+          <li>六要素是会计账户的源头：账户是六要素的具体化，一级科目国家统一规定，明细科目企业自设。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="sec-title"><span class="sec-no">04</span>贯穿全书的两个支点<span class="sec-sub">借贷记账法 · 概念框架</span></div>
+    <div class="row cols2">
+      <div class="card">
+        <div class="hd"><span class="no">⚖️</span>第一铁律：借贷记账法<span class="ln"></span></div>
+        <ul>
+          <li><b>借贷只是方向符号</b>：账户左借右贷；15 世纪卢卡·帕乔利把借贷记账法与「资产=负债+所有者权益」完美结合，近代会计由此形成。</li>
+          <li><b>第一铁律</b>：资产、费用类账户增加记<b>借方</b>；负债、所有者权益、收入类账户增加记<b>贷方</b>——判断账户方向最主要的基本规则。</li>
+          <li><b>会计分录</b>：上借下贷、左右错开；每一笔业务至少涉及两个账户，借贷金额必然相等。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="hd"><span class="no">🏛️</span>概念框架：四次会议<span class="ln"></span></div>
+        <ul>
+          <li><b>八个信息质量要求</b>代表会计目标，其中<b>相关性</b>是核心（我国《企业会计准则》主要侧重满足投资人决策）。</li>
+          <li><b>第一次会议</b>：质量要求 × 会计假设；<b>第二次</b>：质量要求 × 会计要素与账户（确认）；<b>第三次</b>：质量要求 × 五个计量属性（计量）；<b>第四次</b>：质量要求 × 记账基础（权责发生制 vs 收付实现制）。</li>
+          <li>四次会议解决「确认什么、计多少」两个关键问题后，即可通过复式记账法登记账簿、形成会计报表——这就是会计的完整逻辑链。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="sec-title"><span class="sec-no">05</span>阅读路线<span class="sec-sub">三种读法</span></div>
+    <div class="row cols3">
+      <div class="card">
+        <div class="hd"><span class="no">📖</span>零基础通读<span class="ln"></span></div>
+        <ul>
+          <li>从第 1 章按顺序读到第 13 章：简史→目标→账户→记账→凭证→资金→业务→报表→框架→法规税收，一次走完会计从原理到应用的全流程。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="hd"><span class="no">🎯</span>应试备考<span class="ln"></span></div>
+        <ul>
+          <li>第 10、11 章按会计从业资格考试大纲编写；第 12、13 章讲税——配合每章「考考你」自测（本书配套大纲，为考证打基础）。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="hd"><span class="no">🔍</span>按需查阅<span class="ln"></span></div>
+        <ul>
+          <li>想懂报表看第 2、3、8 章；想会记账看第 4、7 章；想弄清理论看第 9 章；想了解税负看第 12、13 章——各章相互独立又环环相扣。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><div class="view" id="view-I" hidden>
+<div class="page">
+  <div class="hero">
+    <span class="tag">《会计原来这么有趣》· 序言导读</span>
+    <h1>序言 · 阅读导览</h1>
+    <div class="sub">写作缘起 · 两书分工 · 本书框架 · 阅读方法</div>
+    <div class="core">一句话核心：本书是作者从<b>会计报表</b>讲起的会计入门书——不按「科目→分录→报表」的传统讲法，而是按<b>会计目标→财务报表→账簿→凭证→经济活动</b>的顺序书写，让零基础读者先看到会计的全貌，再逐步认识细节。</div>
+  </div>
+  <div class="body">
+    <div class="sec-title"><span class="sec-no">01</span>这本书是怎么来的<span class="sec-sub">从不喜欢会计到想帮学生少走弯路</span></div>
+    <div class="row cols2">
+      <div class="card">
+        <div class="hd"><span class="no">🎓</span>作者的经历<span class="ln"></span></div>
+        <ul>
+          <li><b>被老妈领进会计门</b>：作者上大学时母亲说「学会计吧，发工资都得经过会计，学会计不缺钱」，于是与会计相伴至今（写序时已 17 年）。</li>
+          <li><b>不喜欢会计的原因</b>：当年会计老师从会计分录和科目逐步讲起，讲了两年多才讲到财务报表——「像把一位美女用黑布蒙上，从脚底一点一点掀开，观众等两年多才看到她的脸，太煎熬了」。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="hd"><span class="no">💡</span>教学方法的顿悟<span class="ln"></span></div>
+        <ul>
+          <li><b>先让读者看到美女的脸</b>：作者后来也成了会计老师，不愿学生受同样的罪，改为<b>从会计报表开始教</b>——先让学生看到会计这位「大美女」的美丽容貌，再逐步认识细节，受到大多数学生好评。</li>
+          <li><b>与畅销教材不谋而合</b>：作者看到一版美国流行的会计教材，思路竟与自己一致——「全世界学会计的人都是人有此心、心同此理」，由此萌发写书想法。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="sec-title"><span class="sec-no">02</span>两本书的分工<span class="sec-sub">初级篇 · 中级实务篇</span></div>
+    <div class="banner">
+      <div class="hd">📚 一本入门、一本进阶，按基础选择</div>
+      <ul>
+        <li><b>本书（零基础从业篇）</b>：适合没有会计基础的人学习，采用<b>会计目标—财务报表—会计账簿—会计凭证—经济活动</b>的顺序书写，帮助读者从整体框架入手掌握会计精髓——了解会计之道后再从事相关工作上手很快，也为考取<b>会计从业资格证书</b>打下基础。</li>
+        <li><b>第二本（中级实务篇）</b>：积累一定实务经验后再读；选择常见和难度较大的业务（准则）进行解释，包括部分实务界争议较大的业务，对考取<b>中级会计师</b>或提升实务水平大有帮助；第二部分「财务管理」介绍常见财务管理理念和工具，帮助经营公司、构建基本财务管理思维。</li>
+        <li><b>有基础可以不按顺序读</b>：第二本实际上是由相互联系又各自独立的文章串联起来的，有一定基础后可跳读。</li>
+      </ul>
+    </div>
+    <div class="sec-title"><span class="sec-no">03</span>本书的特色<span class="sec-sub">诗词开篇 · 轻松语言 · 严谨理论</span></div>
+    <div class="row cols2">
+      <div class="card">
+        <div class="hd"><span class="no">📜</span>每一章都有一首词<span class="ln"></span></div>
+        <ul>
+          <li>作者喜欢诗词，几乎每章前面都填了一首词——水平不高，权当是一个梳理，可帮助快速理解该章的核心内容和知识框架，便于阅读和复习。</li>
+          <li>「如果你读这些词和文中闲话时，产生一种隐约的感情，那便是知音了」——正是这种情怀促使作者完成此书。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="hd"><span class="no">🎯</span>轻松的笔法 · 严谨的内核<span class="ln"></span></div>
+        <ul>
+          <li><b>写作理念</b>：从历史演绎的角度，以<b>会计目标为逻辑原点</b>探讨会计准则规定的原因；介绍实务时先简述历史演绎轨迹，再讲具体核算方法，多以会计目标和信息质量要求为评价依据。</li>
+          <li><b>每一章的结构</b>：诗词开篇 + 若干节正文 + 「本章要点」+「考考你」+「答案」——先梳理框架、再学知识、最后自测。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <div class="t">序言小结 · 带走这 8 句</div>
+    <ul class="qs">
+      <li><b>写作缘起</b>：作者当学生时被「从科目讲到报表」的教法折磨，当老师后改从报表讲起——先见全貌，再识细节。</li>
+      <li><b>本书定位</b>：适合零基础读者，为会计从业资格考试打基础。</li>
+      <li><b>书写顺序</b>：会计目标→财务报表→会计账簿→会计凭证→经济活动——便于从头到脚端详会计这位「美人」。</li>
+      <li><b>两书分工</b>：本书入门打框架，中级实务篇讲常见与疑难业务、附财务管理。</li>
+      <li><b>读法建议</b>：无基础按顺序读；有基础可跳读第二本相互独立的文章。</li>
+      <li><b>诗词开篇</b>：每章一首词梳理本章核心，便于快速理解与复习。</li>
+      <li><b>写作理念</b>：以会计目标为逻辑原点，从历史演绎角度解释会计准则规定的原因。</li>
+      <li><b>轻松严谨</b>：用轻松的语言阐述严谨的会计理论——「先让读者看到美女的脸」。</li>
+    </ul>
+  </div>
+</div>
+
+</div><div class="view" id="view-ch1" hidden>
+<div class="page">
+  <div class="hero">
+    <span class="tag">《会计原来这么有趣》· 第一章</span>
+    <h1>第一章 · 会计简史</h1>
+    <div class="sub">结绳记事 · 货币计量 · 复式记账 · 会计演变</div>
+    <div class="core">一句话核心：会计起源于<b>结绳记事</b>——用数反映劳动成果，历经分类记录、货币统一计量，到复式记账与财务会计、管理会计两大分支的形成，全程就是「用数记录经济活动」的不断精细化。</div>
+  </div>
+  <div class="body">
+    <div class="sec-title"><span class="sec-no">01</span>会计的萌芽<span class="sec-sub">结绳记事 · 分类记账</span></div>
+    <div class="row cols2">
+      <div class="card">
+        <div class="hd"><span class="no">🪢</span>结绳记事：会计思想的萌芽<span class="ln"></span></div>
+        <ul>
+          <li><b>靠天吃饭的年代</b>：旧石器时代人类以狩猎、采摘为生，天气和运气好时多打猎物、差时少打甚至没有——为了生存，猎物多时要储存一部分、少时再分配，这逼出了「记录」的必要：打了多少、存了多少、分了多少，心里要有数。</li>
+          <li><b>绳上的疙瘩就是数</b>：猿人打到猎物就在绳上结一个大疙瘩，疙瘩记录数量，猎物和果实则是劳动成果——会计思想的萌芽，正是<b>用数反映人类的日常活动</b>；绳上的记录同时服务两种用途：盘点存粮有多少、安排分配怎么分。</li>
+          <li><b>记录的两大要素</b>：绳子上的疙瘩是「数」的最早形态，猎物与果实是「劳动成果」——从结绳记事起，会计就同时抓住「数量」与「价值」两个维度，用数说话、以物证数。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="hd"><span class="no">🗂️</span>分类记账：账户的雏形<span class="ln"></span></div>
+        <ul>
+          <li><b>一根绳记一类物</b>：进入新石器时代，工具先进、猎物增多，人们用不同绳子分别记录不同猎物——绳上拴狐狸耳朵的记狐狸、拴兔子耳朵的记兔子，分门别类让记录可以比对、可以统计——用拴耳朵这样的实物标记区分类别，是人类最早的「科目」雏形。</li>
+          <li><b>分类思想演化成账户</b>：现在的会计账户就是分类思想的演绎——食品厂采购面粉记「原材料——面粉」、采购白糖记「原材料——白糖」，各有各的账——分类记账让「数」与「物」一一对应。</li>
+          <li><b>会计是分类的艺术</b>：有学者如此概括——分类越细，核算越清楚；从一根绳子到一套账户体系，分类始终是会计的灵魂。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="sec-title"><span class="sec-no">02</span>古代会计：货币与记账法<span class="sec-sub">货币计量 · 三柱四柱</span></div>
+    <div class="banner">「货币计量今犹在，只是朱颜改」——改自南唐后主李煜《虞美人》。记录载体从绳子一路演变，货币始终是会计的统一计量语言。</div>
+    <div class="row cols2">
+      <div class="card">
+        <div class="hd"><span class="no">💰</span>货币诞生：统一计量的开始<span class="ln"></span></div>
+        <ul>
+          <li><b>分工带来交易</b>：进入初步文明社会后出现社会大分工——种庄稼的人想吃肉、打猎的人要吃米饭，互通有无催生了<b>交易</b>，交易又导致了<b>货币</b>的产生。</li>
+          <li><b>货币可衡量一切劳动成果</b>：交易让财富种类越来越多，单靠实物计数已力不从心——用货币可以<b>全面地（空间上）</b>汇总各种物品、<b>连续地（时间上）</b>记录各期变化、<b>系统地（逻辑上）</b>分类核算经济活动，这是实物计数做不到的。</li>
+          <li><b>专职会计人员出现</b>：用货币记账需要专门学习和训练，于是出现了专职会计人员——<b>古代会计</b>就此诞生。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="hd"><span class="no">🧮</span>三柱与四柱记账法<span class="ln"></span></div>
+        <ul>
+          <li><b>三柱记账法（秦汉）</b>：古代社会很少借款、经济自给自足，资产的增减直接对应收入、费用与利润——公式为<b>收入-支出=结余</b>。</li>
+          <li><b>四柱记账法（唐宋）</b>：考虑到剩下的资产不一定是本年利润、还有一部分是上一年剩下的，为区分两者改进为<b>上期结余+本期收入-本期支出=本期结余</b>——「四柱」指上期结余、本期收入、本期支出、本期结余四笔账。</li>
+          <li><b>四柱即账户的基本结构</b>：上期结余相当于期初余额、本期收支相当于本期增减、本期结余相当于期末余额——这正是现代会计账户「期初+增加-减少=期末」结构的雏形。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="sec-title"><span class="sec-no">03</span>近代与现代会计<span class="sec-sub">复式记账 · 两大分支</span></div>
+    <div class="row cols2">
+      <div class="card">
+        <div class="hd"><span class="no">⚖️</span>复式记账法：近代会计形成<span class="ln"></span></div>
+        <ul>
+          <li><b>借款改变了记账</b>：大航海时代海上贸易需要大量资金，单个企业主难以负担，专门放贷的<b>银行家</b>应运而生（欧洲早期银行家如罗斯柴尔德家族应运而起）——企业的资产不一定是股东的，还有可能是借来的。</li>
+          <li><b>会计第一等式</b>：资产增加不一定是收入（可能是借款或股东投入），资产减少不一定是费用（可能是还债或分红）——收入与费用必须单独定义，于是产生<b>资产=负债+所有者权益</b>——等号左边是钱的去处（资产），右边是钱的来路（借来的负债 + 股东投入的权益），两边必须始终相等。</li>
+          <li><b>会计第二等式与六要素</b>：把收入和费用从所有者权益中分出来，产生<b>收入-费用=利润</b>；两个等式涵盖会计核算的六个主要方面——资产、负债、所有者权益、收入、费用、利润，即<b>会计六要素</b>。</li>
+          <li><b>核算权属关系</b>：会计核算内容从只核算事物的自然属性，扩展到核算事物的<b>权属关系</b>（资产归谁、债务欠谁）——复式记账法诞生，标志着<b>近代会计</b>形成。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="hd"><span class="no">🏢</span>两大分支：现代会计形成<span class="ln"></span></div>
+        <ul>
+          <li><b>工业革命带来竞争</b>：20 世纪初工业革命迅速发展，企业之间、国家之间竞争激烈（甚至导致两次世界大战），提高效率和效益成为企业生存的关键。</li>
+          <li><b>管理会计</b>：为内部管理者经营决策服务、提高企业效益，应竞争需要而产生。</li>
+          <li><b>财务会计</b>：传统上侧重向股东和债权人报告财务状况、对外提供信息。</li>
+          <li><b>现代会计形成</b>：两大会计分支一个对内、一个对外，各司其职——它们的同时形成标志着<b>现代会计</b>的产生，也奠定了今天会计体系的基本格局。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <div class="t">本章小结 · 带走这 8 句</div>
+    <ul class="qs">
+      <li><b>会计萌芽</b>：结绳记事——用数反映劳动成果，绳上的疙瘩就是最原始的会计记录。</li>
+      <li><b>分类思想</b>：一根绳记一类物，分类记账催生会计账户——会计是分类的艺术。</li>
+      <li><b>货币计量</b>：货币可衡量一切劳动成果，全面（空间）、连续（时间）、系统（逻辑）地记录核算经济活动。</li>
+      <li><b>古代会计诞生</b>：记录货币需要专门训练，专职会计人员出现，古代会计随之诞生。</li>
+      <li><b>三柱记账法</b>（秦汉）：收入-支出=结余。</li>
+      <li><b>四柱记账法</b>（唐宋）：上期结余+本期收入-本期支出=本期结余——是现代账户「期初+增减-减少=期末」结构的雏形。</li>
+      <li><b>复式记账法</b>：资产=负债+所有者权益、收入-费用=利润，核算扩展到权属关系，标志近代会计形成。</li>
+      <li><b>两大分支</b>：财务会计对外报告、管理会计对内提效，两大分支的形成标志现代会计产生。</li>
+    </ul>
+  </div>
+</div>
+
+</div><div class="view" id="view-ch2" hidden>
+<div class="page">
+  <div class="hero">
+    <span class="tag">《会计原来这么有趣》· 第二章</span>
+    <h1>第二章 · 会计目标与会计报表</h1>
+    <div class="sub">古代记账 · 现代决策 · 三大报表 · 会计六要素</div>
+    <div class="core">一句话核心：会计目标回答「会计为谁而记」——古代几千年，会计主要为皇帝监督考核官员而记；到了近代，企业成为经济社会主体，会计转向为股东、债权人、政府等<b>报表使用者</b>的决策服务，由此催生三大财务报表与支撑它们的<b>会计六要素</b>。</div>
+  </div>
+  <div class="body">
+    <div class="sec-title"><span class="sec-no">01</span>古代会计目标：为皇帝而记<span class="sec-sub">会稽典故 · 司会制度</span></div>
+    <div class="banner">「一曲新词酒一杯，过往记账又为何」——开篇词句便抛出本章之问：会计千百年来究竟为谁记账、记来何用？答案要从《史记》里的「会稽」典故说起。</div>
+    <div class="row cols2">
+      <div class="card">
+        <div class="hd"><span class="no">🏛️</span>会稽典故：会计从考核开始<span class="ln"></span></div>
+        <ul>
+          <li><b>《史记》里的「会计」</b>：原文记载「禹会诸侯江南，计功而崩，因葬焉，命曰会稽。会稽者，会计也」——大禹把天下诸侯召集到江南开会，考问他们都干了什么活，对诸侯老爷们进行考核和监督。</li>
+          <li><b>会稽之名即会计</b>：大禹最终葬于会稽，「会稽」二字正由「会计」而来——会计的思想起点并非算账本身，而是<b>考核与监督</b>。</li>
+          <li><b>考核先于记账</b>：会计最初服务的不是生意人，而是统治者——考核诸侯、监督官员，正是古代会计目标的核心。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="hd"><span class="no">👑</span>皇帝与司会：古代为谁记账<span class="ln"></span></div>
+        <ul>
+          <li><b>需要会计的主要是皇帝</b>：从古代会计诞生到被近代会计取代的几千年里，会计的主要服务对象是政府的老大——皇帝；皇帝十分关注自己的财富和权力，定期对官员进行考核和监督。</li>
+          <li><b>专职记录者叫「司会」</b>：皇帝安排专职人员记录官员经办的财物，这个专职人员过去叫作「司会」。</li>
+          <li><b>记录随目标而变复杂</b>：为监督和考核需要的记录资料，比早期为储存分配而作的记录要复杂得多——记什么、怎么记，由记账目标决定。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="sec-title"><span class="sec-no">02</span>现代会计目标：为决策而记<span class="sec-sub">时代变迁 · 三大使用者</span></div>
+    <div class="banner">近代社会自然经济逐渐瓦解，皇帝没了、民主到了，传统的官厅会计演变为<b>行政事业单位会计</b>；企业如雨后春笋般林立，成为经济社会的主体——企业会计逐渐发展起来，形成侧重为企业外部的股东和债权人服务的<b>财务会计</b>，与侧重为企业管理者服务的<b>管理会计</b>。</div>
+    <div class="row cols2">
+      <div class="card">
+        <div class="hd"><span class="no">🏢</span>两大分支：内外各司其职<span class="ln"></span></div>
+        <ul>
+          <li><b>管理会计</b>：目标是为企业内部管理层（董事会、总经理、中层管理者、基层管理者）的决策需求服务。</li>
+          <li><b>财务会计</b>：主要为股东、债权人和国家（主要是税务机关）服务——没有他们就不会有企业，也就不会有那么多的社会财富，满足他们的决策需求是头等大事。</li>
+          <li><b>目标决定分工</b>：管理会计对内、财务会计对外，服务对象不同，记账与报表的侧重也随之分化——会计目标决定了会计做什么、为谁做。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="hd"><span class="no">🎯</span>三大使用者的决策需求<span class="ln"></span></div>
+        <ul class="tags-block">
+          <li class="li-tag"><span class="tag t-blue">股东</span>手握很多闲钱的亿万富翁，面对众多上门求投资的企业，最想先了解的是利润——利润由「收入-费用」形成，为投资决策，财务会计要编制利润表（现在叫综合收益表，两种称谓指同一张表），反映企业的经营成果。</li>
+          <li class="li-tag"><span class="tag t-teal">债权人</span>借钱出去最关心能否还上钱，因此紧盯企业的资产和负债——资产负债表报告企业的财务状况（钱财料物等各项资产的余额，以及负债和所有者权益等资产来源）；资产变现尚有不确定性，故还需现金流量表反映资金的来源和去向。</li>
+          <li class="li-tag"><span class="tag t-violet">政府</span>维护国家安全、社会经济秩序，帮助弱势群体、资助教育都要花钱，政府的可持续性收入主要来源于税收，而我国税收主要是企业缴纳——要多了企业过不下去，要少了政府日子也不好过，须根据收益状况和现金流（有利润不一定有钱）征税；为保证经济持续发展、克服市场调节的盲目性，政府制定经济政策也需要了解企业财务状况，故要求企业定期向税务等相关部门提供财务报表；由于我国以发票征税，小企业不要求提供现金流量表。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="sec-title"><span class="sec-no">03</span>三大报表与会计六要素<span class="sec-sub">报表体系 · 要素支撑</span></div>
+    <div class="row cols2">
+      <div class="card">
+        <div class="hd"><span class="no">📊</span>三大财务报表<span class="ln"></span></div>
+        <ul>
+          <li><b>利润表（综合收益表）</b>：利润由「收入-费用」形成，反映企业的经营成果，回应股东「企业能赚多少」的关切。</li>
+          <li><b>资产负债表</b>：反映企业的财务状况——一边是资产（钱财料物等各项资产的余额），一边是资产的来源（负债和所有者权益各是多少）。</li>
+          <li><b>现金流量表</b>：反映企业资金的来源和去向——有了资产负债表或许还不放心，有些资产变成现金仍有不确定性，于是还需看清资金从哪来、到哪去。</li>
+          <li><b>为谁而编</b>：三大报表正是为满足股东投资决策、债权人的放贷决策和政府征税等决策而编制——决策需求不同，报表侧重各异。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="hd"><span class="no">🧩</span>会计六要素<span class="ln"></span></div>
+        <ul>
+          <li><b>反映财务状况的三要素</b>：记录<b>资产</b>、<b>负债</b>、<b>所有者权益</b>的变化，以便反映企业的财务状况——它们是资产负债表的内容。</li>
+          <li><b>反映经营成果的三要素</b>：记录<b>收入</b>、<b>费用</b>、<b>利润</b>的变化，以便反映企业的经营成果——它们是利润表（综合收益表）的内容。</li>
+          <li><b>六要素即报表之基</b>：这六个方面构成会计报表的主要内容，也就是<b>会计六要素</b>——为了编制三大报表，会计才需要把这些要素一一记录下来。</li>
+          <li><b>决策驱动记录</b>：股东投资决策、债权人放贷决策、政府征税等决策催生三大报表，三大报表又靠六要素的记录来支撑——需求链条层层相扣。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="banner">三张报表并非各说各话：经营成果的变化会体现在财务状况的变化上——餐馆经营得好、利润多，该企业的资产和所有者权益就会增加、负债有可能变少，财务状况变好；经营不好、亏损很多，资产和所有者权益有可能变少、负债变多，财务状况变坏甚至破产。现金流量的变化同样会体现在资产负债表上——筹资活动筹来的资金较多，资产负债表上的资产、负债和所有者权益中的资金就会增加。因此可以说，<b>综合收益表和现金流量表是资产负债表的解释</b>，解释了资产负债表期初余额与期末余额变化的原因。</div>
+  </div>
+  <div class="foot">
+    <div class="t">本章小结 · 带走这 8 句</div>
+    <ul class="qs">
+      <li><b>会稽典故</b>：《史记》载大禹会诸侯江南、计功而葬，「会稽者，会计也」——会计起于考核与监督。</li>
+      <li><b>古代会计目标</b>：几千年间需要会计的主要是皇帝——皇帝关注财富与权力，设「司会」记录官员经办的财物，为监督考核而记。</li>
+      <li><b>时代变迁</b>：自然经济瓦解后，官厅会计演变为行政事业单位会计；企业成为经济社会主体，企业会计随之兴起。</li>
+      <li><b>两大分支</b>：财务会计服务股东、债权人和国家（税务机关）等外部使用者；管理会计满足内部管理层（董事会到基层管理者）的决策需求。</li>
+      <li><b>股东要利润</b>：利润由「收入-费用」形成，财务会计编制利润表（综合收益表）反映经营成果。</li>
+      <li><b>债权人看偿债</b>：资产负债表报告财务状况、现金流量表反映资金来龙去脉，回应「能否还上钱」的关切。</li>
+      <li><b>政府靠税收</b>：须按收益状况与现金流（有利润不一定有钱）征税；我国以发票征税，小企业不要求提供现金流量表。</li>
+      <li><b>报表与要素</b>：三大报表由六要素支撑——资产、负债、所有者权益、收入、费用、利润；综合收益表和现金流量表是资产负债表的解释。</li>
+    </ul>
+  </div>
+</div>
+
+</div><div class="view" id="view-ch3" hidden>
+<div class="page">
+  <div class="hero">
+    <span class="tag">《会计原来这么有趣》· 第三章</span>
+    <h1>第三章 · 财务报表与会计账户</h1>
+    <div class="sub">证账表关系 · 货币计量 · 账户体系 · 借贷结构 · 账簿</div>
+    <div class="core">一句话核心：<b>财务报表、会计账簿、会计凭证</b>三者一脉相承——报表依据账簿汇总编制，账簿是凭证记录经济活动的载体；而这一切的落脚点，是<b>依据六要素建立的多级次账户体系</b>，以及左借右贷的账户结构与三栏式、数量金额式、多栏式的账簿表现。</div>
+  </div>
+  <div class="body">
+    <div class="sec-title"><span class="sec-no">01</span>证账表：一根绳子的三重身份<span class="sec-sub">凭证 · 账簿 · 报表</span></div>
+    <div class="row cols2">
+      <div class="card">
+        <div class="hd"><span class="no">🪢</span>证账表的关系<span class="ln"></span></div>
+        <ul>
+          <li><b>绳子身兼数职</b>：原始人用于记录劳动成果的绳子，同时承担现代会计的三种功能——把所有绳子汇总起来，可帮助做出「储存多少、分配多少」的决策，这是<b>财务报表</b>的功能；每根绳子记载一类劳动成果的增减变化、反映当时的经济活动，这是<b>账簿</b>的功能；每结一个大疙瘩证明增加一个物品、解一个大疙瘩证明减少一个物品，这实际起了<b>凭证</b>的作用。</li>
+          <li><b>证账表的关系</b>：财务报表是根据<b>会计账簿</b>汇总编制的，会计账簿是通过<b>会计凭证</b>记录经济活动的载体——原始社会的绳子同时身兼凭证、账簿、报表三职，现代会计把这三种功能分别交给了凭证、账簿、报表三个载体。</li>
+          <li><b>报表服务决策</b>：绳子汇总帮部落决定「储存多少、分配多少」，现代报表帮股东、债权人、政府做投资、信贷、征税决策——报表的本质是决策工具，呼应全书「以会计目标为逻辑原点」的主线。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="hd"><span class="no">💱</span>计量单位：货币<span class="ln"></span></div>
+        <ul>
+          <li><b>计量单位不统一就无法汇总</b>：早期人类账簿简单粗糙——两河流域的苏美尔人把记录刻在泥巴上（还要烧制好储存），殷商时期的人刻在龟甲上；记录粮食用「斗」、记录兔子用「只」，不同物品计量单位不同，账簿无法汇总和比较，也就无法编制报表——这让当时的奴隶主们非常头疼，很难知道自己有多少财富。</li>
+          <li><b>货币成为统一计量单位</b>：货币诞生后，官厅会计和账房先生把每种物品折合成货币计量，不同货物账就能通过货币汇总成报表——<b>货币成了会计账簿的主要记录单位</b>，其他实物计量单位只起辅助作用。</li>
+          <li>我国财政部门在 20 世纪 80 年代规定，会计中「帐」统称为「<b>账</b>」——统一术语、便于规范管理。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="sec-title"><span class="sec-no">02</span>账户体系：六要素的具体化<span class="sec-sub">科目级次 · 总账与明细账 · 建账原则</span></div>
+    <div class="row cols2">
+      <div class="card">
+        <div class="hd"><span class="no">🗂️</span>从要素到科目<span class="ln"></span></div>
+        <ul>
+          <li><b>账户是六要素的具体化</b>：早期记录对象简单，只记银子、金子、粮食、布匹等资产项目；近代企业要借款、向股东筹资，不仅需要记录具体资产项目，还要记录这些资产归谁享有、来源渠道——于是对负债、所有者权益的具体项目建账；股东和债权人关注利润，又促使收入、费用、利润分别建账——正如作者所言「我欲全面核算，又恐会计要素，笼统不细致」。<b>会计账户依据报表六要素建立，是六要素的具体化</b>。</li>
+          <li><b>要素与报表呼应</b>：资产、负债、所有者权益三个要素对应资产负债表，收入、费用、利润三个要素对应利润表（综合收益表）——账户体系的搭建从报表使用者的需求出发，先有报表目标、再设账户。</li>
+          <li><b>一级账户（总分类账户）</b>：对每个要素做第一级分类（「资负所、收费利，成体系」），账户名称叫「<b>一级科目</b>」或「<b>总账科目</b>」——资产类如库存现金、银行存款、库存商品、固定资产；负债类如短期借款（向银行的借款）、应付账款（购货未付款项）、应付职工薪酬（欠员工的薪酬）；所有者权益类如实收资本（股东投入资本）、利润分配；收入类如主营业务收入、其他业务收入；费用类如主营业务成本、其他业务成本、营业税金及附加、管理费用、销售费用。</li>
+          <li><b>多级明细科目</b>：一级账户仍太笼统——库存商品可再分为食品类、饮料类、日杂类（<b>二级科目</b>），食品类还可再分为面包、麻花（<b>三级科目</b>），企业可按需分到四级、五级科目——层级越深、核算颗粒度越细；每一级会计科目加上结构就是每一级账户，企业所有账户构成<b>账户体系</b>。</li>
+          <li><b>科目名称谁定</b>：为了便于不同企业比较，财政部门<b>统一规定一级科目名称</b>；总账名称国家统一，明细账名称由企业自行设定。</li>
+          <li><b>科目与账户之别</b>：会计账户是根据会计科目设置的，两者的核算内容和口径一致——区别在于<b>账户有结构（分借贷左右）、科目没有结构</b>；账户与账簿的关系则是「账户是实质、账簿是形式」。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="hd"><span class="no">🔗</span>总账与明细账的关系<span class="ln"></span></div>
+        <ul>
+          <li><b>明细账解释说明总账</b>：总账科目「库存商品」100 万元，明细账户解释为食品类 50 万元、饮料类 30 万元、日杂类 20 万元——所有下级账户都是上级账户的解释和说明。</li>
+          <li><b>总账统驭控制明细账</b>：总账账户「库存商品」100 万元，明细账户的金额合计也一定是 100 万元——所有下级账户金额合计等于所属上级账户金额——无论业务多复杂，总账与明细账的金额始终对得上，这是对账的基本依据。</li>
+        </ul>
+        <div class="subt">如何建立账户体系（三步）</div>
+        <ul>
+          <li><b>① 选总账科目</b>：依据<b>合法性和相关性</b>，按企业业务需要选择国家规定的账户——规模较大企业依据《企业会计准则》的科目表设置，中小企业依据《小企业会计准则》；涛涛小超市不允许赊账，就不设记录赊销的「应收账款」账户；超市没有生产制造，也不设「生产成本」账户。</li>
+          <li><b>② 定明细层次</b>：依据相关性和实用性——层次越多核算越详细，但工作量越大、核算成本越高，<b>以满足企业管理需要为准</b>：太少了核算笼统，太多了就得雇更多会计、产生不必要支出。</li>
+          <li><b>③ 命名明细账</b>：实物资产类账户按「<b>物名</b>」设置（库存商品分面包、麻花、矿泉水）；债权、债务、资本类账户按「<b>人名</b>」设置（应收账款分甲公司、乙公司）；收入、费用、成本类账户按「<b>性质</b>」设置（管理费用分工资薪酬、办公费、业务招待费）；金额小的核算对象可合并成一个账户（如车间消耗的润滑油、维修材料合并为「机物料」），也可设「其他」账户统一核算。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="sec-title"><span class="sec-no">03</span>账户的结构与账簿<span class="sec-sub">借贷方向 · 丁字账 · 账簿格式</span></div>
+    <div class="row cols2">
+      <div class="card">
+        <div class="hd"><span class="no">⬅️➡️</span>账户结构：左借右贷<span class="ln"></span></div>
+        <ul>
+          <li><b>为什么分左右</b>：若把库存现金等科目的增加和减少都记录成一栏，统计当期增加多少、减少多少就得先区分，很不方便——把账户分成左右两部分，一部分记录增加、一部分记录减少，期末统计一目了然，这是账户最基本的结构设计。</li>
+          <li><b>借贷只是方向符号</b>：账户左边的部分叫<b>借方</b>，右边的部分叫<b>贷方</b>——在这里借贷只是表示方向的符号，不表示借款或贷款；用简易的<b>丁字账</b>即可表示——中间一竖把账页分成左右两栏，上方写账户名称，左侧记录借方发生额、右侧记录贷方发生额，一目了然。</li>
+          <li><b>账户的四个金额要素</b>：一个账户除了借贷方向，还记录期初余额、本期增加发生额、本期减少发生额、期末余额四笔金额，关系为「期初余额+本期增加-本期减少=期末余额」——这正是古代四柱记账法在现代账户里的延续。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="hd"><span class="no">📒</span>账簿：丁字账的具体化<span class="ln"></span></div>
+        <ul>
+          <li><b>账簿记录什么</b>：丁字账太抽象——企业账簿不仅要记录经济活动的增加额、减少额，还要记录活动发生的<b>日期</b>、活动内容（<b>摘要</b>）以及活动依据（凭证的种类和号数）；将丁字账具体化就是账簿。</li>
+          <li><b>三栏式账簿</b>：总分类账户是总括指标（如库存商品含面包、矿泉水、手巾，实物计量单位不一致，只能用货币汇总），债权、债务、资本类明细账按人名设置、无需实物单位——两者都采用三栏式——设借方、贷方、余额三栏，只记货币金额。</li>
+          <li><b>数量金额式账簿</b>：原材料、库存商品等按物名设置的明细账，为保证资产安全、便于和库管对账，采用数量金额式——既记数量又记金额，账面数量与库管实物核对一目了然。</li>
+          <li><b>多栏式账簿</b>：收入、费用、成本按发生性质设置明细、与利润关系密切，为便于分析，采用多栏式明细账——账页上按分析需要设多个栏目，逐项反映构成。</li>
+          <li><b>格式服务于目的</b>：总账与债权债务资本明细用三栏式、便于总括核对；物名明细用数量金额式、便于实物管理；收入费用成本明细用多栏式、便于利润分析——选什么账簿格式，取决于账户记录什么、服务什么管理需要。</li>
+          <li><b>账实相符的保障</b>：数量金额式明细账既记数量又记金额，期末账面数量与库管实物核对——物名类账户采用这种格式，根本目的就是保证资产安全、账实相符。</li>
+          <li><b>格式对应速记</b>：管理费用总账、实收资本明细、应收账款明细用三栏式；原材料明细用数量金额式；管理费用明细、主营业务收入明细用多栏式——对着账户性质选格式，一目了然。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <div class="t">本章小结 · 带走这 8 句</div>
+    <ul class="qs">
+      <li><b>证账表关系</b>：财务报表依据账簿汇总编制，账簿是通过凭证记录经济活动的载体——一条结绳贯穿三者。</li>
+      <li><b>货币计量</b>：货币是会计账簿的主要记录单位，实物计量只起辅助作用，可汇总不同货物编制报表。</li>
+      <li><b>账户的实质</b>：会计账户依据报表六要素建立，是六要素的具体化。</li>
+      <li><b>科目级次</b>：一级科目（总账科目）国家统一规定；二级、三级等明细科目由企业按需设置。</li>
+      <li><b>总账与明细账</b>：明细账解释说明总账，总账统驭控制明细账，下级金额合计等于上级账户金额。</li>
+      <li><b>建账三步</b>：按合法性与相关性选总账科目、按管理需要定明细层次、按物名/人名/性质命名明细账。</li>
+      <li><b>借贷方向</b>：账户左借右贷，借贷只是方向符号（可用丁字账表示），不表示借款贷款。</li>
+      <li><b>账簿格式</b>：三栏式（总账、债权债务资本明细）、数量金额式（物名明细，便于对账）、多栏式（收入费用成本明细，便于分析）。</li>
+    </ul>
+  </div>
+</div>
+
+</div><div class="view" id="view-ch4" hidden>
+<div class="page">
+  <div class="hero">
+    <span class="tag">《会计原来这么有趣》· 第四章</span>
+    <h1>第四章 · 会计账簿与会计记录</h1>
+    <div class="sub">记账渊源 · 借贷规则 · 第一铁律 · 会计分录 · 涛涛餐馆实战</div>
+    <div class="core">一句话核心：从结绳记事到意大利银行家的左右分录，<b>借贷记账法</b>在 15 世纪被数学家卢卡·帕乔利与「资产=负债+所有者权益」等式完美结合——<b>资产、费用类账户增加记借方，负债、所有者权益、收入类账户增加记贷方</b>，这就是判断账户方向的<b>第一铁律</b>；再以涛涛餐馆为案例，走通从<b>记账凭证</b>到<b>会计分录</b>（上借下贷、左右错开）、再到期末结转与报表编制的完整链路。</div>
+  </div>
+  <div class="body">
+    <div class="sec-title"><span class="sec-no">01</span>记账方法的渊源：不是爱借贷，似被增减误<span class="sec-sub">结绳记事 · 泥巴与龟甲 · 天收地付 · 左右分行</span></div>
+    <div class="row cols2">
+      <div class="card">
+        <div class="hd"><span class="no">🪢</span>绳子就是原始人的账簿<span class="ln"></span></div>
+        <ul>
+          <li><b>结疙瘩为增、解疙瘩为减</b>：上一章讲了依据六要素建立账簿，那该如何登记？还是从原始人的绳子说起——绳子就是账簿：增加时结个大疙瘩、减少时解开大疙瘩，这种「增加打结、减少解结」的方法，如今四五岁的孩子都会。</li>
+          <li><b>从绳子到泥巴、龟甲</b>：随后绳子演变成苏美尔人的泥巴或殷商人的龟甲，估计是画道道——一些线条表示增加，另一些表示减少。</li>
+          <li><b>「+」「-」尚未发明</b>：那时中国人还不知道「+」「-」符号，只好把增加和减少分开记录。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="hd"><span class="no">↕️</span>两种记录方向的习惯<span class="ln"></span></div>
+        <ul class="tags-block">
+          <li class="li-tag"><span class="tag t-blue">中国 · 上增下减</span>习惯是<b>上面写增加、下面写减少</b>，上下分行，即古称的「<b>天地账</b>」——天收地付，上为收、下为付。</li>
+          <li class="li-tag"><span class="tag t-teal">欧洲 · 左增右减</span>习惯是<b>左边记录增加、右边记录减少</b>，左右分栏。</li>
+        </ul>
+        <ul>
+          <li>分上下的天收地付与分左右的欧洲习惯，正是后来账户左借右贷结构的雏形。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="sec-title"><span class="sec-no">02</span>借贷记账法：借(多)也资费成，贷(多)也负所收<span class="sec-sub">银行家的左右账 · 帕乔利的等式 · 记账凭证与分录</span></div>
+    <div class="row cols2">
+      <div class="card">
+        <div class="hd"><span class="no">🏦</span>起源：意大利银行家的左右账<span class="ln"></span></div>
+        <ul>
+          <li><b>14 世纪的「弄乱」</b>：这样记录了几千年，14 世纪被意大利的银行家弄乱了——银行核算存款人和借款人的资金：存款（对银行是债务）增加，资金就多了；借款（对银行是债权）增加，资金就少了。</li>
+          <li><b>借与贷的诞生</b>：为与资金对应，借款人增加借款（债权）记在左边、后来干脆叫作<b>借方</b>；存款人增加存款（债务）记到右边、后来直接叫作<b>贷方</b>。</li>
+          <li><b>演化成方向规则</b>：于是演化成<b>债权（资产）增加记借方（左边），债务（负债和所有者权益）增加记贷方（右边）</b>。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="hd"><span class="no">⚖️</span>规则：帕乔利的平衡之美<span class="ln"></span></div>
+        <ul>
+          <li><b>15 世纪的数学家</b>：15 世纪，数学家<b>卢卡·帕乔利</b>仔细研究后，发现它与「资产=负债+所有者权益」等式可以完美结合——等式左边的资产类账户增加记左边（借方）、右边账户增加记右边（贷方），无论发生什么两边都平衡，<b>借贷记账法</b>就此诞生。</li>
+          <li><b>由第二等式推导</b>：随着商品经济发展，收入和费用从所有者权益类中分出来，形成会计第二等式「收入–费用=利润」；连接两个等式得「资产=负债+所有者权益+收入-费用」，把费用移到左边，便出现「资产+费用=负债+所有者权益+收入」。</li>
+          <li><b>方向从等号两边来</b>：等号左边的资产、费用类账户增加记借方、减少记贷方；等号右边的负债、所有者权益、收入类账户增加记贷方、减少记借方。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="banner">
+      <b>第一铁律（判断账户方向最主要的基本规则）</b>：记录企业经济活动时必须牢记——<b>资产、费用类账户，增加写借方（左边）；负债、所有者权益、收入类账户，增加写贷方（右边）</b>。这是账户属性，也是判断账户方向最主要的基本规则。
+    </div>
+    <div class="card">
+      <div class="hd"><span class="no">🧾</span>记账凭证与会计分录<span class="ln"></span></div>
+      <ul>
+        <li><b>先凭证、后账簿</b>：企业发生经济活动后，先暂时记录在<b>记账凭证</b>上（西方叫作分类日记账），之后再据以登记账簿。</li>
+        <li><b>简写为会计分录</b>：记账凭证可简写成<b>会计分录</b>，书写规则<b>上借下贷、左右错开</b>——借贷各占一行，贷方行向右错开。</li>
+        <li><b>赊购高粱</b>（例4-1）：涛涛餐馆从方正食品厂赊购 10000 千克高粱、每千克 4 元——高粱属材料、材料属资产，资产增加记借方；赊购形成 40000 元负债、负债增加记贷方：<b>借:</b>原材料——高粱 40000　<b>贷:</b>应付账款——方正食品厂 40000。</li>
+      </ul>
+    </div>
+    <div class="sec-title"><span class="sec-no">03</span>应用案例：涛涛餐馆的借贷实战<span class="sec-sub">判断两步走 · 开业首月四类业务 · 增值税与税金附加</span></div>
+    <div class="banner">
+      <b>温馨提示</b>：以下案例略有难度，理解困难的读者，可以看完第七章后再回头来看，估计会有「蓦然回首，那人却在，灯火阑珊处」的感觉。
+    </div>
+    <div class="card">
+      <div class="hd"><span class="no">🍜</span>判断业务方向的通用逻辑<span class="ln"></span></div>
+      <ul>
+        <li><b>第一步：先判要素</b>：拿到业务先看涉及什么科目、属于哪一类——资产（原材料、固定资产、银行存款）、负债（应付账款、应交税费）、所有者权益（实收资本）、收入（主营业务收入）还是费用（管理费用、主营业务成本）。</li>
+        <li><b>第二步：再按第一铁律定方向</b>：资产、费用类增加记借方、减少记贷方；负债、所有者权益、收入类增加记贷方、减少记借方——借贷总是成对出现、金额相等，两边平衡。</li>
+      </ul>
+      <div class="subt">开业首月四类典型业务的借贷方向</div>
+      <ul class="tags-block">
+        <li class="li-tag"><span class="tag t-blue">投资开业</span>（例4-2）2016 年 5 月 1 日，老人家投资 10 万元银行存款成立涛涛餐馆：银行存款（资产）增加记借方，实收资本（所有者权益）增加记贷方——<b>借:</b>银行存款 100000 / <b>贷:</b>实收资本——老人家 100000。</li>
+        <li class="li-tag"><span class="tag t-teal">购买设备</span>（例4-3）用支票购买 2 万元做饭设备：固定资产（资产）增加记借方，银行存款（资产）减少记贷方——<b>借:</b>固定资产——设备 20000 / <b>贷:</b>银行存款 20000。</li>
+        <li class="li-tag"><span class="tag t-violet">支付房租</span>（例4-4）用支票支付房租 10000 元：房租一般属管理费用（费用），增加记借方，银行存款减少记贷方——<b>借:</b>管理费用——房租 10000 / <b>贷:</b>银行存款 10000。</li>
+        <li class="li-tag"><span class="tag t-pink">赊购材料</span>（例4-5）从美味超市赊购菜、米、油各 10000 元：赊购即购买时未付款，材料增加、负债也增加——<b>借:</b>原材料——菜 10000、——米 10000、——油 10000 / <b>贷:</b>应付账款——美味超市 30000。</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="hd"><span class="no">🧮</span>消耗、工资与增值税计提<span class="ln"></span></div>
+      <ul>
+        <li><b>消耗材料</b>（例4-7）当月消耗菜 10000 元、米 5000 元、油 5000 元做餐：主营业务成本是为取得营业收入付出的代价、属费用，增加记借方，原材料（资产）减少记贷方——<b>借:</b>主营业务成本——材料成本 20000 / <b>贷:</b>原材料——菜 10000、——米 5000、——油 5000。</li>
+        <li><b>计提工资</b>（例4-8）管理人员工资 5000 元、厨房大师傅工资 10000 元且本月未发：厨师工资是取得营业收入的直接代价、计入主营业务成本，管理人员工资计入管理费用，未发工资形成负债——<b>借:</b>主营业务成本——薪酬成本 10000 / 管理费用——薪酬 5000 / <b>贷:</b>应付职工薪酬——工资 15000。</li>
+        <li><b>销售与增值税</b>（例4-6）当月销售额 103000 元：不含增值税收入 100000 元、增值税 3000 元，都存入银行——银行存款（资产）增加记借方，资金来源于餐饮服务收入和对税务局的负债——<b>借:</b>银行存款 103000 / <b>贷:</b>主营业务收入——餐饮收入 100000 / 应交税费——未交增值税 3000。</li>
+        <li><b>增值税怎么算</b>：增值税=不含税收入×税率（小规模纳税人统一 3%），当月计提 3000 元；税金次月 15 日前申报缴纳、当期尚未缴纳，故对税务局负债增加、「应交税费——未交增值税」记贷方；增值税已从收入计提，不能再计入营业税金及附加。</li>
+        <li><b>营业税金及附加</b>（例4-9）城建税为流转税（增值税+消费税）的 7%、教育费附加 3%、地方教育费附加 2%——本企业无消费税，流转税=3000 元：城建税 210 元、教育费附加 90 元、地方教育费附加 60 元，合计营业税金及附加 360 元；营业税金属费用、增加记借方，税金下月缴纳、负债增加记贷方——<b>借:</b>营业税金及附加 360 / <b>贷:</b>应交税费——城建税 210、——教育费附加 90、——地方教育费附加 60。</li>
+      </ul>
+    </div>
+    <div class="sec-title"><span class="sec-no">04</span>三大铁律与期末结转：从分录到报表<span class="sec-sub">实账户与虚账户 · 第二三铁律 · 结转链 · 报表编制</span></div>
+    <div class="row cols2">
+      <div class="card">
+        <div class="hd"><span class="no">🎭</span>实账户与虚账户<span class="ln"></span></div>
+        <ul>
+          <li><b>实账户</b>：15 世纪卢卡先生发明复式记账法时还没有股份制公司，企业会计主要区分股东自己的和借入的，当时只有资产、负债、所有者权益三类账户，叫作<b>实账户</b>。</li>
+          <li><b>虚账户</b>：后来股份制公司产生，为核算利润（给股东分红），会计们设置了收益类和费损（费用和损失）类账户——收入和费用实质都是所有者权益的组成部分，因股东十分关注而单独分类出来，期末结转本年利润账户、没有余额，西方会计认为它们是<b>虚账户</b>。</li>
+          <li><b>过渡类账户</b>：虚账户实际是一种过渡类账户——为满足相关方信息需求设置的中间账户，通常要素属性不确定，如商品盘亏，领导要求责任人偿还、以后可能还是资产，批准计入管理费用、以后就是费用——这类账户不能通过自身增减确定方向，第一铁律不适用。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="hd"><span class="no">🔄</span>第二铁律与第三铁律<span class="ln"></span></div>
+        <ul>
+          <li><b>第二铁律：看对方账户</b>：过渡类账户发生时通常看对方账户的方向——对方在借方，过渡性账户只能在贷方；对方在贷方，过渡性账户只能在借方。如期末盘点原材料盘亏 100 元、领导还未批准处理，先确定对方账户（原材料）减少记贷方，「待处理财产损益——待处理流动资产损益」只能挤到借方——<b>借:</b>待处理财产损益——待处理流动资产损益 100 / <b>贷:</b>原材料 100。</li>
+          <li><b>第三铁律：结转反向</b>：结转（减少）时和发生时方向相反；此时双方通常都是过渡性账户，第一、第二铁律都不适用，只能先区分转出方和转入方——转出方方向与发生时相反，先定转出方、再倒挤转入方。如结转收入：主营业务收入平时增加记贷方、转出时记借方，本年利润（转入方）只能记贷方。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card">
+      <div class="hd"><span class="no">🏁</span>期末结转链与报表编制<span class="ln"></span></div>
+      <ul>
+        <li><b>结转损益</b>（例4-10）期末把损益类账户结转到本年利润核算盈亏——结转收益：<b>借:</b>主营业务收入 100000 / <b>贷:</b>本年利润 100000；结转费损 45360 元（主营业务成本 30000 + 营业税金及附加 360 + 管理费用 15000）：<b>借:</b>本年利润 45360 / <b>贷:</b>主营业务成本 30000、营业税金及附加 360、管理费用 15000——贷方余额 54640 元即当期税前利润。</li>
+        <li><b>计提与结转所得税</b>（例4-11/12）税法规定盈利须缴所得税：小微企业税率 20%、一般企业 25%，本企业所得税=54640×25%=13660 元、通常下期缴纳——<b>借:</b>所得税费用 13660 / <b>贷:</b>应交税费——企业所得税 13660；所得税费用也是费用、期末同样结转——<b>借:</b>本年利润 13660 / <b>贷:</b>所得税费用 13660。</li>
+        <li><b>结转本年利润</b>（例4-13）本年利润核算周期只有一年、年底结转利润分配——贷方余额=100000-45360-13660=40980 元，结转时本年利润记借方、利润分配记贷方——<b>借:</b>本年利润 40980 / <b>贷:</b>利润分配——未分配利润 40980。</li>
+        <li><b>利润分配</b>（例4-14/15）董事会决定按净利润 10% 计提法定盈余公积（4098 元）、按 20% 宣告分配现金股利（8196 元）——盈余公积属所有者权益、应付股利属负债、增加记贷方，利润分配明细记借方；再把过渡性明细结转未分配利润：<b>借:</b>利润分配——未分配利润 12294 / <b>贷:</b>利润分配——计提法定盈余公积 4098、——应付现金股利 8196。</li>
+        <li><b>留存收益与报表编制</b>：去除给股东分红的部分，剩下的未分配利润和盈余公积就是留在企业中的盈余（或亏损），简称<b>留存收益</b>——它与实收资本、资本公积（也主要来自股东投入）共同构成所有者权益。最后按分录登记丁字账：依据资产、负债、所有者权益账户<b>余额</b>编制<b>资产负债表</b>，依据收入、费用账户<b>发生额</b>编制<b>综合收益表（利润表）</b>。</li>
+      </ul>
+    </div>
+    <div class="banner">
+      <b>章末的话</b>：作者曾亲自把中国人自己弄的「天地账」「四角账」「增减记账法」与借贷记账法做平衡性验算两个多小时，认为中国的方法并不比借贷记账法差；如今为与世界接轨只好学习使用它，真希望中国强大后标准由我们来定。初学者别灰心，三大铁律不是一天两天能学会的，慢慢体会、逐步学习会计科目，由量变到质变，自然就会了。
+    </div>
+  </div>
+  <div class="foot">
+    <div class="t">本章小结 · 带走这 8 句</div>
+    <ul class="qs">
+      <li><b>记账渊源</b>：结绳记事结疙瘩为增、解疙瘩为减；中国习惯上增下减（天收地付），欧洲习惯左增右减。</li>
+      <li><b>借贷诞生</b>：14 世纪意大利银行家把债权（资产）增加记左边（借方）、债务（负债和所有者权益）增加记右边（贷方）。</li>
+      <li><b>帕乔利结合</b>：15 世纪卢卡·帕乔利将借贷与「资产=负债+所有者权益」等式完美结合，借贷记账法诞生。</li>
+      <li><b>第一铁律</b>：资产、费用类账户，增加写借方（左边）；负债、所有者权益、收入类账户，增加写贷方（右边）。</li>
+      <li><b>会计分录</b>：记账凭证（西方称分类日记账）可简写为会计分录，书写规则上借下贷、左右错开。</li>
+      <li><b>第二铁律</b>：过渡类账户发生时看对方账户方向——对方在借方则过渡账户在贷方，反之亦然。</li>
+      <li><b>第三铁律</b>：结转时方向与发生时相反；双方皆过渡账户时先定转出方方向、再倒挤转入方。</li>
+      <li><b>期末与报表</b>：损益结转本年利润得税前利润 54640 元，计提所得税、分配盈余公积与股利后，依余额编资产负债表、依发生额编综合收益表（利润表）。</li>
+    </ul>
+  </div>
+</div>
+
+</div><div class="view" id="view-ch5" hidden>
+<div class="page">
+  <div class="hero">
+    <span class="tag">《会计原来这么有趣》· 第五章</span>
+    <h1>第五章 · 会计记录与原始凭证</h1>
+    <div class="sub">凭证渊源 · 确认标准 · 分类体系 · 审核把关</div>
+    <div class="core">一句话核心：<b>原始凭证</b>是会计记录的起点——远古结绳、草流、泥板、书契一路演化，直到近代才确立「每笔记录都要有证据」的地位；一张单证能否成为原始凭证，取决于能否用货币计量、是否已实际发生；确认之后按来源与填制手续分类，再经六个方面审核，才能据以编制<b>记账凭证</b>、登记账簿。</div>
+  </div>
+  <div class="body">
+    <div class="sec-title"><span class="sec-no">01</span>凭证的渊源：从雪泥鸿爪到书契<span class="sec-sub">草流 · 泥板 · 书契 · 账务处理程序</span></div>
+    <div class="row cols2">
+      <div class="card">
+        <div class="hd"><span class="no">🪶</span>凭证意识的萌芽<span class="ln"></span></div>
+        <ul>
+          <li><b>雪泥鸿爪的比喻</b>：这雪上鸿迹就是飞鸿经过的凭证——在人类社会早期，人们和飞鸿一样，并不特别重视这偶然留下的踪迹；远古人类的绳子身兼数职，既是报表又是账簿，其实还兼有<b>凭证</b>的作用，只不过这个功能没有得到特别的重视。</li>
+          <li><b>天地合账的「草流」</b>：直到清末民初，我国民间会计也没有严格意义的凭证——那时流行于民间的「天地合账」，登记账簿主要依据「草流」，就是账房先生在活动发生的当时记录的流水账，因为时间紧迫、字迹比较潦草，所以才叫「草流」；有的专家认为这个「草流」就是<b>原始凭证</b>，但作者个人不敢苟同：草流上没有对方的<b>签字画押</b>，只是一方的记录，不符合原始凭证的法律要件。</li>
+          <li><b>西方的泥巴合同</b>：他们那时候没有纸张，经济比咱们落后多了，民间的经济活动想必极少，估计也用不上账簿——不过他们的证据意识应该很强，三四千年前，苏美尔人就知道在泥巴上写合同，还要双方签字，然后封存在泥罐子里；但目前还没有发现泥巴合同与账簿之间有一一对应的关系，因此作者认为它只能算<b>法律证据</b>，也不是会计上的原始凭证。</li>
+          <li><b>我国最早的凭证：契</b>：《周易·系辞》里说「上古结绳而治，后世圣人易之以书契」——书用以记录、相当于账簿，契也就是券，通常分为三份：双方当事人各一份、一份留存，上面盖着官府的大印，主要用于官府发给老百姓当作交税的证据——和现在的<b>发票</b>是不是很像？这很可能是西周时官厅会计用的最早原始凭证。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="hd"><span class="no">📜</span>记账凭证：程序链的中间环节<span class="ln"></span></div>
+        <ul>
+          <li><b>直接登账太难</b>：随着经济发展，经济活动越来越多、也越来越复杂，直接根据原始凭证（比如发货单、入库单、发票、领料单等）登记账簿就比较困难——原始凭证上通常没有会计科目和借贷，分类账户种类很多，登记的时候也不好找；为了提高效率和准确性，先根据原始凭证编制<b>记账凭证</b>，就是前面章节写的分录，相当于中国天地账的「草流」，并且将发生的原始凭证粘贴在记账凭证上，便于闲暇时登记账簿——原始凭证是记账凭证的依据，记账凭证是登记账簿的依据，一环扣一环。</li>
+          <li><b>程序链从三环到五环</b>：在民间会计中，西方人喜欢契约、中国人喜欢信用，静静地过了几千年的光阴，各自习惯、变化不大，也互不影响——直到<b>大航海时代</b>诞生了<b>复式记账法</b>，欧洲人充分发挥他们的「契约精神」，强调账簿每笔业务活动的记录都应该有证据，于是先形成「原始凭证—会计账簿—会计报表」的会计工作程序，也叫<b>会计账务处理程序</b>；加入记账凭证环节后，就形成「经济活动→原始凭证（发票等）→记账凭证（分录）→会计账簿（明细账、总账）→会计报表」的一般账务处理程序——这套办法在 20 世纪初传入中国，一直沿用到现在；如今我国也可以使用<b>电子发票</b>作为原始凭证了。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="sec-title"><span class="sec-no">02</span>凭证的确认：什么样的单证才算原始凭证<span class="sec-sub">会计目标 · 货币计量 · 实际发生</span></div>
+    <div class="row cols2">
+      <div class="card">
+        <div class="hd"><span class="no">🎯</span>理论标准：层层落到账户<span class="ln"></span></div>
+        <ul>
+          <li><b>财务人员不是档案员</b>：经济活动的类型十分复杂，经济活动的证据也十分繁多，会计没有精力、也没有必要处理所有经济活动的证据——首先要回答：什么样的活动证据是会计原始凭证、需要会计处理呢？</li>
+          <li><b>从会计目标倒推</b>：理论上，财务会计的目标是满足报表使用者的需求——凡是已经影响企业<b>财务状况、经营成果、现金流量</b>的经济活动都需要会计确认、计量和报告；而满足会计目标的是会计报表，报表分为六要素，六要素又分为会计账户——凡是影响会计账户活动的证据，会计都需要确认，编制记账凭证、登记到账簿上。</li>
+          <li><b>理论太绕怎么办</b>：这句话说得很长、也有点绕，对初学者来说不好掌握——好在实务上另有更直观的标准：账是用货币来计量的，凡是能用货币表现的经济活动，会计就需要确认。</li>
+          <li><b>判断链条回顾</b>：报表使用者的需求 → 会计报表 → 六要素 → 会计账户 → 原始凭证的确认——理论标准的判断链条从报表需求一路落到账户，正好对应「先有凭证、再有账簿、最后成报表」的记账逻辑。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="hd"><span class="no">⚖️</span>实务标准：货币计量与实际发生<span class="ln"></span></div>
+        <ul>
+          <li><b>能用货币表现就要确认</b>：凡是能用货币表现的经济活动，会计就需要确认——这是实务上最直接的判断尺子。</li>
+          <li><b>未实际发生不能确认</b>：另外，对于未实际发生的经济活动也不能给予确认——<b>采购订单、生产领料通知单、经济合同</b>，这些仅表明意愿的单据都不能叫原始凭证。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card">
+      <div class="hd"><span class="no">🧪</span>例题试判：哪些单证算原始凭证<span class="ln"></span></div>
+      <ul>
+        <li class="li-tag"><span class="tag t-blue">委任张三为总经理</span>无法用货币表示，会计不需账务处理——委任书不是原始凭证。</li>
+        <li class="li-tag"><span class="tag t-teal">给李四增加 5000 元工资</span>能用货币计量，会计需要处理——相关资料就是原始凭证。</li>
+        <li class="li-tag"><span class="tag t-violet">采购订单</span>仅表明意愿、未实际发生——不是原始凭证。</li>
+        <li class="li-tag"><span class="tag t-pink">生产领料通知单</span>仅表明意愿、未实际发生——不是原始凭证。</li>
+        <li class="li-tag"><span class="tag t-red">经济合同</span>仅表明意愿、未实际发生——不是原始凭证。</li>
+      </ul>
+    </div>
+    <div class="sec-title"><span class="sec-no">03</span>凭证的分类：发票与凭证家族<span class="sec-sub">交易与事项 · 发票体系 · 来源 · 填制手续</span></div>
+    <div class="row cols2">
+      <div class="card">
+        <div class="hd"><span class="no">🧾</span>发票：交易活动的法定凭证<span class="ln"></span></div>
+        <ul>
+          <li><b>交易必须用发票</b>：为了保证政府的税收，我国在法规上将经济活动分为<b>交易活动</b>和<b>事项</b>（非交易活动）；税法规定，凡是交易活动（俗称买卖），必须使用<b>发票</b>作为原始凭证——发票由税务机关监制，全国统一的发票是国税总局规定的格式，其他发票的格式由省级税务机关规定。</li>
+          <li><b>空白发票不能邮寄</b>：为了便于监控、保证各地方税务局的利益，不能邮寄空白发票——如果临时外地经营，需要先到当地税务机关办理「<b>外出经营报验登记</b>」，凭借当地税务机关开具的《外出经营活动税收管理证明》购买外地发票。</li>
+        </ul>
+        <div class="subt">发票的三种类型</div>
+        <ul>
+          <li class="li-tag"><span class="tag t-blue">普通发票</span>除增值税专用发票外，企业可以使用普通发票。</li>
+          <li class="li-tag"><span class="tag t-teal">增值税专用发票</span>价税分开的（价款与税款分别列示），使用条件是交易双方都是一般纳税人。</li>
+          <li class="li-tag"><span class="tag t-violet">专业发票</span>大型国有企业（比如铁路、航空、金融、保险公司）可以使用。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="hd"><span class="no">🗂️</span>按来源与填制手续分类<span class="ln"></span></div>
+        <div class="subt">按来源分（自制与外来）</div>
+        <ul>
+          <li class="li-tag"><span class="tag t-pink">自制原始凭证</span>发票要是都让税务机关印制，税务机关会忙死——除发票外，很多原始凭证企业可以自制，比如入库单、出库单、员工的借款单等，自制与外来共同构成企业的凭证来源。</li>
+          <li class="li-tag"><span class="tag t-red">外来原始凭证</span>从企业外部取得、不由企业自制——税务机关监制的发票即属此类。</li>
+        </ul>
+        <div class="subt">按填制手续分（三种）</div>
+        <ul>
+          <li class="li-tag"><span class="tag t-gray">一次性原始凭证</span>只能用一次。</li>
+          <li class="li-tag"><span class="tag t-blue">限额原始凭证</span>在限额内可多次使用。</li>
+          <li class="li-tag"><span class="tag t-teal">汇总原始凭证</span>凭证繁多、为了便于登记账簿——比如把很多领料单合计汇总成一张材料发出汇总表。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="sec-title"><span class="sec-no">04</span>凭证的审核：会计监督的第一道关口<span class="sec-sub">六个方面 · 签章 · 问题处理</span></div>
+    <div class="row cols2">
+      <div class="card">
+        <div class="hd"><span class="no">🕵️</span>审核：会计监督的抓手<span class="ln"></span></div>
+        <ul>
+          <li><b>先审核、后记账</b>：这些原始凭证都是由经办人（库管员、采购员等）交给会计的，会计首先要对原始凭证进行审核，然后才能编制记账凭证、登记账簿。</li>
+          <li><b>会计监督主要通过审核完成</b>：审核原始凭证是会计十分重要的职责——会计监督实际上主要是通过审核原始凭证完成的。</li>
+          <li><b>审核是记账的前置关</b>：只有审核通过的原始凭证，才能作为编制记账凭证、登记账簿的依据——这一关把守着会计信息的入口。</li>
+          <li><b>从经办人交来的凭证审起</b>：库管员交来的入库单、采购员交来的发票，都要先过会计这一关——审核的范围，就是经办人交来的每一张原始凭证。</li>
+        </ul>
+        <div class="subt">审核的六个方面</div>
+        <ul>
+          <li class="li-tag"><span class="tag t-violet">合法性</span><span class="tag t-pink">真实性</span><span class="tag t-red">合理性</span><span class="tag t-gray">准确性</span><span class="tag t-blue">完整性</span><span class="tag t-teal">及时性</span></li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="hd"><span class="no">✍️</span>签章要求与问题处理<span class="ln"></span></div>
+        <div class="subt">签章要求</div>
+        <ul>
+          <li>对外使用的原始凭证必须要<b>签章</b>；对内使用的原始凭证要有经办人的<b>签字</b>——这正是原始凭证「法律要件」的具体落点：当年「草流」正是因为缺了对方的签字画押才够不上要件，缺了签章或签字，凭证就不完整。</li>
+        </ul>
+        <div class="subt">审核发现问题的处理</div>
+        <ul>
+          <li><b>不完整的凭证</b>：退还给当事人，要求其补充完整。</li>
+          <li><b>不真实的凭证</b>：拒绝接受，并向单位负责人报告。</li>
+          <li><b>会计的两不</b>：既不自行补充完整、也不予理会——补充完整是当事人的责任，会计只负责把关。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <div class="t">本章小结 · 带走这 8 句</div>
+    <ul class="qs">
+      <li><b>凭证的萌芽</b>：远古结绳既是报表又是账簿，还兼有凭证作用，只是未被重视——雪上鸿迹就是飞鸿经过的凭证。</li>
+      <li><b>草流与泥板</b>：天地合账的「草流」没有对方签字画押，苏美尔泥板合同与账簿无对应关系——两者都不算严格意义的原始凭证。</li>
+      <li><b>最早的书契</b>：西周官厅会计的契分三份、盖官府大印，用作交税的证据，与现代发票相像。</li>
+      <li><b>凭证地位的确立</b>：大航海时代复式记账法兴起，强调每笔记录都要有证据，形成「原始凭证—账簿—报表」的账务处理程序。</li>
+      <li><b>记账凭证</b>：原始凭证上无会计科目和借贷、登记不便，故先据其编制记账凭证（分录）再登账——程序链为经济活动→原始凭证→记账凭证→账簿→报表。</li>
+      <li><b>确认标准</b>：理论上影响财务状况、经营成果、现金流量的活动都要确认；实务上能用货币计量的才确认——委任总经理不算，加薪 5000 元算；未实际发生的（采购订单、领料通知单、合同）不算。</li>
+      <li><b>分类体系</b>：交易活动必须用发票（普通发票、增值税专用发票、专业发票）；按来源分自制与外来；按填制手续分一次性、限额、汇总。</li>
+      <li><b>审核把关</b>：从合法性、真实性、合理性、准确性、完整性、及时性六个方面审核；对外签章、对内签字；不完整退回补充，不真实拒绝并报告单位负责人。</li>
+    </ul>
+  </div>
+</div>
+
+</div><div class="view" id="view-ch6" hidden>
+<div class="page">
+  <div class="hero">
+    <span class="tag">《会计原来这么有趣》· 第六章</span>
+    <h1>第六章 · 货币资金演绎与资金运动</h1>
+    <div class="sub">货币起源 · 货币资金三部分 · 资金去向 · 资金来源 · 资金运动</div>
+    <div class="core">一句话核心：货币从部落以物易物的一般等价物，演变为国家铸币与信用货币；在财务会计中，<b>货币资金</b>由库存现金、银行存款、其他货币资金三部分构成——它被购买、投资、赊销等经济活动「演绎」成流动资产、非流动资产与费用损失类科目，又从所有者与债权人处获得补充。<b>所有的会计科目都是货币资金直接或者间接演绎成的</b>，会计的核算对象就是<b>资金运动</b>——投入、循环、退出三环节，经营与融资的取舍决定企业兴衰。</div>
+  </div>
+  <div class="body">
+    <div class="sec-title"><span class="sec-no">01</span>货币的来源：从以物易物到信用货币<span class="sec-sub">社会大分工 · 一般等价物 · 国家铸币 · 信用货币</span></div>
+    <div class="row cols2">
+      <div class="card">
+        <div class="hd"><span class="no">🏝️</span>从自给自足到以物易物<span class="ln"></span></div>
+        <ul>
+          <li><b>「这次咱们就不能从绳子聊起了」</b>：绳子的时代，各部落自给自足、没有私有财产，不需要交换，也就不需要货币——本章由此说起。</li>
+          <li><b>分工与剩余产品催生交换</b>：随着生产力提高，人类社会形成早期<b>社会大分工</b>，出现了剩余产品，部落与部落之间就可以通过文明的方式交换产品——以物易物逐渐产生了货币。</li>
+          <li><b>牛羊当一般等价物</b>：早期的「<b>一般等价物</b>」很可能就是大家常见的「牛」「羊」之类，后来觉得也不方便。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="hd"><span class="no">🐚</span>贝币、铸币与信用货币<span class="ln"></span></div>
+        <ul>
+          <li><b>贝壳：职业一般等价物</b>：中国古代夏朝的人钟情于「贝壳」——贝壳本身不像牛羊那样具备使用价值，于是成为「<b>职业一般等价物</b>」，也就是货币。</li>
+          <li><b>国家强制力铸币</b>：贝壳容易坏、不容易保存、不容易分割，后来国家凭借「强制力」开始铸币——「齐刀币」「赵铲币」等陆续出现，后来都变成「孔方兄」；到民国初年逐渐被纸币代替。</li>
+          <li><b>稻草变黄金</b>：货币有了国家强制力作后台，就「稻草变黄金」，成了<b>信用货币</b>，变成一种交易工具。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card">
+      <div class="hd"><span class="no">💳</span>货币衍生物与面值危机<span class="ln"></span></div>
+      <ul>
+        <li><b>衍生物方便交易</b>：货币后来又衍生成<b>银行汇票、银行支票、银行本票、信用卡、信用证</b>等，方便了交易，促进了社会分工和经济的发展。</li>
+        <li><b>面值与价值脱节</b>：国家只能规定货币面值，货币的真正价值是其体现的人类劳动价值——两者一旦差异太大，就会造成<b>通货膨胀</b>或<b>通货紧缩</b>，给企业的经济活动带来很大麻烦。</li>
+      </ul>
+    </div>
+    <div class="sec-title"><span class="sec-no">02</span>资金去向：货币资金演绎成的科目<span class="sec-sub">货币资金三部分 · 流动资产 · 非流动资产 · 费用与损失</span></div>
+    <div class="row cols2">
+      <div class="card">
+        <div class="hd"><span class="no">🪙</span>货币资金：三个口袋<span class="ln"></span></div>
+        <ul>
+          <li><b>库存现金</b>：企业保险柜和抽屉里的钱。</li>
+          <li><b>银行存款</b>：放在银行里的钱。</li>
+          <li><b>其他货币资金</b>：指定用途的钱，包括银行汇票、银行本票、信用证、信用卡、外埠存款、存出投资款。</li>
+          <li><b>「卷之则退藏于密，放之则弥六合」</b>：货币资金收起来是保险柜和银行里的钱，放出去则弥漫于企业经营活动的方方面面。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="hd"><span class="no">🧭</span>演绎的两条路<span class="ln"></span></div>
+        <ul>
+          <li><b>变成资产</b>：用货币购买材料、设备、房屋、股票、债券、商标专利等，货币资金就变成各种各样的资产。</li>
+          <li><b>变成费用与损失</b>：还有一部分会演化成<b>费用</b>（日常经营活动利益流出）和<b>损失</b>（非日常经营活动利益流出）。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="banner">
+      <b>「来源去向变无穷，循环多少寒暑」</b>——作者歪词道出总纲：货币资金既有来路、也有去处——先看「去向」如何变化，再看「来源」有哪些途径。
+    </div>
+    <div class="card">
+      <div class="hd"><span class="no">📦</span>货币资金的 20 个去向科目<span class="ln"></span></div>
+      <div class="subt">流动资产——一年内或一个营业周期（从采购材料到销售商品且收到现金）内可变现</div>
+      <ul class="tags-block">
+        <li class="li-tag"><span class="tag t-blue">存货</span>用货币购买材料、商品、小型生产工具和多次使用的包装物，就相应变成原材料、库存商品、周转材料等，在财务报表中叫作<b>存货</b>。</li>
+        <li class="li-tag"><span class="tag t-teal">交易性金融资产</span>用货币购买股票、债券、基金等金融资产，以短期获利为目标。</li>
+        <li class="li-tag"><span class="tag t-violet">应收账款</span>销售产品、提供劳务未收到的钱，即「未来的钱」。</li>
+        <li class="li-tag"><span class="tag t-pink">应收票据</span>未到期的商业汇票，实质也是未来的钱。</li>
+        <li class="li-tag"><span class="tag t-red">预付账款</span>企业先把钱付给供应商、对方尚未送货。</li>
+      </ul>
+      <div class="subt">非流动资产——长期占用的资金</div>
+      <ul class="tags-block">
+        <li class="li-tag"><span class="tag t-gray">固定资产</span>用钱去购买设备、房屋等。</li>
+        <li class="li-tag"><span class="tag t-blue">长期股权投资</span>买股票是为了控制和影响被投资单位。</li>
+        <li class="li-tag"><span class="tag t-teal">持有至到期投资</span>买债券等金融资产并准备持有至到期，收回本金和利息。</li>
+        <li class="li-tag"><span class="tag t-violet">可供出售金融资产</span>买股票等金融资产的目的比较特殊，主要是为了盈余管理。</li>
+        <li class="li-tag"><span class="tag t-pink">投资性房地产</span>购买非生产经营需要的房屋等，主要是为了出租或升值再卖。</li>
+        <li class="li-tag"><span class="tag t-red">在建工程</span>用钱去盖厂房或安装、改良设备。</li>
+        <li class="li-tag"><span class="tag t-gray">无形资产</span>用钱去购买商标、专利等。</li>
+      </ul>
+      <div class="subt">费用与损失——利益的流出</div>
+      <ul class="tags-block">
+        <li class="li-tag"><span class="tag t-blue">管理费用</span>为管理活动发生的货币流出（直接或间接）。</li>
+        <li class="li-tag"><span class="tag t-teal">销售费用</span>独立的销售部门销售活动发生的货币流出。</li>
+        <li class="li-tag"><span class="tag t-violet">营业成本</span>为销售商品或提供劳务必须付出的代价（商品减少，导致货币间接流出）。</li>
+        <li class="li-tag"><span class="tag t-pink">营业税金及附加</span>为营业活动缴税发生的货币流出。</li>
+        <li class="li-tag"><span class="tag t-red">所得税费用</span>为缴纳所得税发生的货币流出。</li>
+        <li class="li-tag"><span class="tag t-gray">营业外支出</span>企业被罚款或其他意外损失发生的流出。</li>
+        <li class="li-tag"><span class="tag t-blue">资产减值损失</span>资产价值发生减值（坏账、存货跌价、固定资产减值等）导致的货币间接流出。</li>
+        <li class="li-tag"><span class="tag t-teal">其他综合收益</span>特殊业务活动（如可供出售金融资产公允价值下降）导致的货币间接流出。</li>
+      </ul>
+    </div>
+    <div class="sec-title"><span class="sec-no">03</span>资金来源：所有者的投入与债权人的借入<span class="sec-sub">所有者方面 · 流动负债 · 非流动负债</span></div>
+    <div class="row cols2">
+      <div class="card">
+        <div class="hd"><span class="no">👥</span>来源于所有者方面<span class="ln"></span></div>
+        <div class="subt">股东的投入</div>
+        <ul>
+          <li><b>实收资本</b>：股东直接投入的、用来「生钱」的钱，从企业角度看叫作实收资本。</li>
+          <li><b>资本公积</b>：股东后续投入、超出所享有股份的那部分钱，即资本溢价；另有待日后转成资本溢价的「资本公积——其他资本公积」（如可转换债券超出债券面值的折现部分、认股权证公允价值部分）。</li>
+        </ul>
+        <div class="subt">经营与投资的收益（抵消费损后形成利润，分配后形成留存收益）</div>
+        <ul>
+          <li><b>留存收益</b>：销售商品、提供劳务所得（主营业务收入和其他业务收入），抵消费损后形成利润，利润分配后形成留存收益。</li>
+          <li><b>投资收益</b>：间接性投资资产（购买的股票、债券等金融资产）收益增加，形成直接（出售、收到分红）或间接（账面价值上涨或下跌，以后可能变现）的货币资金流入或流出。</li>
+          <li><b>公允价值变动损益</b>：投资类资产（主要指为短期获利而购买的股票、债券、衍生金融资产和投资性房地产）的公允价值上涨，导致间接货币流入或流出。</li>
+          <li><b>营业外收入</b>：意外形成的货币流入——比如两年多都找不到债权人、不用还钱了。</li>
+        </ul>
+        <div class="subt">特殊业务</div>
+        <ul>
+          <li><b>其他综合收益</b>：特殊业务活动（如可供出售金融资产公允价值上升）导致货币间接流入或流出；不需抵消费损，单独列入资产负债表和综合收益表——这是 2014 年准则新提出的账户，其中大部分核算对象是以后年度可以抵消费损、形成留存收益的，为企业进行盈余管理留了「后门」。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="hd"><span class="no">🏦</span>来源于债权人方面<span class="ln"></span></div>
+        <div class="subt">流动负债——一年内或一个营业周期内偿还</div>
+        <ul>
+          <li class="li-tag"><span class="tag t-blue">短期借款</span>从银行等金融机构借款，期限不超过一年。</li>
+          <li class="li-tag"><span class="tag t-teal">应交税费</span>欠国家的税费。</li>
+          <li class="li-tag"><span class="tag t-violet">应付账款</span>欠供应商的货款。</li>
+          <li class="li-tag"><span class="tag t-pink">应付职工薪酬</span>欠员工的薪酬。</li>
+          <li class="li-tag"><span class="tag t-red">其他应付款</span>其他方面的短期债务。</li>
+          <li class="li-tag"><span class="tag t-gray">预收账款</span>预收客户的钱、还没给客户发货（欠人家的货）。</li>
+        </ul>
+        <div class="subt">非流动负债——偿还期超过一年</div>
+        <ul>
+          <li class="li-tag"><span class="tag t-blue">长期借款</span>从银行等金融机构借款，期限超过一年。</li>
+          <li class="li-tag"><span class="tag t-teal">长期应付款</span>购买设备或融资租赁，合同规定付款期限超过一年的未付款项。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="sec-title"><span class="sec-no">04</span>资金运动与经营：循环、退出与成败<span class="sec-sub">三环节 · 定位句 · 南海公司 · 苹果</span></div>
+    <div class="banner">
+      「我就把货币资金演化成上面这些科目吧」——作者笔锋一转，道出本章最核心的定位句：<b>所有的会计科目都是货币资金直接或者间接演绎成的</b>，因此，会计的核算对象也叫作<b>资金运动</b>。
+    </div>
+    <div class="card">
+      <div class="hd"><span class="no">🔄</span>资金运动三环节<span class="ln"></span></div>
+      <ul class="tags-block">
+        <li class="li-tag"><span class="tag t-blue">投入</span>资产的投入——股东投入、债权人投入，资金由此进入企业。</li>
+        <li class="li-tag"><span class="tag t-teal">循环</span>资金的循环——供应环节货币流出、生产环节价值形态转化、销售环节货币流入，环环相扣。</li>
+        <li class="li-tag"><span class="tag t-violet">退出</span>资金的退出——分红给股东、还债给债权人、缴税给国家；最彻底的是清算，企业就没了。</li>
+      </ul>
+      <div class="subt">规律相似</div>
+      <ul>
+        <li>无论企业具体业务类型如何千姿百态，其<b>资金运动</b>的规律都是相似的——从投入到循环再到退出，周而复始。</li>
+      </ul>
+    </div>
+    <div class="row cols2">
+      <div class="card">
+        <div class="hd"><span class="no">🚢</span>反例：南海公司<span class="ln"></span></div>
+        <ul>
+          <li><b>公司制的雏形</b>：典型的资金运动通常存在于公司制企业当中——据传罗马帝国时就出现了公司的雏形「船夫行会」。</li>
+          <li><b>几经波折的兴亡史</b>：自罗马帝国至今，其间无数企业「樯橹灰飞烟灭」，无数企业勃勃兴起。</li>
+          <li><b>重融资轻经营的败局</b>：英国早期的「南海公司」规模十分庞大，英国王室都购买了其大量股票——但它不重视经营、过于重视股权融资和借入资金，最后迅速破产。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="hd"><span class="no">🍎</span>正例：苹果与乔布斯<span class="ln"></span></div>
+        <ul>
+          <li><b>痴迷产品胜过资本运作</b>：已故苹果公司 CEO 乔布斯，虽然未在资本市场上「长袖善舞」，但一心痴迷于自己的产品，终于将苹果公司打造成全球市值最大的公司。</li>
+          <li><b>对照</b>：两个案例一败一成，差别就在于是否把经营放在第一位。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <div class="t">本章小结 · 带走这 8 句</div>
+    <ul class="qs">
+      <li><b>货币起源</b>：社会大分工带来剩余产品与交换，货币从牛羊等一般等价物，经夏朝贝壳（职业一般等价物）、国家铸币（齐刀币、赵铲币、孔方兄），演变为有国家强制力作后台的信用货币，再衍生出银行汇票、支票、本票、信用卡、信用证。</li>
+      <li><b>面值与价值</b>：国家只能规定货币面值，货币的真正价值是其体现的人类劳动价值——差异太大会造成通货膨胀或通货紧缩。</li>
+      <li><b>货币资金三部分</b>：库存现金（保险柜和抽屉里的钱）、银行存款（银行里的钱）、其他货币资金（指定用途的钱：银行汇票、银行本票、信用证、信用卡、外埠存款、存出投资款）。</li>
+      <li><b>资金去向·资产</b>：货币演绎成流动资产（存货、交易性金融资产、应收账款、应收票据、预付账款）与非流动资产（固定资产、长期股权投资、持有至到期投资、可供出售金融资产、投资性房地产、在建工程、无形资产）共 12 个资产科目。</li>
+      <li><b>资金去向·费损</b>：另有 8 个费用损失类科目——管理费用、销售费用、营业成本、营业税金及附加、所得税费用、营业外支出、资产减值损失、其他综合收益。</li>
+      <li><b>资金来源·所有者</b>：实收资本、资本公积（资本溢价）、留存收益，以及投资收益、公允价值变动损益、营业外收入（均抵消费损后形成利润、分配后形成留存收益）与其他综合收益。</li>
+      <li><b>资金来源·债权人</b>：流动负债 6 项（短期借款、应交税费、应付账款、应付职工薪酬、其他应付款、预收账款）与非流动负债 2 项（长期借款、长期应付款）。</li>
+      <li><b>资金运动</b>：所有会计科目都是货币资金直接或间接演绎成的，核算对象即资金运动——投入、循环（供应货币流出、生产价值转化、销售货币流入）、退出（分红、还债、缴税，最彻底是清算）；南海公司重融资轻经营迅速破产，乔布斯痴迷产品打造出全球市值最大的苹果。</li>
+    </ul>
+  </div>
+</div>
+
+</div><div class="view" id="view-ch7" hidden>
+<div class="page">
+  <div class="hero">
+    <span class="tag">《会计原来这么有趣》· 第七章</span>
+    <h1>第七章 · 资金运动与会计记录</h1>
+    <div class="sub">资金循环 · 资本投入 · 供应生产销售 · 期末结转 · 成本小传</div>
+    <div class="core">一句话核心：<b>资金运动</b>是资金从投入到循环再到退出的完整旅程——企业以<b>实收资本</b>、<b>资本公积</b>、<b>长期借款</b>取得初始资金，经由<b>供应、生产、销售</b>三个阶段周而复始地循环，期末再把虚账户结转到<b>本年利润</b>；记录这一切的，是从单式走向复式的「<b>借:</b>/<b>贷:</b>」会计分录。</div>
+  </div>
+  <div class="body">
+    <div class="sec-title"><span class="sec-no">01</span>核算的起源：从「好玩」到严谨<span class="sec-sub">结绳泥板 · 帕乔利 · 单式到复式</span></div>
+    <div class="row cols2">
+      <div class="card">
+        <div class="hd"><span class="no">🪢</span>记录：始于好玩<span class="ln"></span></div>
+        <ul>
+          <li><b>远古人不记录</b>：连绳子都没有的远古，人们兴冲冲地打猎、采摘果实，有多少劳动成果不会也不屑于记录——正如曹雪芹所说「白茫茫一片大地，真干净」；后来才逐渐用绳子、泥巴、布匹、纸张甚至计算机记录经济业务活动。</li>
+          <li><b>最初的记录可能只为好玩</b>：作者推测，结第一个大疙瘩、第一个在泥板上画画的人，未必想着记录同类劳动成果——很可能像几岁孩子结草疙瘩、画图案一样，闲着无事、兴之所至。</li>
+          <li><b>卢卡·帕乔利</b>发明复式记账法时，自己以为写的只是一本数学专著，谁想到后世却尊他为<b>近代会计之父</b>——正如《大话西游》紫霞仙子所言：「我猜到了开头，却猜不到这结局……」</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="hd"><span class="no">🧮</span>记录：走向严谨<span class="ln"></span></div>
+        <ul>
+          <li><b>从好玩到严谨的动因</b>：人类有了羞耻心后，用逻辑思维建立理性大厦，开始思考生存、发展和享受——于是用<b>资金</b>表示劳动成果，用<b>资金运动</b>创造财富，用会计账簿记录活动以便改进方法、创造更多财富；本章即依据资金运动介绍基本记录方法。</li>
+          <li><b>记录对象在扩展</b>：从简单的资产类账户（粮食、布匹、金银），发展到记录资产来源的账户——<b>长期借款</b>（借入的）、<b>实收资本</b>（股东投入的）。</li>
+          <li><b>记录方法在进化</b>：从<b>单式记账法</b>发展到<b>复式记账法</b>——正应了本章词句「何事增减画借贷」。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="sec-title"><span class="sec-no">02</span>资本投入：初始资金从哪来<span class="sec-sub">首次投入 · 后续投入 · 借入资本</span></div>
+    <div class="card">
+      <div class="hd"><span class="no">💼</span>资本投入：三条进钱渠道<span class="ln"></span></div>
+      <ul class="tags-block">
+        <li class="li-tag"><span class="tag t-blue">股东首次投入</span>张三投入 100 万元现金、李四投入 50 万元设备，成立涛涛食品公司——先审核原始凭证（张三的进账单、李四设备的验收单），再填制记账凭证（本章分录单位统一为万元、省略明细科目）：<b>借:</b>银行存款 100 / 固定资产 50 <b>贷:</b>实收资本 150——资产增加记借方、所有者权益增加记贷方。</li>
+        <li class="li-tag"><span class="tag t-teal">股东后续投入</span>经营几年效益好，王二投 150 万元要求入股；协议将注册资产变更为 200 万元，张三享 1/2 股份、李四与王二各享 1/4——王二实际只享有 50 万元权益，超出部分作<b>资本溢价</b>：效益源于张三李四的辛苦经营，后来者投入的资产价值自然不能与初始投入相同。<b>借:</b>银行存款 150 <b>贷:</b>实收资本 50 / 资本公积 100。</li>
+        <li class="li-tag"><span class="tag t-violet">借入资本</span>公司向银行借入 100 万元、为期 3 年——审核借款合同和进账单后：<b>借:</b>银行存款 100 <b>贷:</b>长期借款 100。现代企业竞争激烈、市场变化莫测，为分散风险，出资人往往是多个自然人或法人。</li>
+      </ul>
+    </div>
+    <div class="sec-title"><span class="sec-no">03</span>资金循环：供应·生产·销售<span class="sec-sub">企业类型 · 三阶段 · 分录记录</span></div>
+    <div class="card">
+      <div class="hd"><span class="no">🏭</span>不同类型企业的资金循环<span class="ln"></span></div>
+      <ul>
+        <li><b>资金循环与资金周转</b>：用货币资金买材料、生产产品，再销售收回货币资金，这个过程叫<b>资金循环</b>；收回的资金再买材料、再生产，周而复始叫<b>资金周转</b>。</li>
+      </ul>
+      <ul class="tags-block">
+        <li class="li-tag"><span class="tag t-pink">商业企业</span>没有生产环节，没有原材料到库存商品的资金运动环节，采购商品后直接进入销售环节，核算上相当于只有工业企业的供应和销售两个阶段。</li>
+        <li class="li-tag"><span class="tag t-red">服务企业</span>餐馆、理发店、咨询公司等服务企业虽有加工制造环节，但产品不易储存、制造后立即被销售或耗费，相当于把制造阶段并入销售阶段——核算上不需设置<b>生产成本</b>账户，将材料和人工等与收入密切相关的消耗直接计入<b>主营业务成本</b>。</li>
+        <li class="li-tag"><span class="tag t-gray">制造业</span>通常制造业的资金运动是典型的企业资金运动方式，制造业的会计核算也是典型的会计核算，其他行业都可以参考制造业的会计核算进行。</li>
+      </ul>
+    </div>
+    <div class="row cols2">
+      <div class="card">
+        <div class="hd"><span class="no">🛒</span>供应阶段<span class="ln"></span></div>
+        <ul>
+          <li><b>购入设备</b>（[例7-4]）：购烤面包机 30 万（增值税 5.1 万）、麻花机 40 万（增值税 6.8 万），取得增值税专用发票、支票付款——<b>借:</b>固定资产 70 / 应交税费——应交增值税(进项税额) 11.9 <b>贷:</b>银行存款 81.9。</li>
+          <li><b>赊购材料</b>（[例7-5]）：从古船公司购面粉 10 万元（增值税 1.7 万）、白糖 1 万元（增值税 0.17 万），款未付——<b>借:</b>原材料 11 / 应交税费——应交增值税(进项税额) 1.87 <b>贷:</b>应付账款——古船面粉厂 12.87。</li>
+          <li><b>增值税的机制</b>：<b>增值税</b>是流转环节（采购和销售）对货物和应税劳务按价值增加额征收的税种——价值增加额即销售减采购的差价，故销售记<b>销项税额</b>、采购记<b>进项税额</b>，期末将二者差额上交税务局；采购时进项税增加使应交税费减少——负债减少记借方。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="hd"><span class="no">💰</span>销售阶段<span class="ln"></span></div>
+        <ul>
+          <li><b>只按表面现象记录不行</b>：若把成本 0.775 元的面包按 2 元销售记成「借:库存现金 2 贷:库存商品 0.775 / 本年利润 1.225」，就无法体现当期收入和成本、不能满足股东了解收入的需要，违背<b>相关性原则</b>。</li>
+          <li><b>记录销售收入</b>（[例7-10]）：销售给京客隆超市 5 万个面包（不含税价 2 元/个，价款 10 万、增值税 1.7 万）、6 万个麻花（3 元/个，价款 18 万、增值税 3.06 万），款未收——<b>借:</b>应收账款——京客隆 32.76 <b>贷:</b>主营业务收入 28 / 应交税费——应交增值税(销项税额) 4.76；款未收是未来的钱、属资产，增加记借方；收入、销项税（对税务局的负债）增加记贷方。</li>
+          <li><b>结转销售成本</b>：面包销售成本=50000×0.775=38750 元，麻花=60000×0.925=55500 元——<b>借:</b>主营业务成本 9.425 <b>贷:</b>库存商品 9.425。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card">
+      <div class="hd"><span class="no">⚙️</span>生产阶段：成本如何归集<span class="ln"></span></div>
+      <div class="subt">材料消耗（[例7-6]）</div>
+      <ul>
+        <li>领用面粉 4 万元生产面包、3 万元生产麻花，1 万元糖用于车间一般消耗——<b>借:</b>生产成本——面包(直接材料) 4 / 生产成本——麻花(直接材料) 3 / 制造费用——材料消耗 1 <b>贷:</b>原材料 8；原材料属资产账户，减少记贷方；<b>生产成本</b>、<b>制造费用</b>实质是在产品和半成品，增加记借方。</li>
+      </ul>
+      <div class="subt">人工费用的计提（[例7-7]）</div>
+      <ul>
+        <li><b>工资的计算与分配</b>：50 名工人出勤 20 天、每人每天 50 元，工资总额=50×20×50=50000 元；工资率=50000/8000=6.25 元/工时——面包人工成本 18750 元、麻花 31250 元；车间主任工资 10000 元与两个产品都相关、计入制造费用，管理人员工资 20000 元计入管理费用。</li>
+        <li>分录：<b>借:</b>生产成本——面包(直接人工) 1.875 / 生产成本——麻花(直接人工) 3.125 / 制造费用——薪酬 1 / 管理费用——薪酬 2 <b>贷:</b>应付职工薪酬——工资 8。工资通常次月发放，应先计入对员工的负债账户<b>应付职工薪酬</b>，即便当月发放也应先记录，便于汇总应发实发薪酬。</li>
+      </ul>
+      <div class="subt">水电、折旧与制造费用归集</div>
+      <ul>
+        <li><b>水电消耗</b>（[例7-8]）：车间水电 2 万、管理部门 1 万，增值税 0.51 万，款未付——<b>借:</b>制造费用——水电 2 / 管理费用——水电 1 / 应交税费——应交增值税(进项税额) 0.51 <b>贷:</b>应付账款——水电公司 3.51；车间水电若能按电表或定额区分面包与麻花负担，最好直接记入相应成本账户。</li>
+        <li><b>折旧</b>（[例7-9]）：生产车间厂房和设备当月折旧 1 万、管理部门折旧 0.5 万——<b>借:</b>制造费用——折旧 1 / 管理费用——折旧 0.5 <b>贷:</b>累计折旧 1.5。</li>
+        <li><b>归集与分配</b>：为取得产品而必须付出的代价才计入产品成本，广告支出、厂部管理人员工资与产品形成无必要关系、不应计入；金额小又不易区分的支出先计入<b>制造费用</b>（或辅助生产成本），期末归集后按最适合的方法分配——本例制造费用=1(材料)+1(人工)+2(水电)+1(折旧)=5 万元，按人工工时分配（分配率 6.25 元/工时）：面包 18750 元、麻花 31250 元，<b>借:</b>生产成本 5 <b>贷:</b>制造费用 5。</li>
+        <li><b>重要性原则</b>的贯彻：主要消耗的材料和人工，发生时尽量分别登记在相应账户上；与多个产品相关、难以确认的，才先登记在过渡性账户中。</li>
+      </ul>
+      <div class="subt">产成品入库</div>
+      <ul>
+        <li>当月生产入库 10 万个面包、10 万个麻花，全部完工、无在产品——面包生产成本=4+1.875+1.875=7.75 万元、单位成本 0.775 元/个；麻花=3+3.125+3.125=9.25 万元、单位成本 0.925 元/个——<b>借:</b>库存商品 17 <b>贷:</b>生产成本 17。</li>
+        <li>如果期末有未完工的在产品和半成品，计算当期入库的完工产品成本时，需要减去在产品和半成品的成本。</li>
+      </ul>
+    </div>
+    <div class="sec-title"><span class="sec-no">04</span>期末结转与资金退出<span class="sec-sub">虚账户 · 本年利润 · 清算</span></div>
+    <div class="banner">「等闲变却虚账心，却道虚账心易变」——不是虚账户自身要变，而是设置它们时就决定了期末必须结转归零。</div>
+    <div class="row cols2">
+      <div class="card">
+        <div class="hd"><span class="no">🔄</span>虚账户：期末必须归零<span class="ln"></span></div>
+        <ul>
+          <li><b>账户体系的演变</b>：复式记账法应用早期，账户只有资产、负债和所有者权益三类——收益多了增加所有者权益账户，费损多了减少所有者权益账户；后来发现收益和费损太重要，就把它们从所有者权益账户中分离出来，详细记录其变化。</li>
+          <li><b>期末结转</b>：这些账户本就属于所有者权益账户，到期末（会计分期中的假设静止时刻）需将自身账户结转为空，归于所有者权益账户——<b>本年利润</b>。</li>
+          <li><b>虚账户设置的意义</b>：虚账户本身就是为了贯彻相关性和重要性要求、记录业务活动过程的变化（制造费用也是同理）——所以虚账户不是自身要变，而是从设置那一刻起就注定期末结转归零。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="hd"><span class="no">💸</span>资金退出与清算<span class="ln"></span></div>
+        <ul>
+          <li><b>资金退出的去向</b>：资金循环后就是资金的退出，包括给股东分红、还债权人的债和利息、缴纳国家的税。</li>
+          <li><b>工资和材料不算退出</b>：支付员工工资(V)、购买材料(C)不属于资金退出——从经济学看，这些支出计入产品成本、随销售得到补偿、属资金循环；从社会整体看，股东红利、债权人利息、国家税收是分配企业的剩余价值(M)。</li>
+          <li><b>清算</b>：资金退出最彻底的方式——或因经营不善破产，或因合伙人「金盆洗手」、既不愿继续经营也不愿转让而解散；一旦清算，就不能以持续经营为前提，也不能采用权责发生制，应当根据交易价格（<b>公允价值</b>）重新确定资产和负债，差额先计入清算损益，再转入所有者权益账户（利润分配——未分配利润）。</li>
+          <li><b>清算的法定顺序</b>：先归还所欠员工薪酬、国家税费及其他债务，剩余分给股东——借:实收资本 / 资本公积 / 利润分配——未分配利润 / 应付账款 / 应交税费，贷:银行存款、库存商品、固定资产等所有资产类账户。</li>
+          <li>到此，一个企业的资金运动就终止了，股东和债权人们又会在市场经济中建立和寻找新的企业，生生不息。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card">
+      <div class="hd"><span class="no">📜</span>拓展阅读 · 成本小传<span class="ln"></span></div>
+      <div class="subt">成本档案</div>
+      <ul>
+        <li><b>成本</b>出生日期：会计史学家认为在 16 世纪；本质是为达到特定目的而付出的代价（或放弃的资源）；特点：一定范围内付出越多、收益也越多，偶尔有例外；她的社会关系——母亲是<b>资产</b>、父亲是目标（收益）、孪生兄弟是<b>费用</b>。</li>
+        <li><b>盘古开天的启示</b>：从整个宇宙看，付出的代价和取得的收益相等（能量守恒）；但具体到每一个人，成本和收入不一定相等——原始人打猎收获一只兔子，成本只是一点卡路里，吃掉后却收入很多卡路里，收入大于成本。</li>
+      </ul>
+      <div class="subt">成本简史：从费用到成本</div>
+      <ul>
+        <li><b>中国古人的结算法</b>：周朝有「九入九出」的记录；秦汉时期有<b>三柱结算法</b>，即「收入-支出=结合」；唐宋为区分当期与前期利润，产生<b>四柱结算法</b>，即「旧管（上期结余）+新增（本期增加）=结余（本期结余）+开支（本期减少）」，「新增-开支」即本期利润。</li>
+        <li><b>为什么唐宋没有成本会计</b>：当时产品不丰富，无需分别核算某一具体项目的收益和支出——没有具体目标的支出只能是费用、不能称为成本，成本会计的「第一」可能是欧洲人的。</li>
+        <li><b>成本会计的起源</b>：卢卡发明复式记账法后，16 世纪荷兰图书出版商为控制图书成本，分别记录每种图书消耗的纸张、油墨、人工等支出，用支出总额除以图书数量计算每本图书的单位成本——被多数会计史学家认为是成本会计起源。</li>
+        <li><b>标准成本法</b>：20 世纪初工业革命蓬勃发展、竞争加剧，美国泰勒提出科学管理——分析员工动作、规定标准动作和工时、形成标准工资制，并规定每件产品的标准材料消耗；用标准成本与实际成本对比、分析差异、采取措施降低成本，现代成本会计由此诞生。</li>
+        <li><b>目标成本法</b>：20 世纪中期以后，日本丰田公司为扩大美国销售额，根据市场需求价格减去利润倒推目标成本。</li>
+        <li><b>战略成本管理法</b>：网络普及后，英美会计学者将整个行业看成价值链、每个企业是其中的一个增值环节——对内采用<b>作业成本法</b>核算、消除自身无效活动，对外分析挑战与竞争对手、进行价值链整合，决策中不仅考虑成本降低、还考虑收益变化，力争使收入成本比最优。</li>
+        <li><b>费用如何变成成本</b>：成本和费用都是一种资产（资源）消耗——古代难区分消耗的具体目标，就笼统称为费用；近代为精确核算具体产品和服务的收益，有了具体对应的收益目标，费用就转换为成本。</li>
+      </ul>
+      <div class="subt">成本核算示例：老人家食品厂</div>
+      <ul>
+        <li><b>生产费用与具体成本</b>：老人家食品厂 2015 年 10 月生产 1 万个面包、1 万个麻花——面粉 20000 千克（每千克 1 元）、工人工资 1 万元、水电质检折旧车间主任工资共 5000 元；只算生产费用：20000+10000+5000=35000 元；要算具体成本，就得逐项区分面包和麻花各消耗多少。</li>
+        <li><b>直接材料——定额比例法</b>：领料只记 20000 千克时，按生产工艺定额（每个面包 0.9 千克、每个麻花 0.6 千克）计算——面包定额 9000 元、麻花定额 6000 元、总定额 15000 元，实际 20000 元超支 5000 元，假设超支与定额消耗成正比，分配比例=20000/15000≈1.3333——面包材料成本约 12000 元、麻花约 8000 元。</li>
+        <li><b>直接人工与制造费用按工时分配</b>：人工 10000 元按工时分配（面包 400、麻花 600 工时，分配率 10）——面包 4000 元、麻花 6000 元；制造费用 5000 元按人工工时分配（分配率 5）——面包 2000 元、麻花 3000 元（设备不多用人工工时、设备多用机器工时）。</li>
+        <li><b>完工入库</b>：面包生产成本总额 18000 元、麻花 17000 元——<b>借:</b>库存商品 35000 <b>贷:</b>基本生产成本 35000；面包单位成本 1.8 元、麻花 1.7 元。</li>
+        <li><b>作业成本法</b>：传统方法把制造费用混在一起再找标准分配，导致产量大、批次少的产品分摊比实际多的间接费用、成本虚增，产量小、批次多的产品成本虚低；作业成本法的基本原理是「产品消耗作业，作业消耗资源」——先做作业动因分析（作业是否必要、有效率），再做资源动因分析（与同行对比资源消耗），把资源归集到作业成本库再分配到产品；如质检作业 1000 元，检查面包 40 次、麻花 60 次，分配率=1000/100=10，面包 400 元、麻花 600 元。</li>
+        <li>作业成本法更精确、利于科学定价、能发现组织隐藏的浪费，但工作量十分大，我国大多数企业尚未采用；随着计算机技术发展、基础核算可通过 ERP 软件进行，相信作业成本法会逐渐在我国普及。</li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot">
+    <div class="t">本章小结 · 带走这 8 句</div>
+    <ul class="qs">
+      <li><b>核算起源</b>：从「好玩」的结绳、泥板记录，到卢卡·帕乔利的复式记账法——记录对象从资产类扩展到来源类，方法从单式走向复式。</li>
+      <li><b>资本投入</b>：股东首次投入记实收资本；后续投入超出注册资本份额的部分记资本公积；向银行借入记长期借款。</li>
+      <li><b>资金循环</b>：货币资金买材料、生产产品、销售收回货币叫资金循环，周而复始叫资金周转；商业企业两阶段、服务企业制造并入销售、制造业最典型。</li>
+      <li><b>供应阶段</b>：购设备材料记固定资产、原材料借方，进项税额抵减应交税费，赊购形成应付账款。</li>
+      <li><b>生产阶段</b>：直接材料、直接人工计入生产成本，共同消耗先归集制造费用再按标准分配，完工转库存商品，贯彻重要性原则。</li>
+      <li><b>销售阶段</b>：收入记主营业务收入、销项税增加对税务的负债，成本按销售数量×单位成本结转主营业务成本，收支分列才符合相关性原则。</li>
+      <li><b>期末结转</b>：收益、费损类虚账户期末结转为空、归于本年利润——虚账户的设置贯彻相关性与重要性。</li>
+      <li><b>资金退出与成本</b>：分红、还债付息、缴税是资金退出，工资和材料属于资金循环；成本 16 世纪诞生，历经标准成本法、目标成本法到战略成本管理法，作业成本法或随 ERP 普及。</li>
+    </ul>
+  </div>
+</div>
+
+</div><div class="view" id="view-ch8" hidden>
+<div class="page">
+  <div class="hero">
+    <span class="tag">《会计原来这么有趣》· 第八章</span>
+    <h1>第八章 · 会计报表的演绎及编制</h1>
+    <div class="sub">结绳记账 · 性质与功能列报 · 余额与发生额 · 三张报表 · 账务处理程序</div>
+    <div class="core">一句话核心：<b>会计报表</b>不是凭空设计的，而是从结绳记事一路演绎而来——<b>资产负债表</b>按项目<b>性质</b>以余额列报、<b>利润表</b>按项目<b>功能</b>以发生额列报、<b>现金流量表</b>按现金流入流出列报；报表编制以「便于报表使用者阅读和理解」为原则，其程序就是筛选、分类、汇总经济信息的<b>账务处理程序</b>。</div>
+  </div>
+  <div class="body">
+    <div class="sec-title"><span class="sec-no">01</span>资产负债表的演绎：按性质的余额列报<span class="sec-sub">结绳记账 · 实账户余额 · 静态报表</span></div>
+    <div class="row cols2">
+      <div class="card">
+        <div class="hd"><span class="no">🧶</span>结绳记事：天然的资产负债表<span class="ln"></span></div>
+        <ul>
+          <li>原始人的智商和现在六七岁的孩子差不多，编制报表的方法也很简单——得到不同的猎物或果实，就分别在相应的绳子上结个大疙瘩：得到兔子，记录在表示兔子的绳子上；得到狐狸，记录在表示狐狸的绳子上。</li>
+          <li><b>计量属性</b>就是大个的结个大疙瘩、小个的结个小疙瘩，吃了一个就解开一个疙瘩，以此类推。</li>
+          <li>实际上，这些绳子永远只表现各项劳动成果（<b>资产</b>）的余额——部落谁也不借东西，所有资产都由部落自己所有，这就天然形成了<b>资产负债表</b>的雏形（负债为零，应该叫作「资产所有者权益表」）。</li>
+          <li>由此可以看出，资产负债表是根据不同<b>实账户</b>（绳子）的余额汇总编制的。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="hd"><span class="no">⚖️</span>按性质 · 余额列报<span class="ln"></span></div>
+        <ul>
+          <li><b>资产负债表</b>按照项目<b>性质</b>、依据<b>余额列报</b>——资产、负债、所有者权益账户以期末余额直接列示，增加、减少等发生额细节不上报表。</li>
+          <li>它从<b>静态</b>反映组织的<b>财务状况</b>：组织可以动用的资源，是经营的基础。</li>
+          <li>编制原理：按性质列报的资产收支汇总表，去掉增加和减少项目、只保留余额，再增加表示资产来源的负债和所有者权益账户余额，就成了资产负债表。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="sec-title"><span class="sec-no">02</span>利润表的演绎：按功能的发生额列报<span class="sec-sub">增减分栏 · 皇帝的不满 · 动态报表</span></div>
+    <div class="row cols2">
+      <div class="card">
+        <div class="hd"><span class="no">📜</span>从结绳到增减分栏<span class="ln"></span></div>
+        <ul>
+          <li>随着社会进步，人们发现绳子风吹日晒很容易坏、结疙瘩这事不大靠谱，于是先后在龟甲、泥巴、布匹、纸张上记录劳动成果的增减。</li>
+          <li>古人计算减法比较困难，为了便于统计，就把增加的和减少的分成两部分记录——要得到余额，就得先算各账簿增加的合计，再算减少的合计，两者一减才能得出余额。</li>
+          <li>由此人们发现：增加的就是<b>收入</b>的，减少的就是<b>消耗、支出</b>的。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="hd"><span class="no">👑</span>皇帝的不满：从性质到功能<span class="ln"></span></div>
+        <ul>
+          <li>官厅会计将按资产账户增减合计编成的报告呈给皇帝，皇帝却不满意——他能清楚每项资产的增加、减少和余额，却不能从表中知道收入来源何处、支出去向何方，也就无法找到增加收入或减少支出的办法。</li>
+          <li>官厅会计把报表改成按收入、支出列报（《周礼》有九式支出、九赋收入，作者杜撰「二赋二式」举例）——皇帝清楚了收入的来源和支出的去向，就能决定是增加邦中之赋，还是减少祭祀之式。</li>
+          <li>这就是把按项目性质列报的资产收支汇总表，演绎成按项目<b>功能（用途）</b>列报的收入支出表；而前者去掉增加和减少项目、只保留余额，再增加表示资产来源（负债和所有者权益账户）的余额，就成了资产负债表。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="sec-title"><span class="sec-no">03</span>现金流量表：年老的后起之秀<span class="sec-sub">现金账 · 一般等价物 · 三大活动 · 动态报表</span></div>
+    <div class="row cols2">
+      <div class="card">
+        <div class="hd"><span class="no">💰</span>现金账：历史最悠久的账簿<span class="ln"></span></div>
+        <ul>
+          <li>金银被人类认识后，人们把特别的爱给了它——奴隶主、皇帝、地主、企业主几乎都安排专人保管、专门记录，所以<b>现金账</b>是历史最悠久的账簿之一。</li>
+          <li><b>现金</b>就是价值量比较稳定的<b>一般等价物</b>；广义的现金包括现金、银行存款、其他货币资金，以及能够在短期内很容易转换成确定金额的资产（通常指短期债券）。</li>
+          <li>现金账的历史最悠久，<b>现金流量表</b>却到很晚才成为正式报表——所以它是「年老的后起之秀」。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="hd"><span class="no">🔀</span>按流入流出汇总<span class="ln"></span></div>
+        <ul>
+          <li>原则上，有账簿就应该进行汇总报告——从业主角度看，现金应该按什么标准汇总呢？无非是钱从何处来、又到何处去。</li>
+        </ul>
+        <div class="subt">三大业务活动：钱的来源与去向</div>
+        <ul>
+          <li class="li-tag"><span class="tag t-blue">筹资活动</span>借款、股东投入</li>
+          <li class="li-tag"><span class="tag t-teal">经营活动</span>日常采购、销售等</li>
+          <li class="li-tag"><span class="tag t-violet">投资活动</span>购建房屋设备、购买金融资产</li>
+        </ul>
+        <ul>
+          <li><b>现金流量表</b>的实质，就是根据现金账按照三大业务活动中具体的<b>流入和流出</b>项目进行汇总——钱从哪里来、到哪里去一目了然，编制起来很容易。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="row cols2">
+      <div class="card">
+        <div class="hd"><span class="no">📊</span>三张报表：三种列报逻辑<span class="ln"></span></div>
+        <ul>
+          <li class="li-tag"><span class="tag t-blue">资产负债表</span>按项目性质 · 实账户余额列报 · 静态</li>
+          <li class="li-tag"><span class="tag t-teal">利润表（综合收益表）</span>按项目功能（用途）· 虚账户发生额列报 · 动态</li>
+          <li class="li-tag"><span class="tag t-violet">现金流量表</span>按现金流入流出 · 现金账户汇总 · 动态</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="hd"><span class="no">🆚</span>动态与静态：报表的两副面孔<span class="ln"></span></div>
+        <ul>
+          <li>静态的一面：<b>资产负债表</b>按项目<b>性质</b>、依据<b>余额</b>列报，反映组织的<b>财务状况</b>——组织可以动用的资源，是经营的基础。</li>
+          <li>动态的一面：<b>利润表（综合收益表）</b>按项目<b>功能（用途）</b>、依据<b>发生额</b>累计列报，反映组织的收支主要活动——经营活动的成果。</li>
+          <li>这种列报方式一直使用到现在——前几年国际会计准则委员会曾想将资产负债表也改成按功能列报，最后不了了之；作者当时就不看好这项改革：现行列报虽有缺陷，但计划没有变化快，谁能确定某项资产的用途不会在未来会计报告期发生变化呢？</li>
+        </ul>
+      </div>
+    </div>
+    <div class="sec-title"><span class="sec-no">04</span>编制原则与程序<span class="sec-sub">便于阅读理解 · 重新分类汇总 · 账务处理程序</span></div>
+    <div class="row cols2">
+      <div class="card">
+        <div class="hd"><span class="no">🎯</span>总原则：便于报表使用者阅读和理解<span class="ln"></span></div>
+        <ul>
+          <li>编制报表的目的之一，就是节约报表使用者的时间，便于他们在较短时间内通过阅读报表了解企业。</li>
+          <li>因此，<b>会计报表的编制</b>就是根据报表使用者的需求，对账簿进行重新分类和汇总——这是本章的编制总原则。</li>
+        </ul>
+        <div class="subt">五条具体要求</div>
+        <ul class="tags-block">
+          <li class="li-tag"><span class="tag t-blue">① 取舍有度</span>不能什么都弄到报表上——资产、负债、所有者权益账户的增加发生额和减少发生额决策价值不大，就不要汇报，资产负债表只用这些账户的余额编制；损益类账户余额为零、股东和债权人关注的是当期收入和费用发生总额，利润表（综合收益表）只用损益类账户的发生额编制。</li>
+          <li class="li-tag"><span class="tag t-teal">② 同质汇总</span>性质（用于资产负债表）或功能（用于综合收益表和现金流量表）相同的就汇总表示——货币资金是现金、银行存款、其他货币资金三个账户余额的合计；存货是原材料、库存商品、在途物资、周转材料、委托加工物资等账户的余额合计；营业收入是主营业务收入、其他业务收入账户的发生额合计。</li>
+          <li class="li-tag"><span class="tag t-violet">③ 异质不并</span>不能给报表使用者造成误导，性质不同的就不能合并、也不能抵消——客户归还欠款时预付了一部分下次购货的定金，应收账款明细账余额出现在贷方，这部分实际是预收账款（企业还欠着人家的货，属于负债），不能和应收账款其他借方明细抵消，应和预收账款贷方明细合并，填写在资产负债表的预收账款中。</li>
+          <li class="li-tag"><span class="tag t-pink">④ 时间属性</span>还要注意资产和负债的时间属性——某企业 2010 年 3 月借款 100 万元、为期 5 年，2014 年 12 月 31 日编制报表时，账簿虽记在长期借款中，但实际还有 3 个月就要到期，就不能写在非流动负债里面，应写在流动负债项目中。</li>
+          <li class="li-tag"><span class="tag t-red">⑤ 代算净额</span>尽量别给报表使用者添麻烦——固定资产项目应把累计折旧和减值准备减去、直接填写净值；所有准备类账户都要从相应的资产账户中减去、填写净额；流动资产合计、流动负债合计等各种合计，都计算好填写上去。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="hd"><span class="no">🧮</span>四个重分类等式<span class="ln"></span></div>
+        <ul>
+          <li><b>预收账款</b>金额 = 预收账款贷方明细金额 + 应收账款贷方明细金额</li>
+          <li><b>应收账款</b>金额 = 应收账款借方明细 + 预收账款借方明细 − 坏账准备</li>
+          <li><b>应付账款</b>金额 = 应付账款贷方明细金额 + 预付账款贷方明细金额</li>
+          <li><b>预付账款</b>金额 = 预付账款借方明细金额 + 应付账款借方明细金额</li>
+        </ul>
+        <div class="subt">编制程序：账务处理程序</div>
+        <ul>
+          <li>账务处理程序在前几章都已涉及，这里简单介绍——<b>会计报表的形成</b>，实质是对企业经济活动信息进行筛选、分类、汇总的加工过程。</li>
+        </ul>
+        <ul class="tags-block">
+          <li class="li-tag"><span class="tag t-blue">① 原始凭证</span>经办人员根据业务活动填制（入库单、销售发票等）或取得（采购发票等）原始凭证。</li>
+          <li class="li-tag"><span class="tag t-teal">② 记账凭证</span>会计审核原始凭证，编制记账凭证——就是把学的分录写在规定的格式上。</li>
+          <li class="li-tag"><span class="tag t-violet">③ 登记账簿</span>会计根据记账凭证登记明细账簿和总账——现在大多由财务软件完成，过去强调登记总账的三种方法，即三种不同的账务处理程序。</li>
+          <li class="li-tag"><span class="tag t-pink">④ 对账与编表</span>账簿登记完后进行对账（账证、账账、账实）——根据实账户（资产、负债、所有者权益）的余额编制资产负债表，根据虚账户（损益类账户）的发生额编制利润表，根据现金（现金、银行存款、其他货币资金和部分确定金额交易性金融资产）账户编制现金流量表。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <div class="t">本章小结 · 带走这 8 句</div>
+    <ul class="qs">
+      <li><b>资产负债表的雏形</b>：结绳时代按猎物性质分绳结疙瘩、大猎物结大疙瘩，绳子永远只表现劳动成果（资产）的余额——负债为零，天然形成资产负债表雏形。</li>
+      <li><b>按性质余额列报</b>：资产负债表根据实账户的余额、按项目性质汇总编制，静态反映财务状况（组织可以动用的资源）。</li>
+      <li><b>利润表的由来</b>：古人计算减法困难，把增加和减少分开记录，先算增加合计、减少合计再相减得余额——增加的是收入，减少的是消耗、支出。</li>
+      <li><b>按功能发生额列报</b>：利润表（综合收益表）按项目功能（用途）、依据发生额累计列报，动态反映经营活动的成果——皇帝据此决定增收还是减支。</li>
+      <li><b>现金流量表</b>：现金账是历史最悠久的账簿之一，现金流量表却是「年老的后起之秀」——按三大业务活动的流入流出项目汇总，编制容易。</li>
+      <li><b>编制原则</b>：报表编制就是根据使用者需求对账簿重新分类汇总——决策价值不大的发生额不上报表、性质相同的汇总表示、性质不同的不合并不抵消。</li>
+      <li><b>重分类与净额</b>：应收账款贷方明细实际是预收账款、应合并填入预收账款；固定资产减去累计折旧和减值准备填净值，一年内到期的长期借款列入流动负债。</li>
+      <li><b>账务处理程序</b>：原始凭证 → 记账凭证 → 登记账簿 → 对账（账证、账账、账实）→ 编表：实账户余额编资产负债表、虚账户发生额编利润表、现金账户编现金流量表。</li>
+    </ul>
+  </div>
+</div>
+
+</div><div class="view" id="view-ch9" hidden>
+<div class="page">
+  <div class="hero">
+    <span class="tag">《会计原来这么有趣》· 第九章</span>
+    <h1>第九章 · 财务会计概念框架</h1>
+    <div class="sub">八个质量要求 · 四个会计假设 · 五个计量属性 · 两个记账基础 · 确认与计量</div>
+    <div class="core">一句话核心：<b>财务会计概念框架</b>由四次会议搭建而成——代表会计目标的<b>八个信息质量要求</b>，先后与<b>四个会计假设</b>、<b>会计六要素和账户</b>、<b>五个计量属性</b>、<b>两个记账基础</b>开会，解决会计<b>确认</b>（记什么）与<b>计量</b>（记多少）两大问题，最终通过复式记账登记账簿、形成会计报表。</div>
+  </div>
+  <div class="body">
+    <div class="sec-title"><span class="sec-no">01</span>会计当而已矣：会计目标与八个质量要求<span class="sec-sub">适当即妥协 · 相关性核心 · 八要求</span></div>
+    <div class="banner">《孟子·万章下》记载孔子曾为委吏，说「<b>会计当而已矣</b>」——「而已」就是「适当」：不能过、也不能不及，好似中庸，实质是一种妥协：既要满足股东、债权人、国家机关、社会公众等使用者的决策需求，又要在矛盾中求平衡。</div>
+    <div class="row cols2">
+      <div class="card">
+        <div class="hd"><span class="no">⚖️</span>妥协：相关性 × 如实性<span class="ln"></span></div>
+        <ul>
+          <li><b>使用者需求各有侧重</b>：决策不同、需求矛盾——大股东关注管理者是否尽职，<b>历史成本</b>更能显示绩效；债权人侧重偿债能力，<b>公允价值</b>更能满足需求。</li>
+          <li><b>准确详实的两面性</b>：信息越准确翔实对决策越有利，但核算和内控成本越高、效率竞争力越低，阅读成本也越高——太详细了，使用者干脆不看。</li>
+          <li><b>妥协的落点</b>：会计信息就是<b>相关性</b>（不同使用者的信息需求）与<b>如实性</b>（真实、详细、准确）的妥协或平衡，妥协的主要方法是<b>重要性</b>——失真程度是否影响决策。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="hd"><span class="no">🎯</span>相关性：质量要求的核心<span class="ln"></span></div>
+        <ul>
+          <li>会计目标的具体化就是八个质量要求——其中<b>相关性体现会计目标</b>，是核心。</li>
+          <li>财政部会计司司长<b>刘玉廷</b>认为股东的需求最全面和重要——我国《企业会计准则》主要侧重满足<b>投资人决策</b>的需求。</li>
+          <li><b>投资人的决策逻辑</b>：从众多企业中选最满意的，前提是能对比财务指标——一家把请客吃饭记作销售费用、另一家记主营业务成本，就没法比了。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="subt">八个会计信息质量要求（总则）</div>
+    <ul class="tags-block">
+      <li class="li-tag"><span class="tag t-blue">相关性</span>体现会计目标，是八个要求的核心。</li>
+      <li class="li-tag"><span class="tag t-teal">如实性</span>信息真实、详细、准确——与相关性构成妥协的两端。</li>
+      <li class="li-tag"><span class="tag t-violet">可比性</span>横向：不同企业核算口径一致；纵向：同一企业前后期不得随意变更（坏账准备从 2% 改成 2‰ 就破坏了可比性）。</li>
+      <li class="li-tag"><span class="tag t-pink">及时性</span>老捂着报表不出来，投资人会错过决策的最佳时机。</li>
+      <li class="li-tag"><span class="tag t-red">重要性</span>金额占比较大、性质严重的项目单独列示或披露，其余合并——事无巨细成厚书，投资人一年挑不出来。</li>
+      <li class="li-tag"><span class="tag t-gray">谨慎性</span>不高估资产、不低估负债——限制企业讨好投资人的动机，否则就是骗取股东的血汗钱。</li>
+      <li class="li-tag"><span class="tag t-blue">明晰性</span>如实性的具体表现：账户体系逻辑关系清晰、表达形式清晰（如报表格式设计）。</li>
+      <li class="li-tag"><span class="tag t-teal">实质重于形式</span>融资租赁表面是租赁、实质是分期购买——货物作租入方资产，应付租金作租入方负债（长期应付款）。</li>
+    </ul>
+    <ul>
+      <li>八个要求写进《企业会计准则》总则，属部门规章，法律地位高于具体准则——理解透彻，就能推理准则未规定的特殊情况如何账务处理。</li>
+    </ul>
+    <div class="sec-title"><span class="sec-no">02</span>第一、二次会议 · 假设与确认<span class="sec-sub">目标演进 · 四假设 · 六要素 · 账户设置</span></div>
+    <div class="row cols2">
+      <div class="card">
+        <div class="hd"><span class="no">🏛️</span>第一次会议：会计目标与四个假设<span class="ln"></span></div>
+        <ul>
+          <li><b>会计目标随环境演进</b>：目标受社会经济环境制约——古代官厅会计监督大臣、账房监督仆人，报告以收支（利润表）为主，如西周九入九出表；近代无证券市场、只能靠分红获利，向股东报告经营情况，利润表成老大，侧重如实性、用历史成本；现代证券市场完善、靠转让股票获利，20 世纪 70 年代起美国提出满足报表决策需求的目标（被绝大多数国家接受），资产负债表成老大——侧重相关性、鼓励公允价值、不再强调配比，综合收益表、现金流量表解释资产负债表期初期末变化的原因。</li>
+          <li><b>为什么需要假设</b>：会计目标是人们对会计的期望，随环境变化、受环境制约（不能持续经营，历史成本就没意义）——为实现目标需对经济环境作<b>会计假设</b>。第一次会议：相关性主席主持，八个主席与四位假设先生参会。</li>
+        </ul>
+        <div class="subt">四个会计假设</div>
+        <ul>
+          <li><b>会计主体先生</b>：区分不同企业核算的空间范围——投资一个集团，就把集团看作一个主体，抵消成员间关联交易。</li>
+          <li><b>持续经营先生</b>：编表前评估可持续性——可预见的未来正常经营、不破产清算，才采用现行准则体系。</li>
+          <li><b>会计分期先生</b>：经营期限分为若干相等时间段（月、季、半年、年），期末假设静止，结算账目、计算盈亏。</li>
+          <li><b>货币计量先生</b>：以人民币为记账本位币，其他币种按记账汇率折算；外资企业可用外币记账，但报表必须折成人民币。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="hd"><span class="no">📋</span>第二次会议（筹备）：反映范围<span class="ln"></span></div>
+        <ul>
+          <li><b>会议主题是确认</b>：根据八个要求进行<b>会计确认</b>——哪些业务事件需要记录报告、哪些不需要；这是会计实务的开始。</li>
+          <li><b>邀请六要素</b>：相关性主席提议——资产、负债、所有者权益代表财务状况，收入、费用、利润代表经营成果。</li>
+          <li><b>补充邀请科目</b>：如实性主席认为六要素太笼统，应把具体科目也请来——账户汇总成<b>会计要素</b>，要素构成报表，报表满足决策需求。</li>
+          <li><b>货币计量的边界之争</b>：货币计量先生主张只请能用货币表示的事项；相关性主席反对——重大事项（如未决诉讼）不能因无法计量就被忽视：能估计金额就用估计金额，否则表外（附注）披露；谨慎性主席补充——能合理估计的损失用<b>或有负债</b>表示，能预计的收益不进表内。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="row cols2">
+      <div class="card">
+        <div class="hd"><span class="no">🗃️</span>资产先生：账户设置之道<span class="ln"></span></div>
+        <ul>
+          <li><b>按变现能力分两类</b>：流动资产是一年或一个营业周期内能变现的资产，此外是非流动资产——变现能力越强风险越小收益越小（银行存款），越弱风险越大收益越大（在建工程），体现相关性。</li>
+          <li><b>主要账户按性质划分</b>：资产用途多且不稳定，按性质设置更符合如实性——货币资金（库存现金、银行存款、其他货币资金）、应收账款、预付账款、无形资产、在建工程等。</li>
+          <li><b>金融资产按用途划分</b>（体现相关性）：短期获利设<b>交易性金融资产</b>、持有到期设<b>持有至到期投资</b>、控制被投资单位设<b>长期股权投资</b>、特殊目的设<b>可供出售金融资产</b>；以出售为目的就是存货，为生产经营服务就是固定资产。</li>
+          <li><b>备抵类补充账户</b>：应收账款可能收不回、存货可能低于账面价值——按相关性、谨慎性设坏账准备、存货跌价准备、固定资产减值准备、无形资产减值准备；价值逐渐消化设累计折旧、累计摊销。</li>
+          <li><b>明细科目</b>：一级科目财政部门统一规定（可比性）；按企业具体资产设置（食品厂设面包、麻花明细）；金额大单独设、小合并设（面粉白糖单独，色素并入辅料）。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="hd"><span class="no">🧾</span>负债先生：按来源设账户<span class="ln"></span></div>
+        <ul>
+          <li><b>先分流动与非流动</b>：流动负债当年就要偿还，资金链断裂会破产；长期负债压力主要在以后。</li>
+          <li><b>具体负债按来源划分</b>：银行→短期借款、长期借款；供应商→应付账款；客户→预收账款；税务→应交税费；员工→应付职工薪酬。</li>
+          <li><b>相关性优先原则</b>：当月薪酬当月发、没形成负债，也不能直接「<b>借:</b>费用成本，<b>贷:</b>银行存款」，要通过应付职工薪酬过渡便于统计应付实付——冲突时相关性优先。</li>
+        </ul>
+        <div class="subt">所有者权益先生：两类构成</div>
+        <ul>
+          <li><b>股东投资的</b>：首次直接投入计<b>实收资本</b>；后续投入大于享有权益部分计<b>资本公积</b>（含可转换债券、认股权证公允价值溢价）。</li>
+          <li><b>留存在企业的收益</b>：日常收益与费损抵消形成利润，分配后形成<b>未分配利润</b>、<b>盈余公积</b>；另有其他综合收益（特殊目的收益，大部分未来可转入期间损益）。</li>
+          <li><b>其他综合收益之争</b>：可比性主席反对（为何不计入当期损益？）；如实性主席辩护（不让这样做，企业会滥用会计估计调坏账比率，伤害更大）——最终保留。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="row cols2">
+      <div class="card">
+        <div class="hd"><span class="no">📈</span>收益、费损与利润先生<span class="ln"></span></div>
+        <ul>
+          <li><b>收益类先生</b>：本是权益家族成员，平时单独核算、期末与费损抵消——日常收益：主营业务收入、其他业务收入、公允价值变动损益（收益部分）、投资收益（日常部分）；非日常利得：营业外收入等。</li>
+          <li><b>费损类先生</b>：核算利益流出——日常：主营业务成本、其他业务成本、投资收益（损失部分）等；非日常：营业外支出、资产减值损失等。</li>
+          <li><b>利润先生</b>：收益费损期末抵消形成当期利润，分配后形成未分配利润和盈余公积——国际会计准则委员会没单设利润要素，我国设了。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="hd"><span class="no">⏱️</span>确认之后：计量之问<span class="ln"></span></div>
+        <ul>
+          <li><b>会议成果</b>：六要素、会计科目及或有（特殊）事项代表入场——反映范围为六要素、科目及表外事项。</li>
+          <li><b>确认时间</b>：及时性主席问「什么时间确认」？会计分期先生答——不能提前、不能滞后：按合同、订单入账不靠谱，2014 年销售 2015 年确认也不合理。</li>
+          <li><b>引出第三次会议</b>：货币计量先生问「用什么方法计量」？相关性主席说下次再讨论——引出五个计量属性。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="sec-title"><span class="sec-no">03</span>第三、四次会议 · 计量与记账基础<span class="sec-sub">五计量属性 · 两记账基础 · 形成列报</span></div>
+    <div class="row cols2">
+      <div class="card">
+        <div class="hd"><span class="no">⚖️</span>第三次会议：五个计量属性站队<span class="ln"></span></div>
+        <ul>
+          <li><b>站队规则</b>：五位先生围绕相关性主席和如实性主席一字排开——体现相关性站左、体现如实性站右；从左到右：<b>公允价值、现值、重置成本、可变现净值、历史成本</b>。</li>
+          <li><b>历史成本先生</b>：我国市场机制不完善，管理层考核注重经营活动业绩——以历史成本为主，特别是经营活动的资产和负债。</li>
+          <li><b>公允价值先生</b>：活跃交易市场（股市、债券、房地产）用公允价值——计量日通过主要市场有序交易的价格，更真实，满足债权人。</li>
+          <li><b>可变现净值先生</b>：技术进步快，存货成本常高于市价——存货用可变现净值（当时市价 − 变现成本）计量，应收账款、固定资产等都可计提减值准备。</li>
+          <li><b>现值先生</b>：长期合同、融资租赁长期应付款——几年后的 100 元和现在 100 元价值不等，用复利把未来钱折成现值。</li>
+          <li><b>重置成本先生</b>：盘盈固定资产、历史成本找不到时，用重置成本（现行成本）计量。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="hd"><span class="no">🔁</span>第四次会议：两个记账基础<span class="ln"></span></div>
+        <ul>
+          <li><b>缘起与参会</b>：请来企业代表队的<b>权责发生制</b>和行政事业单位代表队的<b>收付实现制</b>——存在会计分期：1 月销售、2 月收款，收入确认在 1 月还是 2 月？</li>
+          <li><b>权责发生制（企业）</b>：以当期经济活动发生（不考虑款项收付）确认收入和费用——1 月生产销售 1000 万元、2 月放假，款项 2 月收到，应在 1 月确认收入 1000 万、2 月确认 0；1 月付 2 年房租 240 万，只用了 1 个月，按 240 万计费用利润不合理，应计 10 万；客户 1 月破产欠 50 万，货物去年销售，应在去年提取坏账准备。</li>
+          <li><b>收付实现制（行政事业单位）</b>：不计算利润——收到款项确认收入、支付款项确认支出；简单清晰，没有人为主观估计：坏账准备估计得准吗？比例会不会有其他目的？</li>
+        </ul>
+      </div>
+    </div>
+    <div class="banner">形成列报：四次会议解决了<b>会计确认</b>（账户）与<b>会计计量</b>（金额）——此后通过<b>复式记账法</b>登记账簿、形成会计报表，后面的问题大部分可由计算机自动完成——这四次会议的成果是伟大的。</div>
+    <div class="sec-title"><span class="sec-no">04</span>拓展阅读 · 资产小传<span class="sec-sub">资源和权利的结晶 · 货币计量 · 权益 · 损益 · 需求</span></div>
+    <div class="banner">资产简历：姓名——资产；出生日期——新石器时代；家庭地址——暂居地球；本质——<b>导致未来利益流入的经济资源或者权利</b>；父亲——权利；母亲——资源；爷爷兼儿子——需求（欲望）；恋人——货币计量；影子——权益。</div>
+    <div class="row cols2">
+      <div class="card">
+        <div class="hd"><span class="no">🐯</span>本质：资源和权利的结晶<span class="ln"></span></div>
+        <ul>
+          <li><b>老虎占山</b>：自然资源总量变化不大，老虎为获足够食物占一座山——山成专有资源，老虎凭力量成为所有者，山就成了老虎的资产。</li>
+          <li><b>资产的两个前提</b>：未来能带来经济利益（有东西吃）+ 具有权属关系（山属于老虎），缺一不可——阳光、空气没有权属关系，不属于资产。</li>
+          <li><b>结晶论</b>：资源是妈妈、权利是爸爸，资产是资源和权利的结晶——美国会计准则（US-GAAP）与国际会计准则（IFRS）对资产的定义也不同。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="hd"><span class="no">💰</span>货币计量：资产的追求者<span class="ln"></span></div>
+        <ul>
+          <li><b>先有资产后有货币</b>：新石器时代用绳子结大疙瘩计量资产；货币诞生后用货币表示价值才能比较——兔子 10 元、狐狸 100 元，兔子山 1000 元、狐狸山 2000 元：货币为计量资产而生，总追不上资产发展的速度。</li>
+          <li><b>无法计量就不能确认</b>：和氏璧是资产但无法用货币表示，不能确认、上不了报表；2006 年前认股权证、期权等无法计量、不确认，2006 年《企业会计准则第 22 号——金融工具确认和计量》颁布后，可用公允价值（含估值技术）计量确认。</li>
+          <li><b>现在的难题</b>：人力资源属于资产但无法计量、不能确认——像苦恋的情侣：资产跑、货币计量追，永远追不上，恰恰激发种种精彩的计量方法。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="row cols2">
+      <div class="card">
+        <div class="hd"><span class="no">🎭</span>权益与需求：影子和源头<span class="ln"></span></div>
+        <ul>
+          <li><b>资产与权益同生</b>：同时诞生于新石器时代，是同一资源的两个方面——资产表示占有形态（货币资金、材料、商品、房屋、专利权…），权益表示权属关系（属于股东多少、债权人多少）。</li>
+          <li><b>金额相等、方向相反</b>：保险柜 100 万元——借来的就是负债、股东投入就是所有者权益；资产多权益多、资产少权益少；资产多了记左边（借方）、权益多了记右边（贷方）。</li>
+          <li><b>欲望产生权利</b>：人们追求权利，因权利能满足需求——一人吃饱占小块土地，一家吃饱占大点土地，子子孙孙吃饱占更大土地。</li>
+          <li><b>欲海无边</b>：欲望产生权利、权利与资源结合生下资产、资产又刺激欲望——只要人类不灭，欲海无边、资产无限发展。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="hd"><span class="no">📉</span>损益：有点绕的关系<span class="ln"></span></div>
+        <ul>
+          <li><b>早期：资产增减表示损益</b>：借债少、少有人投资别人的企业——资产多了是收益（收入利得），资产少了是费损（费用损失）。</li>
+          <li><b>后来：还要看负债和权益</b>：借款变多、常邀股东增资——资产多了可能是借来的或股东投入，资产少了可能是还债或分红——损益还要看负债和所有者权益变化。</li>
+          <li><b>收益的定义</b>：导致所有者权益增加（资产增加但不是借来的、负债减少但不是还债）且与所有者投入资本无关的经济利益总流入——钱多了，不是别人给的也不是借来的，自然是收益。</li>
+          <li><b>费损的定义</b>：导致所有者权益减少（资产减少不是还债、负债增加不是借款）且与向所有者分配利润无关的经济利益总流出——钱少了，没分股东没借别人，自然是消耗或损失。</li>
+          <li><b>反向：用损益表示资产</b>：把未来收益折现就是现在的资产——未来收益难预计，用得不多，用于衍生金融资产计量和固定资产减值测试。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <div class="t">本章小结 · 带走这 8 句</div>
+    <ul class="qs">
+      <li><b>「会计当而已矣」</b>：「而已」就是「适当」，不能过也不能不及——会计信息是相关性（信息需求）与如实性（真实准确）的妥协，妥协的主要方法是重要性。</li>
+      <li><b>八个质量要求</b>：相关性（核心）、如实性、可比性、及时性、重要性、谨慎性、明晰性、实质重于形式——写进《企业会计准则》总则，法律地位高于具体准则。</li>
+      <li><b>相关性是核心</b>：我国《企业会计准则》侧重满足投资人决策需求——刘玉廷认为股东的需求最全面和重要。</li>
+      <li><b>目标随环境演进</b>：古代监督受托责任（利润表老大）、近代报告经营情况（历史成本）、现代满足决策需求（20 世纪 70 年代起资产负债表老大，鼓励公允价值）。</li>
+      <li><b>四个会计假设</b>：会计主体（核算空间范围）、持续经营（不破产清算）、会计分期（月季半年年）、货币计量（人民币记账本位币）。</li>
+      <li><b>会计确认</b>：六要素 + 会计科目 + 或有事项构成反映范围；资产账户按性质设、金融资产按用途设、负债按来源设；如实性与相关性冲突时相关性优先。</li>
+      <li><b>五个计量属性</b>：从左到右——公允价值、现值、重置成本、可变现净值、历史成本；体现相关性的站左侧、体现如实性的站右侧。</li>
+      <li><b>两个记账基础</b>：企业用权责发生制（按经济活动发生确认）、行政事业单位用收付实现制（收付即确认）；四次会议解决确认与计量后，复式记账登记账簿、形成报表，大部分可由计算机自动完成。</li>
+    </ul>
+  </div>
+</div>
+
+</div><div class="view" id="view-ch10" hidden>
+<div class="page">
+  <div class="hero">
+    <span class="tag">《会计原来这么有趣》· 第十章</span>
+    <h1>第十章 · 漫谈会计法</h1>
+    <div class="sub">部门法定位 · 四级体系 · 主体与客体 · 三类监督 · 法律责任</div>
+    <div class="core">一句话核心：法是调整社会关系的，调整会计关系的法律规范就是<b>会计法</b>——法律体系分四级：全国人大定的会计法律、国务院定的会计行政法规、财政部等部门定的部门规章、地方人大定的地方性法规；会计法律关系的主体是<b>会计机构和会计人员</b>，客体是<b>会计行为</b>（核算与监督）和<b>会计资料</b>（会计档案）；若违规，受<b>行政责任</b>与<b>刑事责任</b>二责。</div>
+  </div>
+  <div class="body">
+    <div class="sec-title"><span class="sec-no">01</span>会计法：调整会计关系的部门法<span class="sec-sub">部门法定位 · 四级体系</span></div>
+    <div class="row cols2">
+      <div class="card">
+        <div class="hd"><span class="no">🏛️</span>从社会关系到部门法<span class="ln"></span></div>
+        <ul>
+          <li><b>法是调整社会关系的</b>：社会关系种类太多，调整不同关系形成不同部门法：调整政府管理国家关系的是<b>行政法</b>，调整平等主体间财产关系的是<b>民商法</b>，调整经济关系的是<b>经济法</b>，调整会计关系的法律规范就叫<b>会计法</b>。</li>
+          <li><b>会计关系包含两方面</b>：一是会计机构和人员核算、监督时发生的经济关系，二是国家管理会计机构发生的经济关系。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="hd"><span class="no">📜</span>会计法分四级<span class="ln"></span></div>
+        <div class="subt">四级体系</div>
+        <ul class="tags-block">
+          <li class="li-tag"><span class="tag t-blue">会计法律</span>由全国人大及其常委会制定——法都是人大或人大常委会制定的，其他机构没有这个权利，权利来自人民。</li>
+          <li class="li-tag"><span class="tag t-teal">会计行政法规</span>由国务院制定，如《企业财务会计报表条例》——后缀「条例」的一定是国务院制定，叫行政法规。</li>
+          <li class="li-tag"><span class="tag t-violet">部门规章</span>由财政部、国税总局、中国人民银行等国务院直属部门制定具体执行办法，如财政部《企业会计准则》《小企业会计准则》《会计从业资格管理办法》《会计档案管理办法》等。</li>
+          <li class="li-tag"><span class="tag t-pink">地方性法规</span>由各省、自治区、直辖市人大或人大常委会制定，适应本地经济发展和文化特色。</li>
+        </ul>
+        <div class="subt">为什么分级立法</div>
+        <ul>
+          <li>会计核算和监督涉及企业经济各个方面，只有一部人大常委会制定的会计法不够详细完整，需行政法规、部门规章、地方性法规逐级补充细化。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="sec-title"><span class="sec-no">02</span>主体：会计机构与会计人员<span class="sec-sub">组织形式 · 任职资格 · 会计证管理 · 工作交接</span></div>
+    <div class="row cols2">
+      <div class="card">
+        <div class="hd"><span class="no">🏢</span>办理会计事务的组织形式<span class="ln"></span></div>
+        <ul>
+          <li><b>依法建账是义务</b>：《公司法》规定，公司成立后 15 天内应依法建账——所有公司都要建立账簿核算记录经济活动。</li>
+          <li><b>小微企业可代理记账</b>：公司很小（三四个人）再雇专职会计会增加负担，《会计法》允许没有会计人员，通过<b>代理记账机构</b>代理记账——代理机构须经县级以上财政部门批准，许可证由财政部统一印制。</li>
+          <li><b>不设机构设专人</b>：需要专职会计但不想成立专门会计机构的企业，可在其他部门（如综合部）设专职会计人员，指定一人为<b>会计主管</b>。</li>
+          <li><b>规模较大企业</b>：最好成立单独会计机构，任命<b>会计机构负责人</b>。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="hd"><span class="no">🎓</span>会计人员任职资格<span class="ln"></span></div>
+        <div class="subt">会计机构负责人与会计主管</div>
+        <ul>
+          <li>两者所在单位大小可能不同，但<b>法律地位相同、任职资格一样</b>：先要有会计从业资格证书（简称「会计证」），其次应具会计师以上资格或三年以上会计工作经历——考不下会计师，熬上三年也有当会计主管的资格。</li>
+          <li>会计机构负责人（会计主管）属<b>中层领导</b>，上面是财务副总（财务总监）或总会计师；设总会计师就不能再设财务副总。</li>
+          <li><b>总会计师</b>：须考取会计师资格后主管三年以上财务工作（国务院规定）。</li>
+        </ul>
+        <div class="subt">普通会计岗位与免证岗位</div>
+        <ul>
+          <li>从事<b>出纳、会计核算、财务报表编制</b>等工作必须先考取会计证；考试省级组织、证书市级发放、管理县级以上财政部门负责、大纲财政部统一规定。</li>
+          <li><b>不需要会计证的岗位</b>：超市收银员、医院划价员、注册会计师（实际是社会审计）、内审员（单位内部审计）。</li>
+          <li>作者异议：西方很多国家对普通会计无此持证要求，有干涉企业用人自主权的嫌疑，且能否胜任无法通过一次考试科学判定——希望新《会计法》取消会计证考试，交由企业评定，财政部门管好注册会计师即可。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="row cols2">
+      <div class="card">
+        <div class="hd"><span class="no">🗂️</span>会计证管理：取得、变更到注销<span class="ln"></span></div>
+        <div class="subt">规定程序</div>
+        <ul>
+          <li><b>上岗注册登记</b>：考取会计证后找到第一份会计工作的 90 天内办理。</li>
+          <li><b>继续教育</b>：每年继续教育学分制，不能少于 24 学时。</li>
+          <li><b>定期换证</b>：6 年定期换证，到期前 6 个月内到当地财政部门办理。</li>
+          <li><b>变更登记</b>：学历、职称等变化时办理。</li>
+          <li><b>调转登记</b>：去异地工作的，离开原单位起 30 天内向原注册地财政部门办调出，调出后 90 天内向调入地财政部门办调入。</li>
+        </ul>
+        <div class="subt">进阶与吊销</div>
+        <ul>
+          <li><b>技术资格三级</b>：会计从业资格证只是入门级，继续发展需考取初、中、高级资格证书——初、中级考试取得，高级考评结合、先考后评；有技术资格不一定担任实际专业职务。</li>
+          <li><b>专业职务四级</b>：《会计法》规定会计专业职务包括高级会计师、会计师（中级职务）、助理会计师、会计员（初级职务）四个等级。</li>
+          <li><b>吊销情形</b>：以舞弊、贿赂等手段取得会计证，或财政人员滥用职权、违反程序发证，应撤销会计证，5 年内不得参加考试；持证人员丧失行为能力或死亡，会计证依法吊销。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="hd"><span class="no">🤝</span>会计人员的工作交接<span class="ln"></span></div>
+        <div class="subt">适用范围</div>
+        <ul>
+          <li>临时离职或因病不能工作需接替代理的，会计机构负责人（会计主管人员）或单位负责人必须指定专人接替或代理并办理交接手续。</li>
+          <li>临时离职或因病不能工作的会计人员恢复工作时，应与接替或代理人员办理交接手续。</li>
+          <li>移交人因病等特殊原因不能亲自办理的，经单位负责人批准可委托他人代办——委托人应对所移交凭证、账簿、报告的真实性、完整性负责。</li>
+        </ul>
+        <div class="subt">交接程序</div>
+        <ul>
+          <li><b>交接前准备</b>：已受理未填制的凭证应填制完毕，未登记的账目登记完毕、结出余额并加盖印章；整理应移交资料、对未了事项写书面说明；编制一式三份移交清册（列明凭证、账簿、报告、公章、现金、有价证券、支票簿、发票等，电算化单位还须列明软件密码、数据盘、磁带）；会计机构负责人移交时须介绍财务工作、收支和人员情况。</li>
+          <li><b>监交</b>：一般会计人员由会计机构负责人（会计主管人员）监交；会计机构负责人由单位负责人监交，必要时主管单位派人会同监交。</li>
+          <li><b>逐项点收</b>：现金按账簿余额当面点交、不得短缺，「白条抵库」由移交人限期查清；有价证券数量与账簿一致，面额与发行价不一致按账簿余额交接；资料必须完整无缺、短缺查明原因由移交人负责；银行存款与对账单核对、未达账项编制调节表，财产物资、债权债务明细账与总账核对相符、重要实物实地盘点、大额往来与对方核对；电算化单位应在计算机上实际操作确认无误。</li>
+          <li><b>交接后事项</b>：交接双方和监交人在移交清册上签名或盖章，注明单位名称、交接日期、职务姓名、页数及需说明问题；接管人员应继续使用移交前账簿、不得另立，保证记录衔接；移交清册一式三份，双方各执一份、存档一份；接替人因疏忽未发现的问题，事后发现仍由原移交人负责，不得推脱。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="sec-title"><span class="sec-no">03</span>客体：会计行为与会计资料<span class="sec-sub">会计核算 · 会计档案 · 三类监督</span></div>
+    <div class="row cols2">
+      <div class="card">
+        <div class="hd"><span class="no">🧮</span>会计核算：核算证、账、表<span class="ln"></span></div>
+        <ul>
+          <li><b>核算目标</b>：提供符合会计准则、客观公允的财务报告，满足报表使用者需求。</li>
+          <li><b>核算依据</b>：必须是实际发生的经济活动——没有的事不能造假，计划还没发生的事也不要登记。</li>
+          <li><b>资料必须真实完整</b>：不能伪造凭证和账簿（用不真实的事编凭证登账，就是编故事）；不能变造凭证和账簿（事情是有的，但涂改金额）；不得提供虚假财务报告（直接涂改报告数据，造假技术含量最低、最易发现）。</li>
+          <li><b>核算程序</b>：经济活动—审核原始凭证—编制记账凭证—登记账簿—对账—结账—编制会计报告；《会计法》对账包括<b>账证、账账、账实、账表</b>四环节（会计证教材会计基础无账表相对）。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="hd"><span class="no">📦</span>会计档案管理<span class="ln"></span></div>
+        <ul>
+          <li><b>什么是会计档案</b>：完成会计核算后形成会计档案——历史资料和证据，纸质或电子均可；外部接收的电子会计资料（如采购发票）应附有符合《中华人民共和国电子签名法》的电子签名。</li>
+          <li><b>档案构成</b>：包括会计凭证、账簿、报表报告和其他资料（银行对账单、调节表、保管清册、销毁清册等）；财务计划、预算、制度等不一定真实发生，不属于会计档案，属<b>文书档案</b>。</li>
+          <li><b>保管与查阅</b>：第一年由会计机构临时保存，一年后（最长不超过 3 年）有档案室交档案室，没有仍由会计机构保管（<b>出纳不能保管会计档案</b>）；查看或复制须经单位负责人批准，任何情况不许借出。</li>
+          <li><b>保管期限</b>：分<b>永久和定期两类</b>，定期为 10 年和 30 年。</li>
+          <li><b>销毁</b>：档案到期销毁前要经财务部门鉴定，未结清的债权债务和未了事项不能销毁、须单独抽出立册保存；销毁前后向单位负责人报告，销毁时由会计人员陪同共同销毁。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="row cols2">
+      <div class="card">
+        <div class="hd"><span class="no">👀</span>会计监督：监督分三类<span class="ln"></span></div>
+        <div class="subt">监督的目标</div>
+        <ul>
+          <li>对<b>企业</b>——保证资产安全和会计信息准确完整（战略目标之一）；对<b>国家</b>——保证国家利益（税收利益等）不受损害；对<b>社会</b>——保证投资者、债权人等企业相关方利益和资本市场正常运行。</li>
+        </ul>
+        <div class="subt">三类监督</div>
+        <ul class="tags-block">
+          <li class="li-tag"><span class="tag t-blue">单位内部监督</span>主体是会计机构和会计人员，对象是企业的经济活动，目标是资料真实完整。</li>
+          <li class="li-tag"><span class="tag t-teal">政府监督</span>主体是以财政部为主的政府部门（工商、税务、审计、证监会等），对象是会计行为、目的是保证其合法；各部门可联合检查，不得就同一事项重复检查。</li>
+          <li class="li-tag"><span class="tag t-violet">社会监督</span>主体是会计师事务所和注册会计师，对象是被审单位会计报表及相关资料；单位和个人对违反《会计法》行为的检举也属社会监督。</li>
+        </ul>
+        <div class="subt">外部监督分工</div>
+        <ul>
+          <li>政府监督和社会监督属于<b>外部监督</b>；财政部门检查：是否依法建账、资料是否真实、核算是否规范、人员是否有会计证、事务所审计报告程序内容。</li>
+          <li>在西方国家，注册会计师监督是外部监督的主要形式，我国也现这种趋势——政府监督精力有限，往往仅监督大中型国有企业，上市公司和民营企业大多由注册会计师监督；至今我国还允许一家事务所既做咨询又做审计，削弱了独立性和公正性，审计报告质量总体水平不高。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="hd"><span class="no">🛡️</span>内部控制：内部监督的升级<span class="ln"></span></div>
+        <div class="subt">为什么内控</div>
+        <ul>
+          <li>经济网络发展使竞争更激烈、不确定性增强，传统会计监督难以满足企业战略目标与风险管控需求——企业纷纷建立<b>内部控制体系</b>，财政部颁布《内部控制基本规范》《企业内部控制应用指引》（2010 年颁布，2011 年先在海外上市公司执行）。</li>
+          <li><b>内控基本目标</b>：保证企业战略目标实现——经营活动合法合规（违法就吊销营业执照）、资产安全（资产都没了怎么经营）、财务报告和相关信息真实完整、提高经营效果和效率。</li>
+        </ul>
+        <div class="subt">内控五要素</div>
+        <ul class="tags-block">
+          <li class="li-tag"><span class="tag t-blue">内部环境</span>包括人员素质（能力、价值观）、企业文化、规章制度等。</li>
+          <li class="li-tag"><span class="tag t-teal">风险评估</span>根据企业目标评估内外部环境，如应收账款能否收回、概率多大、资金运转影响程度等。</li>
+          <li class="li-tag"><span class="tag t-violet">控制措施</span>对风险采用控制、转移还是接受，如买财产保险降低意外风险、用期货避免材料涨价风险。</li>
+          <li class="li-tag"><span class="tag t-pink">信息沟通</span>将经营活动和控制措施的实际情况信息收集、分类、整理、分析，改进控制措施。</li>
+          <li class="li-tag"><span class="tag t-red">内部监督</span>主要通过内部审计实现，评价内控体系的有效性。</li>
+        </ul>
+        <div class="subt">建立与实施</div>
+        <ul>
+          <li><b>职责分工</b>：董事会负责建立健全内控、监事会监督、经理层组织日常运行；建立内控既要考虑全面性、重要性，又要考虑制衡性（互相牵制）、适应性（具体情况）和成本效益原则。</li>
+          <li><b>具体方法</b>：不相容岗位分离（会计出纳分类，记录人、执行人、保管人分离）、内部授权审批、财产保护控制（现金保管制度）、预算制度、绩效考核等。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="sec-title"><span class="sec-no">04</span>法律责任：若违规，受二责<span class="sec-sub">责任类型 · 处罚与处分 · 主刑与附加刑 · 常见违法情形</span></div>
+    <div class="row cols2">
+      <div class="card">
+        <div class="hd"><span class="no">⚖️</span>责任类型与惩罚目的<span class="ln"></span></div>
+        <ul>
+          <li><b>会计法律责任</b>：违反会计法规应承担的后果，实质是对违法的单位和个人进行惩罚——目的有报复意味，更多是威慑他人别做违法事，保证社会秩序正常运行。</li>
+          <li><b>责任分三类</b>：我国法律责任主要分<b>行政责任</b>（政府做出）、民事责任、<b>刑事责任</b>（严重违法行为——犯罪）；与会计相关的主要是行政责任和刑事责任（受二责）。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="hd"><span class="no">🏛️</span>行政责任：处罚与处分<span class="ln"></span></div>
+        <div class="subt">行政处罚</div>
+        <ul>
+          <li>由县级以上人民政府有行政处罚权的机关做出（如财政局、税务局）：警告，罚款（不是罚金），没收违法所得、非法财物，责令停业，暂扣或吊销许可证、营业执照，行政拘留。</li>
+        </ul>
+        <div class="subt">行政处分</div>
+        <ul>
+          <li>针对违反规定的<b>国家公务人员</b>制裁：警告、记过、记大过、降级、撤职、开除等。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="row cols2">
+      <div class="card">
+        <div class="hd"><span class="no">⛓️</span>刑事责任：主刑与附加刑<span class="ln"></span></div>
+        <ul>
+          <li><b>主刑</b>只能单独使用：管制、拘役、有期徒刑、无期徒刑和死刑。</li>
+          <li><b>附加刑</b>包括罚金（主要不是罚款）、剥夺政治权利、没收财产，对外国人还可驱逐出境；可单独也可附加使用。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="hd"><span class="no">📋</span>常见的会计法律责任<span class="ln"></span></div>
+        <div class="subt">十种违规情形</div>
+        <ul>
+          <li>对不依法设置账簿、私设账簿、未按规定取得原始凭证和登记账簿、随意变更会计方法、任用人员不符合规定等<b>十种情形</b>，由县级以上人民政府财政部门责令限期改正，可对单位并处 3000 元以上、50000 元以下罚款，对直接负责的主管人员和其他直接责任人员处 2000 元以上、20000 元以下罚款。</li>
+        </ul>
+        <div class="subt">伪造变造与隐匿销毁</div>
+        <ul>
+          <li><b>伪造、变造会计凭证、会计账簿，编制虚假财务会计报告</b>：构成犯罪的追究刑事责任；尚不构成犯罪的，由县级以上人民政府财政部门通报，对单位并处 5000 元以上、100000 元以下罚款，对直接负责的主管人员和其他直接责任人员处 3000 元以上、50000 元以下罚款。</li>
+          <li><b>隐匿或故意销毁</b>依法应当保存的会计凭证、账簿、报告：构成犯罪的追究刑事责任；尚不构成犯罪的，通报并处以与上一条相同罚款（单位 5000~100000 元，个人 3000~50000 元）。</li>
+          <li><b>授意、指使、强令</b>他人伪造变造凭证账簿、编制虚假报告或隐匿销毁会计资料的：构成犯罪的追究刑事责任；尚不构成犯罪的，处 5000 元以上、50000 元以下罚款。</li>
+        </ul>
+        <div class="subt">考试提示</div>
+        <ul>
+          <li>作者说明：后面四条法律责任复制自《会计法》条款，目的尽量覆盖会计证考试大纲内容——参加会计证考试的读者请仔细阅读，会大有帮助。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <div class="t">本章小结 · 带走这 8 句</div>
+    <ul class="qs">
+      <li><b>部门法定位</b>：调整不同社会关系形成不同部门法——行政法管政府管理国家，民商法管平等主体财产关系，经济法管经济关系；调整会计关系的法律规范就是会计法。</li>
+      <li><b>四级体系</b>：会计法律（全国人大及其常委会）→ 会计行政法规（国务院制定，后缀「条例」）→ 部门规章（财政部等）→ 地方性法规（省级人大）。</li>
+      <li><b>法律关系主体</b>：包括国家监管部门（财政部等）、有业务往来的其他单位，最重要的是会计机构和会计人员。</li>
+      <li><b>组织形式</b>：公司成立 15 天内依法建账；小微公司可经批准由代理记账机构代理记账，也可设专职会计并指定会计主管；规模较大企业设会计机构并任命负责人。</li>
+      <li><b>任职资格</b>：会计机构负责人与会计主管须有会计证，并具会计师以上资格或三年以上工作经历；出纳、核算、报表岗位须持证，收银员、划价员、注册会计师、内审员免证。</li>
+      <li><b>会计证管理</b>：90 天内上岗注册登记、每年继续教育不少于 24 学时、6 年定期换证、信息变更登记、异地调转 30 天内调出、90 天内调入。</li>
+      <li><b>客体与核算</b>：客体是会计行为（核算与监督）和会计资料（会计档案）；核算依据实际发生的经济活动，资料必须真实完整，档案保管期限分永久和定期（10 年、30 年）。</li>
+      <li><b>三类监督与二责</b>：监督分单位内部、政府、社会三类；违反会计法受行政责任与刑事责任——行政处罚与行政处分有别，主刑与附加刑有别，伪造变造、隐匿销毁、授意强令均重罚。</li>
+    </ul>
+  </div>
+</div>
+
+</div><div class="view" id="view-ch11" hidden>
+<div class="page">
+  <div class="hero">
+    <span class="tag">《会计原来这么有趣》· 第十一章</span>
+    <h1>第十一章 · 支付结算法律制度</h1>
+    <div class="sub">现金结算 · 银行的故事 · 银行账户 · 票据结算 · 四种票据</div>
+    <div class="core">一句话核心：<b>支付结算</b>是经济活动的「血脉」——<b>现金结算</b>一手交钱、一手收货，直接便利，却因不安全被国务院限定在八种情形之内；<b>银行结算</b>以银行账户为根基、以票据为核心业务，通过支票、商业汇票、银行汇票、银行本票及银行卡、汇兑、委托收款、托收承付、信用证等方式，把资金从付款人安全转移到收款人、从一地转移到另一地，甚至从此时转移到彼时。</div>
+  </div>
+  <div class="body">
+    <div class="sec-title"><span class="sec-no">01</span>现金结算：直接便利与层层设防<span class="sec-sub">八种情形 · 库存限额 · 内控</span></div>
+    <div class="row cols2">
+      <div class="card">
+        <div class="hd"><span class="no">💵</span>现金结算的两面性<span class="ln"></span></div>
+        <ul>
+          <li><b>直接便利</b>：一手交钱、一手收货，钱货两清，多直接。</li>
+          <li><b>最大问题是不安全</b>：现金直接支付，丢了无法挽回。</li>
+          <li><b>携带、保管不便</b>：携带大量现金不安全又辛苦，使用范围将逐渐减少，最终可能退出。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="hd"><span class="no">📜</span>国务院限定：八种情形可用现金<span class="ln"></span></div>
+        <div class="subt">八种可用现金的情形</div>
+        <ul class="tags-block">
+          <li class="li-tag"><span class="tag t-blue">① 工资津贴</span>职工工资、各种工资性津贴。</li>
+          <li class="li-tag"><span class="tag t-teal">② 劳务报酬</span>个人劳务报酬，包括稿费、讲课费及其他专门工作的报酬。</li>
+          <li class="li-tag"><span class="tag t-violet">③ 个人奖金</span>支付给个人的各种奖金，包括国家规定颁发给个人的科技、文化、艺术、体育等奖金。</li>
+          <li class="li-tag"><span class="tag t-pink">④ 劳保福利</span>各种劳保、福利费用，以及国家对个人的其他现金支出。</li>
+          <li class="li-tag"><span class="tag t-red">⑤ 收购款项</span>向个人收购农副产品和其他物资的款项。</li>
+          <li class="li-tag"><span class="tag t-gray">⑥ 差旅费</span>出差人员必须随身携带的差旅费。</li>
+          <li class="li-tag"><span class="tag t-blue">⑦ 零星支出</span>结算起点（1000 元人民币）以下的零星支出。</li>
+          <li class="li-tag"><span class="tag t-teal">⑧ 央行确定</span>中国人民银行确定需要支付现金的其他支出。</li>
+        </ul>
+        <div class="subt">记忆规律</div>
+        <ul>
+          <li>可简化成两条：<b>1000 元以下的支出、与个人相关的支出</b>。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card">
+      <div class="hd"><span class="no">🛡️</span>库存限额与现金内控<span class="ln"></span></div>
+      <div class="subt">库存限额：防「外贼」</div>
+      <ul>
+        <li>国务院规定现金库存限额：由开户银行核定，一般为<b>零星支出的 3~5 天</b>；交通很不方便的最多不超过 <b>15 天</b>。</li>
+      </ul>
+      <div class="subt">内控制度：防「内贼」</div>
+      <ul>
+        <li><b>有账可查</b>：建立现金账，逐日逐笔登记，日清月结。</li>
+        <li><b>钱账分开、相互牵制</b>：出纳不得监管稽核、会计档案保管及收入、费用、债权、债务账目的登记——这些账户与现金直接对应，若由出纳登记，两边同时减少不易被发现；<b>现金盘点表和银行存款调节表由会计做</b>，牵制出纳防挪用。</li>
+        <li><b>收支两条线</b>：原则上不得坐支——现金流转不经过第三方，记录不好追溯，故现金收入应存银行、用时再取；交通不便企业经开户银行批准，可坐支。</li>
+      </ul>
+    </div>
+    <div class="sec-title"><span class="sec-no">02</span>银行的故事：从神殿到意大利<span class="sec-sub">神殿存钱 · 骑士团汇票 · 真正的银行</span></div>
+    <div class="banner">
+      <b>最早的「银行」是神殿</b>：把钱都放在家里很危险，古代人早有此意识——古希腊雅典商品经济发达，中产家庭闲钱多：放钱的地方一要<b>安全可信、随时能取</b>，二要<b>坚固、能护钱</b>。当时只有神殿符合，神殿成了最早存放钱的地方——但神殿不是银行，神职人员不会琢磨赚钱。
+    </div>
+    <div class="row cols2">
+      <div class="card">
+        <div class="hd"><span class="no">⚔️</span>圣殿骑士团：放贷与最早的汇票<span class="ln"></span></div>
+        <ul>
+          <li><b>财富与两种赚钱法</b>：基督教<b>圣殿骑士团</b>抢得大量财富成了欧洲英雄，国王贵族纷纷把钱放在骑士团手中——赚钱法子有二：一是<b>放贷</b>收高额利息（违背教义，是后来灭亡主因）；二是<b>印制汇票</b>，巴黎分部取票、意大利分部取金币，可能就是<b>最早的银行票据</b>。</li>
+          <li><b>黑色星期五与评点</b>：1307 年 10 月 13 日星期五，法国国王菲利普四世逮捕了在法的所有骑士团成员，团长莫莱被处火刑——骑士团放贷违背教义，灭亡有其合理性；菲利普灭债权人，遭报应也合情。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="hd"><span class="no">🏦</span>真正的银行：诞生在意大利<span class="ln"></span></div>
+        <ul>
+          <li><b>宗教系统内没诞生真正的银行</b>——真正的银行诞生在意大利：放高利贷赚<b>存贷利息差</b>、发行银行票据赚<b>结算手续费</b>。</li>
+          <li><b>银行家的发现</b>：大部分客户不会同时到银行提现，收付双方都把存款放在自己的银行——银行有 100 元借给张三 80 元，张三买李四 80 元货物，李四又存回 80 元，银行又有 100 元可借出——这就是<b>银行准备金制度</b>。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="sec-title"><span class="sec-no">03</span>银行账户：银行结算的前提<span class="sec-sub">结算账户 · 四种账户 · 变更销户</span></div>
+    <div class="row cols2">
+      <div class="card">
+        <div class="hd"><span class="no">🔑</span>结算账户概述<span class="ln"></span></div>
+        <ul>
+          <li><b>要结算先开户</b>：用银行收付结算，首先得开个结算账户——银行管理那么多钱，总得区分开。</li>
+          <li><b>活期存款账户</b>：结算账户是办理资金收付业务的活期存款账户；按存款人分为<b>个人结算账户</b>和<b>单位结算账户</b>。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="hd"><span class="no">🗂️</span>四种单位结算账户<span class="ln"></span></div>
+        <div class="subt">四种单位结算账户</div>
+        <ul class="tags-block">
+          <li class="li-tag"><span class="tag t-blue">基本账户</span>单位结算账户的核心，一个单位只能有一个，主要用于收取货款、支付工资和货款。组织成立后向商业银行提交营业执照、组织机构代码证、税务登记证复印件及印鉴卡片，商业银行经人民银行核准后凭开户许可证开户、购买支票，开户费一般 50 元。</li>
+          <li class="li-tag"><span class="tag t-teal">一般账户</span>企业向银行借款后为便于核算还款而开设；可有多个，可转账收付、存入现金，但<b>不能提取现金</b>（借的钱得严格监督去向）；不需人民银行核准，商业银行审核即可、定期备案。</li>
+          <li class="li-tag"><span class="tag t-violet">专用账户</span>特定用途资金专项管理；分预算单位专用账户（需人民银行核准）和非预算单位专用账户（备案即可）；包括基本建设基金、财政预算外基金、社保基金等。</li>
+          <li class="li-tag"><span class="tag t-pink">临时账户</span>异地设临时机构或异地临时经营时使用；筹建中企业凭预名申请书开设<b>验资账户</b>（临时账户的一种，验资期间只收不付）；临时账户最长不能超过两年。</li>
+        </ul>
+        <div class="subt">账户关系与审批</div>
+        <ul>
+          <li>四种账户中，<b>基本账户是核心</b>——临时账户等资金由基本账户拨付，销户时资金也要拨回；基本账户、临时账户及预算单位专用账户需人民银行审批，其他备案即可。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card">
+      <div class="hd"><span class="no">📋</span>账户的变更、销户与法律责任<span class="ln"></span></div>
+      <div class="subt">变更</div>
+      <ul>
+        <li>名称、法人代表、住址等信息变化（<b>不能更改开户行和账号</b>），应在 <b>5 个工作日内</b>提出变更申请，开户银行变更后 <b>2 个工作日内</b>报人民银行。</li>
+      </ul>
+      <div class="subt">销户</div>
+      <ul>
+        <li>企业因撤并、解散、破产、吊销执照、迁址等原因撤销账户，应在 <b>5 个工作日内</b>提出申请，交还空白支票和开户许可证；开户满一年没发生任何经济业务的，银行通知后 <b>30 天</b>未办理的可视同自愿销户。</li>
+      </ul>
+      <div class="subt">法律责任</div>
+      <ul>
+        <li><b>违规开立或撤销</b>：非经营性存款人警告并处 1000 元罚款；经营性存款人处 <b>10000~30000 元</b>罚款。</li>
+        <li><b>违规使用</b>结算账户：非经营性存款人警告并处 1000 元罚款；经营性存款人处 <b>5000~30000 元</b>罚款。</li>
+      </ul>
+    </div>
+    <div class="sec-title"><span class="sec-no">04</span>票据与结算方式：核心业务全览<span class="sec-sub">三大功能特征 · 票据行为 · 四种票据 · 其他方式</span></div>
+    <div class="row cols2">
+      <div class="card">
+        <div class="hd"><span class="no">⚙️</span>票据的三大功能<span class="ln"></span></div>
+        <ul>
+          <li>银行赚钱主要靠存贷利息差和结算手续费；帮企业收付款主要靠票据结算——票据是<b>货币资金的代表</b>。</li>
+        </ul>
+        <div class="subt">票据的三大功能</div>
+        <ul class="tags-block">
+          <li class="li-tag"><span class="tag t-blue">支付结算功能</span>资金从付款人转移到收款人。</li>
+          <li class="li-tag"><span class="tag t-teal">汇兑功能</span>资金从一地转移到另一地。</li>
+          <li class="li-tag"><span class="tag t-violet">信用融资功能</span>资金从此时转移到彼时收付，如延期付款、贴现。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="hd"><span class="no">🎫</span>票据的三大特征<span class="ln"></span></div>
+        <div class="subt">票据的三大特征</div>
+        <ul class="tags-block">
+          <li class="li-tag"><span class="tag t-pink">金钱凭证</span>票据代表货币。</li>
+          <li class="li-tag"><span class="tag t-red">设权证券</span>做出票据即创设票据权利义务关系，不受背后纠纷影响——如给了对方汇票后货物不合要求想作废，银行不受理。</li>
+          <li class="li-tag"><span class="tag t-gray">文义证券</span>以票据记载事项为主——如票面写出票日期 2015 年 4 月 1 日、实际是 2016 年 4 月 1 日，以票面为准。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="row cols2">
+      <div class="card">
+        <div class="hd"><span class="no">👥</span>当事人与票据行为<span class="ln"></span></div>
+        <div class="subt">当事人</div>
+        <ul>
+          <li><b>基本当事人</b>：收款人、付款人和出票人——三方可以是三个人、两个人或一个人；银行本票的出票人就是付款人，基本当事人只有两个，是制成和交付时就存在的；交付后还有非基本当事人——<b>承兑人</b>、<b>保证人</b>，以及转让时背面签章的<b>背书人</b>和受让方<b>被背书人</b>。</li>
+        </ul>
+        <div class="subt">票据行为</div>
+        <ul>
+          <li><b>出票</b>：签发票据并交付收款人——没交付不算完整出票；出票人签章不符规范则票据无效，承兑人、保证人签章不符只是签章无效。</li>
+          <li><b>承兑与保证</b>：收款人担心付款人到期不付款，就需要承兑和保证——承兑即承诺到期支付、承兑人就是付款人；保证即付款人不付时保证人付；通常适用于商业汇票（银行汇票、本票信用好不需）。</li>
+          <li><b>背书</b>：持票人转让票据需在背面背书人栏签章、被背书人栏填写受让人——一张票据不能同时背书给两个人，背书金额不能大于票面金额，超过有效期或被拒承兑的票据不能背书。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="hd"><span class="no">📄</span>记载事项与票据丧失<span class="ln"></span></div>
+        <div class="subt">五类记载事项</div>
+        <ul class="tags-block">
+          <li class="li-tag"><span class="tag t-blue">绝对记载事项</span>不记载票据就无效——票据名称、无条件支付、出票日期、收款人、金额、出票人签章。</li>
+          <li class="li-tag"><span class="tag t-teal">相对记载事项</span>应记载而未记载的由法律另做规定——未记载付款日期即见票即付，未记载付款地即付款人经营场所、住所或经常居住地。</li>
+          <li class="li-tag"><span class="tag t-violet">任意记载事项</span>不强制但允许自行选择，如汇票上记载「不得转让」。</li>
+          <li class="li-tag"><span class="tag t-pink">无效记载事项</span>记载票据法规定以外的事项不产生票据效力，如违约金。</li>
+          <li class="li-tag"><span class="tag t-red">不得记载事项</span>一旦记载票据就无效，如附条件的委托、承兑。</li>
+        </ul>
+        <div class="subt">票据丧失的三种补救</div>
+        <ul class="tags-block">
+          <li class="li-tag"><span class="tag t-gray">挂失支付</span>通知付款人暂停支付，前提是知道付款人是谁——现金银行汇票、记载委托付款银行的银行汇票可挂失；未记载委托付款行的银行汇票、转账支票一般不能挂失。</li>
+          <li class="li-tag"><span class="tag t-blue">公示催告</span>失票人向法院申请，让不确定权利人申报权利，过期作废。</li>
+          <li class="li-tag"><span class="tag t-teal">普通诉讼</span>上法院打官司。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card">
+      <div class="hd"><span class="no">🧾</span>四种票据结算方式速览<span class="ln"></span></div>
+      <div class="subt">四种票据结算方式</div>
+      <ul class="tags-block">
+        <li class="li-tag"><span class="tag t-blue">支票</span>单位和个人签发、委托银行见票后给收款人的票据；见票即付，有效期只有 10 天。</li>
+        <li class="li-tag"><span class="tag t-teal">商业汇票</span>出票人（通常是企业）签发、委托付款人在指定日期支付；时效一般为六个月，适用于真实交易或债权债务结算，须承兑。</li>
+        <li class="li-tag"><span class="tag t-violet">银行汇票</span>出票行签发，见票时按实际结算金额支付给收款人的票据；付款提示期为一个月，同城异地皆可。</li>
+        <li class="li-tag"><span class="tag t-pink">银行本票</span>出票人（银行）签发、承诺到期支付给收款人的票据；付款期限为两个月，限同一票据结算区。</li>
+      </ul>
+    </div>
+    <div class="row cols2">
+      <div class="card">
+        <div class="hd"><span class="no">💸</span>支票：企业间最常用的结算方式<span class="ln"></span></div>
+        <div class="subt">空头支票</div>
+        <ul>
+          <li>签发金额大于企业存款金额即为<b>空头支票</b>。空头支票伤害银行信誉：银行可对签发企业处<b>票面金额 5% 但不少于 1000 元</b>罚款，受害方可要求<b>票面金额 2%</b>补偿。</li>
+        </ul>
+        <div class="subt">三类支票</div>
+        <ul>
+          <li class="li-tag"><span class="tag t-blue">现金支票</span>可以提取现金，不能转账。</li>
+          <li class="li-tag"><span class="tag t-teal">转账支票</span>只能转账，不能提现。</li>
+          <li class="li-tag"><span class="tag t-violet">普通支票</span>既可转账又可提现；左上角画两条平行线即划线支票，只能转账。</li>
+        </ul>
+        <div class="subt">使用与填写</div>
+        <ul>
+          <li><b>两联结构</b>：存根联（出纳填写后交会计做账）和支票联（交收款方）。</li>
+          <li><b>大写规范</b>：出票日期和金额要大写——壹贰叁肆伍陆柒捌玖拾佰仟万；月份 1 月、2 月前面加「零」；日 1~10 日和 20 日、30 日前面加「零」；金额元后加「整」字，角后可加可不加，分后不能加。</li>
+          <li><b>授权补记</b>：收款人和金额可授权补记——如采购人员外出不知价格，出纳可授权补记。</li>
+          <li><b>背书与委托收款</b>：需转让的在背面背书（2007 年 8 月后支票可在全国范围使用）；<b>现金支票不能背书转让</b>；委托开户银行收款的，在背书栏写「委托收款」，被背书人为开户银行。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="hd"><span class="no">⏳</span>商业汇票：企业间的延期支付<span class="ln"></span></div>
+        <div class="subt">出票</div>
+        <ul>
+          <li>企业资金紧张、想以后付款，可用商业汇票；时效一般为<b>六个月</b>，适用于真实交易或债权债务结算。</li>
+        </ul>
+        <div class="subt">承兑</div>
+        <ul>
+          <li>商业汇票是企业签发的，为让收款人放心<b>必须承兑</b>——据此分为<b>商业承兑汇票</b>和<b>银行承兑汇票</b>：银行承兑汇票信用更好，但银行收手续费，理论为票面金额<b>万分之五</b>。</li>
+          <li>定日付款或出票后定期付款的，到期前提示承兑；见票后定期付款的，出票后一个月内提示承兑；承兑人<b>三天内</b>承兑或拒绝承兑，不能附有条件。</li>
+        </ul>
+        <div class="subt">付款与贴现</div>
+        <ul>
+          <li>承兑后收款人应在<b>到期前 10 天内</b>提示付款；未及时提示的，做出说明后付款人仍要承担付款责任；承兑人付款后，全体票据债务人责任免除。</li>
+          <li>汇票未到期又急于用钱，可到银行<b>贴现</b>换成现金——银行收手续费，扣除未到期利息。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="row cols2">
+      <div class="card">
+        <div class="hd"><span class="no">🌐</span>银行汇票：同城异地都能用<span class="ln"></span></div>
+        <div class="subt">适用场景</div>
+        <ul>
+          <li>销售方不同意后付款（不能用商业汇票）、采购周期又长（支票只有 10 天）——就用<b>银行汇票</b>。</li>
+        </ul>
+        <div class="subt">概念</div>
+        <ul>
+          <li>出票行签发，付款人（出票行或代理付款行）见票时按<b>实际结算金额</b>支付给收款人；一般用于先付款或钱货两清的业务。</li>
+        </ul>
+        <div class="subt">办理程序</div>
+        <ul>
+          <li>先填写银行汇票申请书，把资金从基本账户转存到银行汇票存款账户，银行再开票——开票时交易未发生，只有出票金额、没有实际结算金额；一式四份中把银行汇票联和解讫通知联交申请人。</li>
+          <li>采购时把汇票和解讫通知联交给收款人；收款人开户行按<b>实际结算金额和多余款金额</b>填写并办理收款结算。</li>
+          <li>出票金额大于实际结算金额的部分，出票行通过多余款通知联划入申请企业的基本账户。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="hd"><span class="no">🎟️</span>银行本票：银行承诺到期付款<span class="ln"></span></div>
+        <div class="subt">分类</div>
+        <ul>
+          <li>分<b>现金银行本票</b>（一般为个人使用，不可背书转让、可挂失止付）和<b>转账类银行本票</b>；分<b>定额</b>（1000、5000、10000、50000 元四种）和<b>不定额</b>两种。</li>
+        </ul>
+        <div class="subt">使用程序</div>
+        <ul>
+          <li>提交银行本票申请书，银行收妥款项后签发，企业再用于交易。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="row cols2">
+      <div class="card">
+        <div class="hd"><span class="no">💳</span>银行卡：借记与贷记<span class="ln"></span></div>
+        <div class="subt">概述</div>
+        <ul>
+          <li>银行卡由商业银行发行，具有信用消费、转账结算等功能；按持卡主体分<b>单位卡</b>、<b>个人卡</b>，按信用功能分<b>借记卡</b>、<b>贷记卡</b>。</li>
+        </ul>
+        <div class="subt">借记卡与贷记卡</div>
+        <ul>
+          <li class="li-tag"><span class="tag t-blue">借记卡</span>先存款再消费。</li>
+          <li class="li-tag"><span class="tag t-teal">贷记卡</span>先消费再还款，透支期限最长为 60 天，透支利率为每日万分之五。</li>
+        </ul>
+        <div class="subt">使用规则</div>
+        <ul>
+          <li>单位卡资金只能从基本账户转入，不得存现金，也不能将销售收入转入；银行卡注销通常为有效期满的 45 天。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="hd"><span class="no">📮</span>汇兑与委托收款<span class="ln"></span></div>
+        <div class="subt">汇兑</div>
+        <ul>
+          <li>委托银行将款项通过<b>信汇</b>或<b>电汇</b>方式给收款人；随电子转账发展已很少使用。</li>
+        </ul>
+        <div class="subt">委托收款</div>
+        <ul>
+          <li>收款人委托银行向付款人收取款项，同城、异地都能用——也可委托收取债券、存单、已承兑商业汇票等。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="row cols2">
+      <div class="card">
+        <div class="hd"><span class="no">🚚</span>托收承付：限公有制企业<span class="ln"></span></div>
+        <div class="subt">适用范围</div>
+        <ul>
+          <li><b>国有企业、供销社和管理较好的集体企业</b>才能使用；代销、寄销、赊销不能用；前提是购销合同规定使用该方式。</li>
+        </ul>
+        <div class="subt">程序</div>
+        <ul>
+          <li>收款人（销售方）发货后把发货凭证交开户银行，开户行邮寄付款行；付款行通知付款人——<b>验单付款通常 3 天、验货付款通常 10 天</b>，没有拒绝的，期满后次日上午付款。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="hd"><span class="no">🔒</span>国内信用证<span class="ln"></span></div>
+        <ul>
+          <li>申请人（购买方）向银行开证申请，交<b>不少于合同金额 20% 的保证金</b>；银行审核后把信用证交付受益人（销售方）；销售货物后，银行审核单证、扣手续费后付款。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="banner">
+      <b>章末的话</b>：至此，初级会计基本知识已介绍完，读者可尝试考取会计从业资格证书；此后两章「税」的介绍不在考试范围内。
+    </div>
+  </div>
+  <div class="foot">
+    <div class="t">本章小结 · 带走这 8 句</div>
+    <ul class="qs">
+      <li><b>现金结算</b>：一手交钱、一手收货，钱货两清，直接便利；但现金直接支付丢了无法挽回，国家限定八种使用情形，可简记为「1000 元以下＋与个人相关」。</li>
+      <li><b>现金管理</b>：库存限额由开户银行核定（一般零星支出 3~5 天，交通不便最多 15 天）；内控讲有账可查、钱账分开、相互牵制、收支两条线，原则上不得坐支。</li>
+      <li><b>银行起源</b>：古希腊人把钱存在安全可信的神殿，圣殿骑士团放贷、印制最早的汇票，真正的银行诞生在意大利——赚存贷利息差与结算手续费。</li>
+      <li><b>账户体系</b>：基本账户是核心、一个单位只能一个，另有一般、专用、临时账户；基本、临时及预算单位专用账户需人民银行核准，变更 5 个工作日、销户 30 天未办理视同自愿销户。</li>
+      <li><b>票据三功能</b>：支付结算（付款人→收款人）、汇兑（一地→另一地）、信用融资（此时→彼时，如延期付款、贴现），票据是货币资金的代表。</li>
+      <li><b>票据三特征</b>：金钱凭证、设权证券（不受背后纠纷影响）、文义证券（以记载事项为准）；票据丧失可挂失支付、公示催告、普通诉讼补救。</li>
+      <li><b>四种票据</b>：支票见票即付有效期 10 天；商业汇票时效一般六个月、必须承兑；银行汇票提示期一个月、同城异地皆可；银行本票付款期限两个月、限同一票据结算区。</li>
+      <li><b>其他方式</b>：银行卡（借记卡先存款再消费、贷记卡透支最长 60 天）、汇兑、委托收款、托收承付（限公有制企业）、信用证（保证金不少于合同金额 20%）。</li>
+    </ul>
+  </div>
+</div>
+
+</div><div class="view" id="view-ch12" hidden>
+<div class="page">
+  <div class="hero">
+    <span class="tag">《会计原来这么有趣》· 第十二章</span>
+    <h1>第十二章 · 十八种税简介</h1>
+    <div class="sub">税收起源 · 征税对象 · 五大类税种 · 十八种税 · 税制改革</div>
+    <div class="core">一句话核心：税收诞生于私有制与社会分工、靠国家强制机构作后盾，按征税对象分为<b>所得类税、流转类税、财产类税、行为目的税、资源类税</b>五大类（另加烟叶税独列「其他税」），共十八种——逐一拆解每种税的纳税人、税基与税率，并点出「效率优先」下流转税当家的现状与低税率、宽税基的改革方向。</div>
+  </div>
+  <div class="body">
+    <div class="sec-title"><span class="sec-no">01</span>税收的由来与征税对象<span class="sec-sub">主体关系演绎 · 拔鹅毛的艺术 · 五大类税种</span></div>
+    <div class="row cols2">
+      <div class="card">
+        <div class="hd"><span class="no">🏛️</span>税收的诞生：主体关系演绎<span class="ln"></span></div>
+        <ul>
+          <li><b>从无产平均到专人管理</b>：人类早期没有财产，大家都是「无产」阶级，一起劳动、一起分食物；后来生产能力提高、食物多了，需要专人管理食物，这个职务往往由聪明人承担。</li>
+          <li><b>聪明人与力气大的人结盟</b>：后来聪明人多了、意见不一致，一些聪明人就与力气大的人结成同盟——先打倒其他聪明人，再欺骗和恐吓不聪明的人，世袭了管理食物和财产的职务，叫作「王」。</li>
+          <li><b>贵族与地租</b>：王提供安全和秩序，也悄悄占有了全部食物和财产，管不过来就分给世袭的帮手，成了后来的贵族——此时尚无税收，靠「欺骗和暴力」强制分工和分配收益；贵族发现奴隶干多干少一个样、消极怠工，就把土地分给奴隶收取固定地租，剩下的归农民自己。</li>
+          <li><b>按人口和田地征税</b>：王发现依靠贵族「进贡」不靠谱，就依据人口和田地对贵族和农民收税——严格意义上的税收不是收益分配，而是以承认财产私有制、保障劳动者积极性为前提。</li>
+          <li><b>税收的妈妈和爸爸</b>：私有制下的人不愿交税，必须有政府强制机构作后盾（历代法律都规定了对不交税者的处罚）——税收的妈妈是<b>私有制</b>和社会分工（社会管理者与劳动者），爸爸是<b>国家的强制机构</b>。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="hd"><span class="no">🪶</span>征税对象：拔鹅毛的艺术<span class="ln"></span></div>
+        <ul>
+          <li><b>拔鹅毛不让鹅疼</b>：征税者一直困惑依据什么收税——既要征够税款维持政府运营，又不能让人太反感以至揭竿而起——「既要拔鹅毛，又不能让鹅感觉到疼」，是个技术活。</li>
+          <li><b>古代：田地和人口</b>：受生产能力所限，古代征税客体无非就是田地和人口——早期土地比较多，为保证税收以人口为主；中晚期人口多、土地资源紧缺，就以田地为主。</li>
+          <li><b>我国的税收变迁</b>：新中国成立后实行公有制的社会主义经济体制，基本取消了税收；改革开放后为刺激企业积极性恢复税收，<b>1992 年税制改革</b>奠定现有税收体系的基本结构。</li>
+          <li><b>税种数量口径不一</b>：2014 年以前说法不一——财政部说 19 种、国税总局说 20 种、北京市地税网站介绍过 25 种；2014 年财政部部长楼继伟答记者问时说是 18 种。</li>
+          <li><b>口径不一的原因</b>：一是近年税制变动较多（如 2008 年取消外商投资企业所得税、农业税等）；二是「效率优先」——18 种税中仅<b>企业所得税、个人所得税、车船税</b>3 种经过人大立法，其他税都授权国务院征收。</li>
+          <li><b>费和税区别不大</b>：除税之外政府还征收各种费（残疾人就业保障金、文化事业建设费、教育费附加、社保费等）——在我国费和税实质区别不大，清查税种数量意义不大。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="banner">税种数量口径不一，但大类比较确定——按征税对象分为<b>所得类税、流转类税、财产类税、行为目的税、资源类税</b>五大类；烟叶税独列「其他税」，合起来正是六大类 18 个税种。</div>
+    <div class="sec-title"><span class="sec-no">02</span>所得类税与流转类税<span class="sec-sub">赚钱才征 · 销售环节征税 · 四种流转税</span></div>
+    <div class="row cols2">
+      <div class="card">
+        <div class="hd"><span class="no">📈</span>所得类税：赚钱才征，赚多征多<span class="ln"></span></div>
+        <ul>
+          <li><b>征收逻辑</b>：纳税人赚钱（有利润）才征税，赔钱了政府就不征，纳税人不会感觉太痛苦；赚得越多国家征得越多，这样公平——所以很多<b>发达国家都以所得类税作为税收主体</b>。</li>
+          <li><b>短板与我国现状</b>：所得类税计算麻烦、征税成本较高——企业所得税要把会计利润调整成应纳税所得额再乘税率，会计和税务监管都不容易；个税纳税主体分散、也不好征收——目前所得类税在我国还没占主要地位，是未来发展的重要方向。</li>
+        </ul>
+        <div class="subt">企业所得税（第一种）</div>
+        <ul>
+          <li><b>谁交税</b>：企业所得税主要针对<b>法人性质的企业</b>就其所得（利润调整后的应纳税所得额）征收；个体户、承包经营者、私营企业、合伙企业等非法人组织，个人财产与单位财产不做区分，缴的是个人所得税；不以盈利为目的、不核算所得的行政事业单位原则上也不缴。</li>
+          <li><b>税基：应纳税所得额</b>：应纳税所得额=税务认可的收入-税务认可的费用（可抵扣支出）；因税务标准与会计标准不完全一致，需将会计利润按公式调整——<b>应纳税所得额=会计利润+调增事项-调减事项</b>。</li>
+          <li><b>调减与调增事项</b>：常见调减事项有财政拨款（政府补助，属不征税收入）、国债利息收入、符合条件的居民企业间股息红利（被投资单位已缴过税，避免重复征收）；调增分全额调增（罚款、罚金、滞纳金、赞助支出等）与差额调增（业务招待费、广告宣传费、捐赠支出超标准部分——如会计利润 100 万、捐赠 15 万，标准为利润的 12%（12 万），超标 3 万调增，应纳税所得额=103 万）。</li>
+          <li><b>税率与公式</b>：税率分三档——一般企业 25%、小型微利企业 20%、高新技术企业 15%；应纳企业所得税=应纳税所得额×税率。</li>
+        </ul>
+        <div class="subt">个人所得税（第二种）</div>
+        <ul>
+          <li><b>超额累进、相对公正</b>：个人所得税依据个人（自然人和非法人性质企业）的各项应税所得征收，税率为<b>超额累进税率</b>——收入越高征税越多、收入较少不征税，本意是调节贫富分化，很多发达国家都以个人所得税为主体。</li>
+          <li><b>我国现状</b>：据 2009 年财政部课题研究组报告，个税已成我国税收第四大税种，但税收主要来自工薪阶层（占 50% 以上），月薪 5000 元以下的又占薪酬所得税总额的 55% 以上——缴纳主体不是富人，没起到调节贫富的作用；未来可能调增免征额，或像西方国家一样考虑家庭情况增加抵扣。</li>
+          <li><b>工资薪金所得</b>：税基=工资、薪金收入（扣除三险一金后）-3500 元（外籍再减 1300 元）；适用 3%~45% 的 7 级超额累进税率，公式=应纳税所得额×税率-速算扣除数——例：工资 8000 元、三险一金 2000 元，税基=2500 元属第二档（10%、扣除数 105），应缴个税=145 元。</li>
+          <li><b>其他各项所得</b>：劳务报酬（兼职）低于 4000 元按「报酬-800」计税、高于 4000 元按「报酬×(1-20%)」计税，税率 20%；稿酬 20% 减征 30%、实际 14%；股息利息等通常 20%；个体工商户不征企业所得税而征个税，原理与企业所得税接近——税基=收入总额-成本-费用-损失-允许扣除的税金，所有者自己的工资不能扣除、只能扣 3500 元免征额。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="hd"><span class="no">🔄</span>流转类税：销售环节征税<span class="ln"></span></div>
+        <ul>
+          <li><b>为什么在流转环节征税</b>：我国大多数企业账面利润很少、征收所得税成本又高，税务机关想到在商品和劳务流转（主要为销售）环节征税——纳税人这个环节有收入、不至于无款可交；流转容易盘查、销售必须开发票，便于监管。</li>
+          <li><b>效率优先、成为我国税收主体</b>：考虑到效率优先，流转类税成为我国税收主体；但相对所得类税它不太公平——无论企业有没有利润，只要商品流转就要缴税，易致贫者愈贫、富者愈富；企业往往把税金加进商品价格、把税负转嫁给最终消费者，使商品价格偏高、消费者利益受损。</li>
+          <li><b>发达国家纷纷放弃</b>：发达国家纷纷减少甚至放弃流转税，从长远看，这也是我国税制改革的方向。</li>
+        </ul>
+        <div class="subt">四种流转税逐个数</div>
+        <ul class="tags-block">
+          <li class="li-tag"><span class="tag t-blue">增值税</span>在商品和劳务流转（销售）环节普遍征收的税种，我国流转税的核心构成，计税规则复杂、本章从略。</li>
+          <li class="li-tag"><span class="tag t-teal">消费税</span>对境内生产、委托加工、进口、零售（仅限金银首饰）烟、酒、鞭炮、化妆品、成品油、贵重首饰、小汽车等<b>14 类消费品</b>的单位个人征收——同时还要缴增值税，一种课税对象缴二重税，既限制有害产品销售又增加财政收入；税率分比例（3%~45%，从价定率）、定额（从量定额，如黄酒 240 元/吨）、混合（从价+从量，如白酒 20%+0.5 元/500 克）三类；税基为销售额，不含增值税、含价外费用。</li>
+          <li class="li-tag"><span class="tag t-violet">营业税</span>曾在服务等流转环节征收的老税种，如今已经告别了历史舞台。</li>
+          <li class="li-tag"><span class="tag t-pink">关税</span>「国家门口不能随便过，要想过此门，留下买路财」——纳税人是进口收货人、出口发货人、进出境物品所有人；受重商主义影响、为保护民族经济，我国主要征进口关税，出口几乎不征；税基为完税价格——进口按海关审定的到岸价格（CIF），出口按离岸价格（FOB）减出口税后审定；税率与外交关系相关，分最惠国、协定、特惠、普通四类，另有滑准税率——价格越高、税率越低。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="sec-title"><span class="sec-no">03</span>财产类税与行为目的税<span class="sec-sub">三大财产税 · 六种行为税</span></div>
+    <div class="row cols2">
+      <div class="card">
+        <div class="hd"><span class="no">🏠</span>财产类税：有产者纳税能力强<span class="ln"></span></div>
+        <ul>
+          <li><b>征收逻辑</b>：纳税人拥有财产，一般纳税能力较强，国家帮纳税人保护财产，收点费用也应该——财产税是<b>历史最悠久</b>的一种税收，适当征收既满足政府需要、又利于社会公平；但征太多会伤害有钱人创造财富的积极性。</li>
+          <li><b>我国现状</b>：财产税目前在我国所占比例并不大，主要包括房产税、契税、车船使用税。</li>
+        </ul>
+        <div class="subt">三大财产税</div>
+        <ul class="tags-block">
+          <li class="li-tag"><span class="tag t-blue">房产税</span>由产权所有人缴纳（出典由承典人缴，所有人不在当地或产权未确定的由代管人或使用人缴），居民自用住房不征；从价计征按原值减除 10%~30% 后的余值×1.2%；从租计征经营用房 12%；个人出租用于居住 4%。</li>
+          <li class="li-tag"><span class="tag t-teal">契税</span>境内以买卖、赠与等方式取得土地和房屋权属的单位个人缴纳；税基通常为税务机关认可的交易价格，交换房地产不涉及补价的不交税、涉及补价的按补价计税；比例税率 3%~5%、一般为 3%，个人首次购买 90 平方米以下房屋减按 1%（例：首购 80 平米、价款 50 万，契税=0.5 万）。</li>
+          <li class="li-tag"><span class="tag t-violet">车船使用税</span>境内行驶机动车和船舶的单位个人缴纳，通常由车船所有者缴，出租未协商的由使用人缴，厂区内部行驶的车辆不征；定额税率，按用途、排量、乘坐人数分档（例：5 座小汽车 350 元/辆）；兼具财产税和行为税特点、更接近行为税，因最初主要考虑财政收入，学者一般仍划为财产税。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="hd"><span class="no">🎯</span>行为目的税：六种情况收税<span class="ln"></span></div>
+        <ul>
+          <li><b>为什么开征</b>：征税机关对利润（所得）、收入（流转）、财产都征税，还是不能满足需求，于是研究哪些行为可以征税——行为税必须有所选择，是个行为都征税的话，税务机关得累死、纳税人得气死。</li>
+          <li><b>我国的选择</b>：研究来研究去，我国选择对以下六种情况征收行为税。</li>
+        </ul>
+        <div class="subt">我国征收行为税的六种情况</div>
+        <ul class="tags-block">
+          <li class="li-tag"><span class="tag t-blue">船舶吨位税</span>进出我国海关口岸的船舶缴纳；按是否与我国签订最惠国待遇分普通、优惠税率，税额按净吨位和执照期限（在我国口岸的时间）计算。</li>
+          <li class="li-tag"><span class="tag t-teal">印花税</span>纳税人是立合同人、立据人、立账簿人、领受人和使用人、电子凭证签订人；定额税率（账簿、执照每件 5 元）与比例税率（成立当年按注册资金即实收资本+资本公积的万分之五，购销合同 0.3‰）并用。</li>
+          <li class="li-tag"><span class="tag t-violet">城市维护建设税</span>属于目的税，为城市建设而征收；纳税人是城市（市、县城、建制镇）中缴纳增值税、消费税的单位个人（营业税现已取消）；税率市区 7%、县城和镇 5%、其他 1%。</li>
+          <li class="li-tag"><span class="tag t-pink">车辆购置税</span>境内购置规定车辆的单位个人缴纳——购买车辆交的税（车船使用税是使用车辆交的税）；税率 10%、属价外税，计税基础与增值税相同——不含增值税但含消费税等价内税，含税价除以（1+17%）还原为不含税价计税。</li>
+          <li class="li-tag"><span class="tag t-red">耕地占用税</span>为建房或从事其他非农业建设而占用国家所有和集体所有耕地的单位个人缴纳；该税一次性征收、以后各年度不再征；兼有资源税和行为目的税的性质——既能保护、恢复耕地资源，又能限制占用耕地的行为。</li>
+          <li class="li-tag"><span class="tag t-gray">土地增值税</span>转让国有土地使用权及地上建筑物并取得收入的单位个人缴纳；税基为增值额=销售收入-允许扣除的合理成本费用及税金；按<b>四级超率累进税率</b>征收，公式=增值额×税率-扣除项目×扣除率；建设普通住宅出售、增值额未超扣除项目 20% 的免征，居民个人转让普通住宅暂免。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="sec-title"><span class="sec-no">04</span>资源类税与其他税<span class="sec-sub">两大资源税 · 烟叶税 · 税制展望</span></div>
+    <div class="row cols2">
+      <div class="card">
+        <div class="hd"><span class="no">🌿</span>资源类税：平衡资源收益差异<span class="ln"></span></div>
+        <ul>
+          <li><b>为什么开征</b>：所得（利润）、流转（收入）、财产、行为都作为纳税对象后，最后需要考虑的就是资源——私有制社会中资源归私人所有，不同地方的资源收益差异（有的矿山容易找到金子，有的矿山没有）。</li>
+          <li><b>目的演变</b>：过去为了平衡资源不同导致的收益差异、维护社会公平，开征了资源税；现在征收资源类税更多是基于对环境的保护。</li>
+        </ul>
+        <div class="subt">两大资源税</div>
+        <ul class="tags-block">
+          <li class="li-tag"><span class="tag t-blue">资源税</span>在中华人民共和国境内开采规定的矿产品或者生产盐的单位个人缴纳；税率分比例税率和定额税率两类（例：液体盐 3 元/吨、固体盐 25 元/吨）；自产液体盐加工固体盐按固体盐税额征税，外购液体盐加工固体盐的，耗用液体盐已纳税额准予抵扣。</li>
+          <li class="li-tag"><span class="tag t-teal">城镇土地使用税</span>城市、县城、建制镇、工矿区使用土地的单位个人缴纳，通常为拥有土地使用权者，拥有权人不在的由实际使用人或代管人缴；按城市规模分档定额税率——大城市 1.5~30 元、中等城市 1.2~24 元、小城市 0.9~18 元、县城建制镇工矿区 0.6~12 元（每平方米年税额）。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="hd"><span class="no">🚬</span>烟叶税：第十八种税<span class="ln"></span></div>
+        <ul>
+          <li><b>「农业税走了，烟叶税来了」</b>：烟叶税是全书十八种税的最后一种，单独列为「其他税」一类。</li>
+          <li><b>纳税人</b>：在中华人民共和国境内收购烟叶的单位为烟叶税的纳税人。</li>
+          <li><b>税基</b>：收购金额——收购金额=收购价款×(1+10%)，其中 10% 为收购烟叶的企业给烟农支付的价格补贴。</li>
+          <li><b>税率与案例</b>：税率 20%——例：收购价款 7 万元，应交烟叶税=7×20%=1.4 万元；烟叶税属价内税，应并入增值税税基，烟叶增值税适用税率 13%。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="banner">至此，我国的六大类 18 个税种介绍完毕。回望税制变迁：改革开放初期我国急需资金，专设外商投资企业所得税鼓励外资，2008 年资金充足后为内外资平等将其取消；「效率优先」能让国家财富短期内迅速增长，但从长远看，政府不经民众同意自行决定征多少税，易致<b>垄断企业增多、贫富差异过大、商品价格偏高、社会稳定性差</b>——因此我国正加强税收立法，税改向<b>低税率、宽税基</b>方向快速推进，相信不久将实现税收合法化、公平与效率并重。</div>
+  </div>
+  <div class="foot">
+    <div class="t">本章小结 · 带走这 8 句</div>
+    <ul class="qs">
+      <li><b>税收的诞生</b>：无产平均→专人管理食物→聪明人与力气大的人结盟称王→按人口和田地征税；税收以承认私有制、保障劳动者积极性为前提，妈妈是私有制和社会分工，爸爸是国家强制机构。</li>
+      <li><b>征税对象</b>：既要征够税维持政府运营、又不能让人太反感——「拔鹅毛不让鹅疼」；古代受生产能力所限，客体无非田地和人口（早期以人口为主、中晚期以田地为主）。</li>
+      <li><b>税种口径</b>：财政部说 19 种、国税总局说 20 种、北京地税介绍过 25 种，2014 年财政部部长楼继伟定调 18 种——18 种中仅企业所得税、个人所得税、车船税 3 种经过人大立法。</li>
+      <li><b>所得类税</b>：赚钱才征、赔钱不征、赚多征多，公平但计算麻烦、征税成本高，是发达国家的主体税种，我国目前不占主要地位、是未来发展的重要方向。</li>
+      <li><b>流转类税</b>：在商品劳务流转（销售）环节征税，纳税人有款可交、开发票便于监管，是我国税收主体；但不公平（无利润也缴、税负转嫁消费者），发达国家纷纷减少甚至放弃。</li>
+      <li><b>财产类税与行为目的税</b>：财产税历史最悠久、我国占比不大（房产税、契税、车船使用税）；行为目的税我国选择对船舶吨位税、印花税、城市维护建设税、车辆购置税、耕地占用税、土地增值税六种情况征收。</li>
+      <li><b>资源类税与其他税</b>：资源税平衡资源收益差异、维护社会公平，现在更多基于环保（资源税、城镇土地使用税）；烟叶税由境内收购烟叶的单位缴纳，税基=收购价款×(1+10%)，税率 20%。</li>
+      <li><b>税制展望</b>：效率优先短期促进财富增长，但易致垄断增多、贫富差异过大、商品价格偏高；我国正加强税收立法，税改向低税率、宽税基方向推进，将实现税收合法化、公平与效率并重。</li>
+    </ul>
+  </div>
+</div>
+
+</div><div class="view" id="view-ch13" hidden>
+<div class="page">
+  <div class="hero">
+    <span class="tag">《会计原来这么有趣》· 第十三章</span>
+    <h1>第十三章 · 增值税</h1>
+    <div class="sub">价外计 · 五档税率 · 视同销售 · 进项抵扣 · 期末结转</div>
+    <div class="core">一句话核心：<b>增值税</b>由交易税（营业税）演化而来，只对价值增加额征税——应交税款=销项税-进项税；它是<b>价外税</b>，税金不包含在商品价格中，由销售方代收代缴、不计入收入。本章依次讲清纳税人的分类、五档税率与两档征收率、八项视同销售、进项税的可抵扣与不可抵扣，以及期末「相互抵消转未交」的结转处理。</div>
+  </div>
+  <div class="body">
+    <div class="sec-title"><span class="sec-no">01</span>增值税：只对增值额征税的价外税<span class="sec-sub">演化由来 · 纳税人分类 · 价内价外 · 账务处理</span></div>
+    <div class="row cols2">
+      <div class="card">
+        <div class="hd"><span class="no">🧱</span>从交易税演化而来<span class="ln"></span></div>
+        <ul>
+          <li><b>增值税是交易税（也叫营业税）逐步演化过来的</b>——交易税就是只要卖东西、政府按比例抽成，但会层层累加。</li>
+          <li>假设交易税为10%：农民卖10元棉花交1元税，织布厂把10元棉花加工成20元布匹交2元税，服装厂把20元布匹加工成30元服装交3元税——越接近终端、实际税负越高，服装厂实际增值额仅10（30-20）元却要交3元税。</li>
+          <li>层层累加导致企业间实际税负不公平，也抑制社会分工、妨碍经济进步——企业为了减少税负，恨不得从产业链的起点做到终点。</li>
+          <li>1917年，美国耶鲁大学教授亚当斯等人提出增值税原理：用企业的增值额作为计税基础，即销售额减去采购额——企业间税负就基本公平（上例中无论织布厂还是服装厂，税额都是1元），也促进经济发展。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="hd"><span class="no">🏛️</span>征税范围与纳税人分类<span class="ln"></span></div>
+        <ul>
+          <li>2008年经济危机后，我国决定将营业税逐步改成增值税；按国家「十二五」规划，2015年年底营改增覆盖全部行业，2016年5月1日起营业税全面退出中国税收史舞台——只要销售或进口货物、劳务和服务，都得交增值税。</li>
+          <li>税务局把纳税人分为两类：<b>一般纳税人</b>按增值额计算税款，<b>小规模纳税人</b>按销售额计算（税率只有3%）；区分标准主要是年销售额——商业企业80万元、制造业企业50万元、服务业企业500万元，以上的可为一般纳税人，以下的为小规模纳税人。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="row cols2">
+      <div class="card">
+        <div class="hd"><span class="no">🧮</span>计算：销项税-进项税<span class="ln"></span></div>
+        <ul>
+          <li>亚当斯的观点是企业的毛利（营业收入-营业成本），但毛利是会计算出来的、税务机关不好核实——于是规定：销售时将销售金额分为不含税的销售额和增值税税金、分别写在发票上，采购时也把货款和税款分开写，期末把销项税减进项税的差额交给税务局。</li>
+          <li>公式按原文：<b>不含税价=含税价/(1+税率)</b>，<b>税金=不含税价×税率</b>——[例13-1]一批货物含税价117万元、税率17%：不含税价=117/(1+17%)=100（万元），税金=100×17%=17（万元）。</li>
+          <li>会计记账时，销售业务要区分收入（不含税的销售额）和销项税，采购业务要区分采购成本费用（不含税金额）和进项税。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="hd"><span class="no">⚖️</span>价内税 vs 价外税<span class="ln"></span></div>
+        <ul class="tags-block">
+          <li class="li-tag"><span class="tag t-blue">价内税</span>税金包含在商品价格中，计算税金的方法通常是销售额（含税的）×税率，由销售方承担，期末计提税金时一般计入成本或费用——我国大多数税种都属于价内税，税金没有单独标明，消费者也不知道自己交了多少税。</li>
+          <li class="li-tag"><span class="tag t-teal">价外税</span>税金不计入产品的价格，原则上由购买方承担，计算税金的方法是销售额（不含税的）×税率，通常由销售方代税务向购买方收取，因此不能计入销售方的收入——计算销项和进项时，税基是不含税价，只知道含税价时需要先换算。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card">
+      <div class="hd"><span class="no">📒</span>账务处理：价外核算<span class="ln"></span></div>
+      <ul>
+        <li>[例13-2]涛涛超市5月份采购货物含税金额117万元（取得增值税专用发票），当月不含税销售额150万元，税率17%。采购的不含税金额=117/(1+17%)=100（万元）、税金17万元：<b>借:</b>库存商品 100 / 应交税费——应交增值税(进项税额) 17 / <b>贷:</b>银行存款 117——进项税增加可以抵减销项税金、减少企业对税务局的负债，所以记录在借方。</li>
+        <li>销售时应计提销项税=150×17%=25.5（万元）：<b>借:</b>银行存款 175.5 / <b>贷:</b>主营业务收入 150 / 应交税费——应交增值税(销项税额) 25.5——销项税增加使纳税负债增加，记录在贷方；月末需缴纳增值税=销项税-进项税=25.5-17=8.5（万元）。</li>
+        <li>通过上述记录可见：增值税不计入收入（收入只记150万元），也没有计入费用成本（成本记100万元），它是根据企业增值额在价外单独计算的——没有计入收入，就是减少了企业的「含税收入」，抵消进项税后缴纳给税务的税款，就是企业实际减少收入的部分。</li>
+        <li>小规模纳税人采购时的进项税不能抵扣、销售发票只有含税金额——采购时发生的增值税税金只能计入采购成本。[例13-3]某会计师事务所5月不含税采购额10万元、税金1.7万元，收取含税服务费41.2万元：采购时<b>借:</b>主营业务成本(或管理费用) 11.7 / <b>贷:</b>银行存款 11.7；销售时不含税收入=41.2/(1+3%)=40（万元）、税金1.2万元，<b>借:</b>银行存款 41.2 / <b>贷:</b>主营业务收入 40 / 应交税费——应交增值税(销项税额) 1.2——收到41.2万元只能确认40万元收入，增值税实质是减少企业收入。</li>
+      </ul>
+    </div>
+    <div class="sec-title"><span class="sec-no">02</span>销项税：五档税率与八项视同销售<span class="sec-sub">税率与征收率 · 价外费用 · 视同销售 · 确认判断</span></div>
+    <div class="card">
+      <div class="hd"><span class="no">📊</span>税率：五档税率 + 两档征收率<span class="ln"></span></div>
+      <div class="subt">五档税率（销项税=销售额×税率）</div>
+      <ul class="tags-block">
+        <li class="li-tag"><span class="tag t-blue">17%</span>销售和进口一般货物、劳务（加工、修理、修配），以及有形动产租赁业务。</li>
+        <li class="li-tag"><span class="tag t-teal">13%</span>优惠税率：与农业生产相关的农机、化肥、农膜等，与居民生活相关的粮食、植物油、暖气、自来水、冷气、热气、煤气、液化气，与居民精神生活相关的报纸、图书、杂志，以及国务院规定的其他货物。</li>
+        <li class="li-tag"><span class="tag t-violet">11%</span>交通运输、邮政服务、基础电信、提供建筑服务、销售不动产、转让土地使用权、不动产租赁业务。</li>
+        <li class="li-tag"><span class="tag t-pink">6%</span>金融服务、增值电信服务、销售无形资产（土地使用权除外）；生活服务业（文化、体育、教育、医疗、旅游、娱乐、餐饮、住宿、居民日常服务等）；现代服务业（研发和技术、信息技术、文化创意、物流辅助、咨询鉴证、广播电视、商务辅助等）。</li>
+        <li class="li-tag"><span class="tag t-red">0%</span>纳税人出口货物（国务院另有规定的除外），以及国际运输服务、航天运输服务、境外单位提供的完全在境外消费的服务。</li>
+      </ul>
+      <div class="subt">两档征收率（因会计核算制度不健全，或者无法提供法定计税依据的资料而采用简易计税比例，其进项税额不能抵扣）</div>
+      <ul class="tags-block">
+        <li class="li-tag"><span class="tag t-gray">3%</span>小规模纳税人及简易征收。</li>
+        <li class="li-tag"><span class="tag t-blue">5%</span>小规模纳税人销售不动产和出租不动产，一般纳税人销售2016年4月30日之前购入或建造的不动产；个人出租住房按5%征收率减按1.5%。</li>
+      </ul>
+    </div>
+    <div class="row cols2">
+      <div class="card">
+        <div class="hd"><span class="no">🧾</span>销售额：全部价款 + 价外费用<span class="ln"></span></div>
+        <ul>
+          <li><b>销售额</b>是指纳税人销售货物或提供劳务时向购买方收取的全部价款和<b>价外费用</b>——价外费用包括向购买方收取的手续费、奖励费、违约金、运输装卸费等（如果运输部门的运费发票交给购货方、并由购货方支付运费，则不属于价外费用）。</li>
+          <li>价外费用属于含税金额，计算销项税时要注意转换成不含税金额。[例13-4]某服装厂销售服装，不含税收入10万元、增值税1.7万元，另收取价外费用1.17万元：销售额=10+1.17/(1+17%)=10+1=11（万元），税金=11×17%=1.87（万元）——<b>借:</b>应收账款 12.87 / <b>贷:</b>主营业务收入 11 / 应交税费——应交增值税(销项税额) 1.87。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="hd"><span class="no">🤝</span>委托代销（①②）的两种形式<span class="ln"></span></div>
+        <div class="subt">视同买断</div>
+        <ul>
+          <li>委托方将货物交付受托方时<b>借:</b>委托代销商品 / <b>贷:</b>库存商品；收到代销清单时开具增值税发票、确认收入。</li>
+          <li>受托方收到商品记受托代销商品——所有权仍属委托企业（金融企业叫「代理业务资产」），同时设置备抵账户「代销商品款」（金融企业叫「代理业务负债」），期末编制报表时两者抵消、不影响资产负债表；实际销售时确认收入，相配比的成本是对委托企业的负债、记应付账款；付款给委托方取得发票后，可以抵扣进项税。</li>
+        </ul>
+        <div class="subt">收取手续费</div>
+        <ul>
+          <li>委托方按销售额一定比例（如5%）支付销售代理费用，收回货款时确认为销售费用；受托方销售代销货物属于视同销售、要计提销项税，销售货款实际要转付委托方、计入应付账款，收取的手续费确认为其他业务收入。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card">
+      <div class="hd"><span class="no">👀</span>视同销售八项<span class="ln"></span></div>
+      <div class="subt">视同销售是一种特殊的销售行为——从企业角度看，没有取得相应的货币流入，但货物的增值已经实现，应当缴纳增值税。增值税实施细则包括以下八项：</div>
+      <ul class="tags-block">
+        <li class="li-tag"><span class="tag t-blue">① 交他人代销</span>将货物交于他人代销——收到代销清单并开具增值税发票时确认收入。</li>
+        <li class="li-tag"><span class="tag t-teal">② 销售代销物</span>销售他人委托代销的货物——受托方取得销售收入属于视同销售、计提销项税。</li>
+        <li class="li-tag"><span class="tag t-violet">③ 异地调拨</span>设有两个以上机构并实行统一核算的纳税人，将货物从一个机构移送至其他机构用于销售（相关机构设在同一县市的除外）——理论上调拨也会产生增值，规定或主要便于税务稽查（稽查主要手段是盘库）。</li>
+        <li class="li-tag"><span class="tag t-pink">④ 用于非应税项目</span>将自产或委托加工的货物用于非增值税应税项目——非应税项目指不交增值税的项目（以前包括建筑行为等，法规未改、考试还考）；视同销售的计税价格是产品售价，售价不能确定时用组成计税价格=产品成本(劳务成本)×(1+成本利润率)，成本利润率由税务机关核定。</li>
+        <li class="li-tag"><span class="tag t-red">⑤ 集体福利/个人消费</span>将自产、委托加工的货物用于集体福利或个人消费——增值税、所得税角度都属视同销售；会计上若该货物是员工十分需要的、并因此提供了与公允价值相符的额外劳务，可以确认为收入；用于集体福利的，所有权没有转移、经济利润流入无法计量，主张直接计入成本；外购货物用于集体福利属于不许抵扣范围，直接价税合一记账。</li>
+        <li class="li-tag"><span class="tag t-gray">⑥ 对外投资</span>将自产、委托加工或购进的货物作为投资提供给其他单位或个体工商户——增值税、所得税都属视同销售；会计上若双方不受同一方控制，通常应该确认收入，受同一方控制就不应确认收入。</li>
+        <li class="li-tag"><span class="tag t-blue">⑦ 分配给股东</span>将自产、委托加工或购进的货物分配给股东或投资者——满足收入确认标准就作为收入核算，否则直接贷记库存商品或原材料；会计处理没有确认收入的话，期末需要进行所得税纳税调整。</li>
+        <li class="li-tag"><span class="tag t-teal">⑧ 无偿赠送</span>将自产、委托加工或购进的货物无偿赠送其他单位或个人（不包括交通运输业和现代服务业以公益活动为目的、以社会公众为对象的）——受赠方确实需要且价值公允可确认收入，否则计入营业外支出；作者认为我国目前情形下应都计入营业外支出，防止虚增收入；捐赠超过企业利润12%的，应调整企业所得税的应纳税所得额。</li>
+      </ul>
+    </div>
+    <div class="row cols2">
+      <div class="card">
+        <div class="hd"><span class="no">🧭</span>八项哪些确认收入<span class="ln"></span></div>
+        <ul>
+          <li>综合来看：第①②项应确认收入；第③④⑧项不确认收入；第⑤⑥⑦项要进行会计的职业判断，依据会计准则收入判断的五条标准，具体情况具体分析。</li>
+          <li><b>混合业务</b>分别核算：纳税人从事不同增值税税率的业务（比如既从事交通运输服务，又销售产品），应分别核算、分别计税，否则从高征税。</li>
+          <li><b>销售折让</b>：如果和所销售货物开在同一张发票上，可以按折扣后的金额计税，否则不许扣除折扣金额——企业可充分利用这一规定合理筹划、减少增值税。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="hd"><span class="no">🔍</span>视同销售 vs 进项税额转出<span class="ln"></span></div>
+        <ul>
+          <li>两者的区分关键是货物的状态：<b>视同销售</b>的货物计价基础是售价，多指自产或委托加工的产品——经过加工发生了增值，用于非应税项目、集体福利等要视同销售缴税；<b>进项税额转出</b>的计价基础是成本价，多指购进货物原则上没有离开企业（如用于集体福利、非应税项目），已抵扣的进项税要转出。</li>
+          <li>也就是说：购进货物用于非应税项目、集体福利等属于进项税额转出；自产或委托加工的货物用于这些用途则属于视同销售。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="sec-title"><span class="sec-no">03</span>进项税：能抵与不能抵，分两类<span class="sec-sub">可抵扣四类 · 不可抵扣五类 · 进项税额转出</span></div>
+    <div class="row cols2">
+      <div class="card">
+        <div class="hd"><span class="no">✅</span>可以抵扣的四类情况<span class="ln"></span></div>
+        <ul class="tags-block">
+          <li class="li-tag"><span class="tag t-blue">① 专用发票抵扣联</span>纳税人购进货物或应税劳务，从销货方取得增值税专用发票抵扣联上注明的增值税税款——采购额是不含税的，抵扣的进项税是发票显示的金额（采购额×抵扣率），抵扣率分17%、13%、11%、6%四种情况，并须在当期到税务机关认证。</li>
+          <li class="li-tag"><span class="tag t-teal">② 免税农产品</span>购进免税农产品所支付给农业生产者或小规模纳税人的价款，取得经税务机关批准使用的收购凭证，按凭证注明价款的13%抵扣进项税额——[例13-14]收购10万元农产品，可抵扣=10×13%=1.3（万元），商品成本=10-1.3=8.7（万元）。</li>
+          <li class="li-tag"><span class="tag t-violet">③ 废旧物资</span>生产购入废旧物资、回收经营单位销售的免税废旧物资，可依据回收经营单位开具的、有税务机关监制的普通发票上注明金额的10%计算抵扣——[例13-15]从废品公司采购10万元材料，可抵扣=10×10%=1（万元）。</li>
+          <li class="li-tag"><span class="tag t-pink">④ 小规模代开专票</span>一般纳税人从小规模纳税人处购入的货物原则上不能抵扣；如果小规模纳税人通过税务机关代开专用发票，一般纳税人可以按3%抵扣——[例13-16]采购1万元货物、代开专用发票，税款0.03万元。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="hd"><span class="no">❌</span>不可以抵扣的五类情况<span class="ln"></span></div>
+        <ul class="tags-block">
+          <li class="li-tag"><span class="tag t-red">① 没有抵扣凭证</span>购进货物或应税劳务，没有按照规定取得并保存增值税抵扣凭证，或者取得后未进行认证。</li>
+          <li class="li-tag"><span class="tag t-gray">② 核算不健全</span>会计核算不健全，或者不能够提供准确税务资料的。</li>
+          <li class="li-tag"><span class="tag t-blue">③ 非应税/免税项目</span>用于非应税项目和免税项目的购进货物或应税劳务——[例13-17]将前期购进、税金已申请抵扣的材料1万元用于生产免征增值税的有机化肥：<b>借:</b>生产成本 1.17 / <b>贷:</b>原材料 1 / 应交税费——应交增值税(进项税额转出) 0.17；如果材料是当期购入的，税金不许抵扣、直接计入成本。</li>
+          <li class="li-tag"><span class="tag t-teal">④ 集体福利/个人消费</span>用于集体福利或个人消费的购进货物或应税劳务（集体福利一般指员工食堂等）——账务处理与③基本一致；但自产和委托加工的货物用于此用途，则视同销售。</li>
+          <li class="li-tag"><span class="tag t-violet">⑤ 非正常损失</span>非正常损失的购进货物，及其在产品、产成品所耗用的购进货物或应税劳务——[例13-18]因自然灾害损失100万元材料，当期也没有销项，0-100×17%=-17（万元），税务就欠企业17万元：<b>借:</b>营业外支出 117 / <b>贷:</b>原材料 100 / 应交税费——应交增值税(进项税额转出) 17。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card">
+      <div class="hd"><span class="no">🚗</span>特别规定：汽车也能抵扣<span class="ln"></span></div>
+      <ul>
+        <li>强调：从2013年8月1日后，纳税人购入的汽车、摩托车和游艇是可以抵扣的。</li>
+      </ul>
+    </div>
+    <div class="sec-title"><span class="sec-no">04</span>期末结转：相互抵消转未交<span class="sec-sub">账页专栏 · 余额计算 · 转出未交 · 多交留抵</span></div>
+    <div class="row cols2">
+      <div class="card">
+        <div class="hd"><span class="no">📔</span>应交增值税账页与期末余额<span class="ln"></span></div>
+        <ul>
+          <li>对于一般纳税人，平时将增值税业务登记到账簿中——应交税费——应交增值税的账页分设<b>销项税额、进项税额、进项税额转出、已交税金</b>等专栏。</li>
+          <li>期末计算应交税费——应交增值税的期末余额，实际上就是<b>贷方（销项税+进项税转出）-借方（进项税+已交税金）</b>，将余额结转到未交增值税中——这就是「相互抵消转未交」。</li>
+          <li>余额在贷方，表示对税务的欠款：为使余额为零，转出记在借方、未交增值税记在贷方；余额在借方，表示本期多交了增值税：转出记在贷方、未交增值税记在借方——多交部分下期可以继续抵扣。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="hd"><span class="no">📤</span>结转与缴纳的分录（例13-19）<span class="ln"></span></div>
+        <ul>
+          <li>假设老人家公司增值税销项合计30万元、进项税额转出5万元、进项税10万元、已交税金3万元（当期缴纳当期的税金）：期末应交增值税余额=贷方合计(30+5)-借方合计(10+3)=22（万元），余额在贷方——<b>借:</b>应交税费——应交增值税(转出未交增值税) 22 / <b>贷:</b>应交税费——未交增值税 22。</li>
+          <li>下月缴纳上月税金时：<b>借:</b>应交税费——未交增值税 22 / <b>贷:</b>银行存款 22。</li>
+          <li>若期末余额在借方10万元，表示本期多交增值税10万元，结转到未交增值税的借方、下期继续抵扣：<b>借:</b>应交税费——未交增值税 10 / <b>贷:</b>应交税费——应交增值税(转出多交增值税) 10。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <div class="t">本章小结 · 带走这 8 句</div>
+    <ul class="qs">
+      <li><b>增值税的由来</b>：增值税由交易税（营业税）演化而来，只对价值增加额征税——以销售额减采购额为税基，解决交易税层层累加导致的税负不公。</li>
+      <li><b>价外税</b>：增值税是价外税，税金不计入商品价格，由销售方代收代缴、不计入收入；价内税则包含在价格中、由销售方承担，两者税基也不同（含税 vs 不含税）。</li>
+      <li><b>纳税人分类</b>：一般纳税人按增值额计税、小规模纳税人按销售额计税（征收率3%），按年销售额区分（商业80万、制造50万、服务500万）。</li>
+      <li><b>计算公式</b>：应交增值税=销项税-进项税；不含税价=含税价/(1+税率)，税金=不含税价×税率。</li>
+      <li><b>税率结构</b>：销项税=销售额×税率，有17%、13%、11%、6%、0%五档税率和3%、5%两档征收率；价外费用要换算成不含税金额计税。</li>
+      <li><b>视同销售八项</b>：代销、异地调拨、用于非应税项目、集体福利、投资、分配股东、无偿赠送等八项没有货币流入也要缴税——①②确认收入、③④⑧不确认、⑤⑥⑦职业判断。</li>
+      <li><b>进项税两类</b>：可抵扣（专用发票抵扣联、免税农产品13%、废旧物资10%、小规模代开专票3%）与不可抵扣（无凭证未认证、核算不健全、非应税/免税项目、集体福利、非正常损失）——已抵扣的需做进项税额转出。</li>
+      <li><b>期末结转</b>：应交增值税=贷方（销项税+进项税转出）-借方（进项税+已交税金），余额结转未交增值税——贷方余额表示欠税、借方余额表示多交可留抵下期。</li>
+    </ul>
+  </div>
+</div>
+
+</div></div>
+<script>
+(function(){
+  var links = document.querySelectorAll('.s-item');
+  var views = document.querySelectorAll('.view');
+  var KEY = 'onepager-current-view';
+  function show(id){
+    links.forEach(function(a){ a.classList.toggle('active', a.getAttribute('data-view')===id); });
+    views.forEach(function(v){ v.hidden = (v.id !== 'view-'+id); });
+    window.scrollTo(0,0);
+    try { localStorage.setItem(KEY, id); } catch(e){}
+    try { if (location.hash !== '#view-'+id) history.replaceState(null, '', '#view-'+id); } catch(e){ location.hash = 'view-'+id; }
+  }
+  links.forEach(function(a){
+    a.addEventListener('click', function(e){ e.preventDefault(); show(a.getAttribute('data-view')); });
+  });
+  function restore(){
+    var saved = null;
+    try {
+      if (location.hash) {
+        var h = location.hash.replace('#view-', '');
+        if (document.getElementById('view-'+h)) saved = h;
+      }
+    } catch(e){}
+    if (!saved) {
+      try { saved = localStorage.getItem(KEY); } catch(e){}
+    }
+    var valid = saved && document.getElementById('view-'+saved);
+    if (valid) show(saved);
+  }
+  restore();
+  window.addEventListener('hashchange', restore);
+})();
+</script>
+</body>
+</html>
